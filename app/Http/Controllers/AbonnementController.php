@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Abonnement;
 use Illuminate\Http\Request;
 
-class Client extends Controller
+class AbonnementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +34,7 @@ class Client extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show(Abonnement $abonnement)
     {
         //
     }
@@ -41,7 +42,7 @@ class Client extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Client $client)
+    public function edit(Abonnement $abonnement)
     {
         //
     }
@@ -49,7 +50,7 @@ class Client extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Abonnement $abonnement)
     {
         //
     }
@@ -57,7 +58,7 @@ class Client extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(Abonnement $abonnement)
     {
         //
     }
