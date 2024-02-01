@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Publication;
 use App\Models\Client;
 
 
@@ -20,12 +19,12 @@ class PublicationFactory extends Factory
     public function definition(): array
     {
         return [
-             'status' => $this->faker->word,
+            'status' => $this->faker->word,
             'description' => $this->faker->paragraph,
             'titre' => $this->faker->sentence,
             'client_id' => function () {
-        return Client::factory()->create()->id;
-    },
+                return Client::factory()->create()->id;
+            },
         ];
     }
 }

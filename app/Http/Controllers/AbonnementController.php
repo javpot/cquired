@@ -12,7 +12,8 @@ class AbonnementController extends Controller
      */
     public function index()
     {
-        //
+        $abonnements = Abonnement::all();
+        return view('abonnements.index', compact('abonnements'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AbonnementController extends Controller
      */
     public function create()
     {
-        //
+        return view('abonnements.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class AbonnementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Abonnement::create($request->all());
+        return redirect()->route('abonnements.index');
     }
 
     /**
@@ -36,7 +38,7 @@ class AbonnementController extends Controller
      */
     public function show(Abonnement $abonnement)
     {
-        //
+        return view('abonnements.show', compact('abonnement'));
     }
 
     /**
@@ -44,7 +46,7 @@ class AbonnementController extends Controller
      */
     public function edit(Abonnement $abonnement)
     {
-        //
+        return view('abonnements.edit', compact('abonnement'));
     }
 
     /**
@@ -52,7 +54,8 @@ class AbonnementController extends Controller
      */
     public function update(Request $request, Abonnement $abonnement)
     {
-        //
+        $abonnement->update($request->all());
+        return redirect()->route('abonnements.index');
     }
 
     /**
@@ -60,6 +63,7 @@ class AbonnementController extends Controller
      */
     public function destroy(Abonnement $abonnement)
     {
-        //
+        $abonnement->delete();
+        return redirect()->route('abonnements.index');
     }
 }

@@ -12,7 +12,8 @@ class AgenceController extends Controller
      */
     public function index()
     {
-        //
+        $agences = Agence::all();
+        return view('agences.index', compact('agences'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AgenceController extends Controller
      */
     public function create()
     {
-        //
+        return view('agences.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class AgenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Agence::create($request->all());
+        return redirect()->route('agences.index')->with('success', 'Agence created successfully.');
     }
 
     /**
@@ -36,7 +38,7 @@ class AgenceController extends Controller
      */
     public function show(Agence $agence)
     {
-        //
+        return view('agences.show', compact('agence'));
     }
 
     /**
@@ -44,7 +46,7 @@ class AgenceController extends Controller
      */
     public function edit(Agence $agence)
     {
-        //
+        return view('agences.edit', compact('agence'));
     }
 
     /**
@@ -52,7 +54,8 @@ class AgenceController extends Controller
      */
     public function update(Request $request, Agence $agence)
     {
-        //
+        $agence->update($request->all());
+        return redirect()->route('agences.index')->with('success', 'Agence updated successfully.');
     }
 
     /**
@@ -60,6 +63,7 @@ class AgenceController extends Controller
      */
     public function destroy(Agence $agence)
     {
-        //
+        $agence->delete();
+        return redirect()->route('agences.index')->with('success', 'Agence deleted successfully.');
     }
 }

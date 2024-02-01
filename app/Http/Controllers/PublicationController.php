@@ -12,7 +12,8 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        //
+        $publications = Publication::all();
+        return view('publications.index', compact('publications'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PublicationController extends Controller
      */
     public function create()
     {
-        //
+        return view('publications.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Publication::create($request->all());
+        return redirect()->route('publications.index')->with('success', 'Publication created successfully.');
     }
 
     /**
@@ -36,7 +38,7 @@ class PublicationController extends Controller
      */
     public function show(Publication $publication)
     {
-        //
+        return view('publications.show', compact('publication'));
     }
 
     /**
@@ -44,7 +46,7 @@ class PublicationController extends Controller
      */
     public function edit(Publication $publication)
     {
-        //
+        return view('publications.edit', compact('publication'));
     }
 
     /**
@@ -52,7 +54,8 @@ class PublicationController extends Controller
      */
     public function update(Request $request, Publication $publication)
     {
-        //
+        $publication->update($request->all());
+        return redirect()->route('publications.index')->with('success', 'Publication updated successfully.');
     }
 
     /**
@@ -60,6 +63,7 @@ class PublicationController extends Controller
      */
     public function destroy(Publication $publication)
     {
-        //
+        $publication->delete();
+        return redirect()->route('publications.index')->with('success', 'Publication deleted successfully.');
     }
 }
