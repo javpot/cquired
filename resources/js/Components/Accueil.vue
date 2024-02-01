@@ -42,6 +42,7 @@ export default {
 
         <section class="section-3">
             <div class="section-3-info">
+                
                 <h2>Vous n'avez rien à perdre</h2>
                 <div>
                     <img src="../../assets/check.png" alt="" srcset="" class="check">
@@ -55,15 +56,81 @@ export default {
                     <img src="../../assets/check.png" alt="" srcset="" class="check">
                     <p>Travailler avec les meilleurs, tout en respectant votre bugdet </p>
                 </div>
+                <div class="section-3-btn-container">
+                    <button>S'inscrire gratuitement</button>
+                </div>
+            </div>
+            <div class="section-3-img-container">
+                <img src="../../assets/benefImg.png" alt="" srcset="">
             </div>
             
         </section>
+        <section class="section-4">
+            <div class="section-4-info">
+            <div class="section-4-img-container">
+                <img src="../../assets/entrepriseImgAccueil.png" alt="" srcset="">
+            </div>
+            <div class="section-4-text">
+                <h2>Pour les Entreprises</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident molestias illo, ullam nam deserunt corrupti quae doloribus quia facilis dolore? Iure corporis unde vitae atque magnam laudantium similique eaque molestias.
+                </p>
+                <div class="section-4-btn-container">
+                    <button>Voir plus</button>
+                </div>
+            </div>
+        </div>
+        
+
+        </section>
+        <section class="section-5">
+            <div class="section-5-info">
+            <div class="section-5-img-container">
+                <img src="../../assets/clientImgAccueil.jpg" alt="" srcset="">
+            </div>
+            <div class="section-5-text">
+                <h2>Pour les Clients</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident molestias illo, ullam nam deserunt corrupti quae doloribus quia facilis dolore? Iure corporis unde vitae atque magnam laudantium similique eaque molestias.
+                </p>
+                <div class="section-5-btn-container">
+                    <button>Voir plus</button>
+                </div>
+            </div>
+        </div>
+        
+
+        </section>
+
+        <section class="section-6">
+            <div class="section-6-info">
+                <h2>Alors intéresser?</h2>
+                <p>Ne perdez pas de temps et venez vivre un expérience inoubliable</p>
+                <div class="section-6-btn-container">
+                    <button>S'inscrire</button>
+                </div>
+                
+            </div>
+        </section>
+        <div class="copyright-footer">
+            <div class="copyright-footer-section-1">
+                <img src="../../assets/cquired-logo.png" alt="" />
+                <div class="container-footer-img">
+                    <a href="">
+                        <img src="../../assets/icons8-mail-50 1.png" alt="mail image" /></a>
+                    <a href="">
+                        <img src="../../assets/icons8-linkedin-80 1.png" alt="linkedin image" /></a>
+                </div>
+            </div>
+            <hr />
+            <p>© Cquired All rights reserved</p>
+        </div>
 
     </div>
 
 </template>
 <style scoped>
-
+p{
+    line-height: 1.6;
+}
 .container-accueil{
     min-height: 85vh;
    min-width: 100vw;
@@ -145,7 +212,7 @@ background-color: transparent;
 }
 /*section 2*/
 .section-2{
-   min-height: 80vh;
+   min-height: 50vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -173,21 +240,23 @@ font-weight: 600;
     background-color: #AD12C7;
 }
 .section-3{
-    height: 100vh;
+  min-height: 150vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     
     align-items: center;
     justify-content: center;
 }
 .section-3-info{
     width: 90%;
-    height: 80%;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 
 }
+
 .check{
     width: 40px;
     height: 40px;
@@ -197,8 +266,190 @@ font-weight: 600;
     font-weight:600;
     font-size: 1.2em;
 }
+.section-3-btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-3-info>div>button{
+    height: 40px;
+    width: 250px;
+    background-color: #AD12C7;
+    color: white;
+    border-radius: 30px;
+    
+    
+}
+.section-3-img-container{
+width: 100;
+
+}
+.section-3-img-container>img{
+    height: 300px;
+    width: 300px;
+}
+
+.section-4{
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-4-info{
+    width: 90%;
+}
+.section-4-text{
+    background-color:#0d094c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap:15px;
+    padding-bottom: 15px;
+}
+.section-4-text>h2,.section-4-text>p{
+    width: 90%;
+}
+.section-4-btn-container{
+    width: 90%;
+    
+}
+.section-4-btn-container>button{
+    height: 40px;
+    width: 100px;
+    background-color: white;
+    color: #63646b;
+    border-radius: 30px;
+    /*for animation*/
+   transition: 0.3s;
+}
+.section-4-btn-container>button:hover{
+    
+    color: white;
+    background-color: black;
+    
+  
+}
+
+.section-5{
+    padding-top: 50px;
+    min-height: 50vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-5-info{
+    width: 90%;
+}
+.section-5-text{
+    background-color:#AD12C7;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap:15px;
+    padding-bottom: 15px;
+}
+.section-5-text>h2,.section-5-text>p{
+    width: 90%;
+}
+.section-5-btn-container{
+    width: 90%;
+    
+}
+.section-5-btn-container>button{
+    height: 40px;
+    width: 100px;
+    background-color: white;
+    color: #63646b;
+    border-radius: 30px;
+    /*for animation*/
+   transition: 0.3s;
+}
+.section-5-btn-container>button:hover{
+    color: white;
+    background-color: black;
+    
+    border: 1px solid #AD12C7;
+}
+
+.section-6{
+    min-height: 50vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-6-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.section-6-btn-container{
+    width: 100%;
+    text-align: center;
+    
+}
+.section-6-btn-container>button{
+    height: 40px;
+    width: 100px;
+    background-color: white;
+    color: #AD12C7;
+    border-radius: 30px;
+    border: 1px solid #AD12C7;
+    /*for animation*/
+   transition: 0.3s;
+}
+.section-6-btn-container>button:hover{
+    color: white;
+    background-color: #AD12C7;
+    
+  
+}
 
 
+.copyright-footer{
+    background-color: #4a5b6b;
+    height: 7em;
+    padding: 14px 8px;
+    width: 100vw;
+}
+.copyright-footer-section-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+}
+.copyright-footer-section-1 img{
+  width: 130px;
+  height: 2.2em;
+}
+.copyright-footer-section-1>div>a>img{
+    width: 35px;
+    
+}
+.container-footer-img{
+    
+    display: flex;
+    justify-content: space-between;
+}
+hr{
+    color: white;
+    width: 86%;
+    margin: auto;
+}
+.copyright-footer p {
+    text-align: center;
+    margin-top: 1em;
+    color: white;
+}
 
 
 /*section 1 responsive*/
