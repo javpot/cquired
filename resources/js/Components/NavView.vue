@@ -35,6 +35,7 @@ export default {
 </template>
 
 <style scoped>
+
 header{
     height: 15vh;
     width: 100vw;

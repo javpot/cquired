@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import NavView from '../Components/NavView.vue'
+import Accueil from '../Components/Accueil.vue'
 
 defineProps({
     canLogin: {
@@ -24,6 +25,7 @@ defineProps({
    
     <div class="container">
         <NavView></NavView>
+        <Accueil></Accueil>
     </div>
     
    
@@ -35,6 +37,9 @@ defineProps({
 </template>
 
 <style>
+body,html{
+    overflow-x: hidden;
+}
 *{
     margin: 0;
     padding: 0;
