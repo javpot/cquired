@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Abonnement extends Model
+class Subscription extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'titre',
-        'prix',
+        'id',
+        'title',
+        'price',
         'description',
         'icon',
-        'client-limite',
-        'message-limite',
-        'agence_id'
+        'client_limit',
+        'message_limit',
     ];
 
-    public function agence() {
-        return $this->belongsTo(Agence::class);
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
     }
 }

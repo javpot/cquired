@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // Added manually. See line 48
-use App\Http\Controllers\AbonnementController;
-use App\Http\Controllers\AgenceAbonnementController;
-use App\Http\Controllers\AgenceController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ClientPublicationController;
-use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,31 +44,27 @@ Route::middleware('auth')->group(function () {
 });
 
 // Added manually
-Route::resource('abonnements', AbonnementController::class);
-Route::resource('agence_abonnements', AgenceAbonnementController::class);
-Route::resource('agences', AgenceController::class);
-Route::resource('clients', ClientController::class);
-Route::resource('client_publications', ClientPublicationController::class);
-Route::resource('publications', PublicationController::class);
+Route::apiResource('subscription', SubscriptionController::class);
+Route::apiResource('agency', AgencyController::class);
+Route::apiResource('client', ClientController::class);
+Route::apiResource('post', PostController::class);
 
 
-/* COMMENT Route::resource fonctionne:
-src: https://laravel.com/docs/10.x/controllers#restful-naming-resource-routes:~:text=This%20route%20definition%20will%20define%20the%20following%20routes%3A
+/* COMMENT Route::apiResource fonctionne:
 
-Method        | URI                        | Action   | Route Name
---------------|----------------------------|----------|-----------------
-GET           | /resourceName              | index    | resourceName.index
-GET           | /resourceName/create       | create   | resourceName.create
-POST          | /resourceName              | store    | resourceName.store
-GET           | /resourceName/{resource}   | show     | resourceName.show
-GET           | /resourceName/{resource}/edit | edit   | resourceName.edit
-PUT/PATCH     | /resourceName/{resource}   | update   | resourceName.update
-DELETE        | /resourceName/{resource}   | destroy  | resourceName.destroy
+GET /resource
+GET /resource/{id}
+POST /resource + JSON {
+    "attribute1": "value1",
+    "attribute2": "value2",
+    // Additional attributes...
+}
+PUT /resource/{id} + JSON {
+    "attribute1": "new_value1",
+    "attribute2": "new_value2",
+    // Additional attributes...
+}
 
-En gros, chaque URI fais reference aux CRUD's dans le controller. 
-On peut utiliser resource pour definir les routes de chaque methode CRUD.
-Ensuite, une variable est utilisee pour faire reference au PATH complet de la route (Route Name).
-Par exemple, dans AbonnementController.php, on redirect vers le [Route Name] et non le URI
 
 */
 

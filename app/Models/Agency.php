@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Agence extends Model
+class Agency extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nom',
+        'id',
+        'name',
         'bio',
         'email',
         'pwd',
         'category',
-        'localisation',
-        'photo',
+        'location',
+        'picture',
         'banner',
-        'domaine',
-
+        'domain',
+        'abonnement_id'
     ];
 }

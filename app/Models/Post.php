@@ -4,21 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Client;
 
-class client_publication extends Model
+class Post extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'id',
+        'titre',
+        'description',
+        'status',
         'client_id',
-        'publication_id'
     ];
 
-    public function client() {
+    public function client()
+    {
         return $this->belongsTo(Client::class);
-    }
-
-    public function publication() {
-        return $this->belongsTo(Publication::class);
     }
 }

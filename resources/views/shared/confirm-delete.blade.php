@@ -1,18 +1,18 @@
 {{--
-    ETAPE 1:
-    Il faut changer le destroy method dans les controllers a ca
+ETAPE 1:
+Il faut changer le destroy method dans les controllers a ca
 
-    public function destroy(Client $client)
-    {
-    $deleteRoute = route('clients.destroy', $client);
-    $cancelRoute = route('clients.index'); // Change this to the appropriate index route
-    
-    return view('shared.confirm-delete', compact('deleteRoute', 'cancelRoute', 'client'));
-    }
+public function destroy(Client $client)
+{
+$deleteRoute = route('clients.destroy', $client);
+$cancelRoute = route('clients.index'); // Change this to the appropriate index route
 
-    ETAPE 2:
-    Il faut que les .blade.php controllers redirect ici au bouton de delete
-     --}}
+return view('shared.confirm-delete', compact('deleteRoute', 'cancelRoute', 'client'));
+}
+
+ETAPE 2:
+Il faut que les .blade.php controllers redirect ici au bouton de delete
+--}}
 
 @extends('app')
 
