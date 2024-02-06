@@ -11,7 +11,6 @@ class Agency extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'name',
         'bio',
         'email',
@@ -21,7 +20,7 @@ class Agency extends Model
         'picture',
         'banner',
         'domain',
-        'abonnement_id'
+        'subscription_id'
     ];
 
     public function Subscription()

@@ -9,7 +9,7 @@ use App\Models\Client;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Publication>
  */
-class PublicationFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,9 +19,9 @@ class PublicationFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => $this->faker->word,
-            'description' => $this->faker->paragraph,
             'titre' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'status' => $this->faker->word,
             'client_id' => function () {
                 return Client::factory()->create()->id;
             },

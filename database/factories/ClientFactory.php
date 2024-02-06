@@ -17,16 +17,16 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'nom' => $this->faker->firstName,
-            'prenom' => $this->faker->lastName,
+            'last_name' => $this->faker->firstName,
+            'first_name' => $this->faker->lastName,
             'bio' => $this->faker->paragraph,
-            'photo' => $this->faker->imageUrl,
+            'picture' => $this->faker->imageUrl,
             'banner' => $this->faker->imageUrl,
-            'localisation' => $this->faker->city,
-            'statut' => $this->faker->word,
+            'location' => $this->faker->city,
+            'status' => $this->faker->word,
             'email' => $this->faker->unique()->safeEmail,
             'password' => bcrypt('password'), // Par défaut, un mot de passe chiffré pour 'password'
-            'domaine' => $this->faker->word,
+            'domain' => $this->faker->word,
         ];
     }
 }

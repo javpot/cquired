@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         $this->call([
             ClientSeeder::class,
-            PublicationSeeder::class,
+            PostSeeder::class,
             // Autres seeders...
         ]);
 

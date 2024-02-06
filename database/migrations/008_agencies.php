@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('picture');
             $table->string('banner');
             $table->string('domain');
-            $table->foreignId('abonnement_id')->constrained('subscriptions');
+            $table->foreignId('agencie_id')->constrained('subscriptions');
         });
     }
 
