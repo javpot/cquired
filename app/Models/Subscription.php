@@ -15,12 +15,8 @@ class Subscription extends Model
         'price',
         'description',
         'icon',
+        'status',
         'client_limit',
         'message_limit',
     ];
-
-    public function agency()
-    {
-        return $this->belongsTo(Agency::class);
-    }
 }

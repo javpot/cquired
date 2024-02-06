@@ -10,13 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('publications', function (Blueprint $table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('titre');
+            $table->string('title');
+            $table->string('price');
             $table->string('description');
+            $table->string('icon');
             $table->string('status');
-            $table->foreignId('client_id')->constrained('clients');
+            $table->string('client_limit');
+            $table->string('message_limit');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('publications');
+        Schema::dropIfExists('subscriptions');
     }
 };
