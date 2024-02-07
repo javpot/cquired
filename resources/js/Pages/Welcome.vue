@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import NavView from '../Components/NavView.vue'
 import Accueil from '../Components/Accueil.vue'
 import LogIn from '@/Components/LogIn.vue';
+import SignIn from '@/Components/SignIn.vue';
 
 defineProps({
     canLogin: {
@@ -27,7 +28,8 @@ defineProps({
     <div class="container">
         <!--<NavView></NavView>-->
         <!--<Accueil></Accueil>-->
-        <LogIn></LogIn>
+      <!--<LogIn></LogIn>-->
+      <SignIn></SignIn>
     </div>
     
    
