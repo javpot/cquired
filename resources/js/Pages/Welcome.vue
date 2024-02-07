@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import NavView from '../Components/NavView.vue'
 import Accueil from '../Components/Accueil.vue'
+import LogIn from '@/Components/LogIn.vue';
 
 defineProps({
     canLogin: {
@@ -24,8 +25,9 @@ defineProps({
 <template>
    
     <div class="container">
-        <NavView></NavView>
-        <Accueil></Accueil>
+        <!--<NavView></NavView>-->
+        <!--<Accueil></Accueil>-->
+        <LogIn></LogIn>
     </div>
     
    
