@@ -14,19 +14,16 @@ export default {
             </div>
             <div class="progress-bar-1">
             </div>
-            <h2>Je suis me trouve à</h2>
+            <h2 class="text-2xl text-center">Je me trouve à</h2>
             <div class="model-client-freelancer-info">
             <div>
                 <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
-                
-                <p class="text-center text-xl ">Freelancer or Agency</p>
-            </div>
-            <div>
-                <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
-                <img src="../../assets/Group 4241.png" alt="" srcset="">
-                <p class="text-center text-xl">Client</p>
+                 <input type="text">
+                <p class=" text-base ">*Entrez simplement le nom de votre ville, cela nous aidera à vous montrer les agences et les indépendants en fonction de leur proximité. </p>
             </div>
 
+            <button>Continue</button>
+           
         </div>
     </div>
 
@@ -53,9 +50,10 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .progress-bar{
     height: 5%;
-    width: 10%;
+    width: 60%;
     background-color: #6EC3E7;;
     position: relative;
+    bottom : 0.3%;
     z-index: 2;
 }
 .progress-bar-1{ 
@@ -78,10 +76,11 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
 .model-client-freelancer-info>div{
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 img{
     height: 100px;
@@ -95,6 +94,13 @@ img{
     top: 100px;
     display: none;
 }
+button{
+    height: 50px;
+    width: 50%;
+    background-color: #6EC3E7;
+    text-align: center;
+    border-radius: 30px;
+}
 @media screen and (min-width: 900px) {
     .model-client-freelancer{
         height: 90%;
@@ -106,19 +112,39 @@ img{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     
     }
-    
+    input{
+        width: 100%;
+    }
     .model-client-freelancer-info{
-        height: 100%;
+        height: 80%;
         width: 100%;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction:column;
+        justify-content: space-evenly;
         align-items: center;
     
     }
     img{
         height: 150px;
         width: 200px;
+    }
+    .progress-bar{
+        height: 5%;
+        width: 60%;
+        background-color: #6EC3E7;;
+        position: relative;
+        bottom : 0%;
+        z-index: 2;
+    }
+    .progress-bar-1{ 
+        height: 5%;
+        width: 100%;
+        background-color: #D9D9D9;
+        position: relative;
+        bottom: 5%;
+        z-index: 1;
+       
+    
     }
 
 }
