@@ -89,8 +89,8 @@ nav {
     display: none;
 }
 .nav-selection>li:nth-child(4) {
-   color: #AD12C7;
-   border: 1px solid #AD12C7;
+   color: #6EC3E7;
+   border: 1px solid #6EC3E7;
    border-radius: 30px;
    /*for animation*/
    transition: 0.3s;
@@ -98,7 +98,7 @@ nav {
 }
 .nav-selection>li:nth-child(4):hover{
     color: white;
-    background-color: #AD12C7;
+    background-color: #6EC3E7;
     
 }
 

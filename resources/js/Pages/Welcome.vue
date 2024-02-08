@@ -4,6 +4,7 @@ import NavView from '../Components/NavView.vue'
 import Accueil from '../Components/Accueil.vue'
 import LogIn from '@/Components/LogIn.vue';
 import SignIn from '@/Components/SignIn.vue';
+import Inscription from  '@/Components/Inscription.vue'
 
 defineProps({
     canLogin: {
@@ -28,8 +29,10 @@ defineProps({
     <div class="container">
         <!--<NavView></NavView>-->
         <!--<Accueil></Accueil>-->
-      <!--<LogIn></LogIn>-->
-      <SignIn></SignIn>
+      
+     <!--<SignIn></SignIn>-->
+ <!--<LogIn></LogIn>-->
+ <Inscription></Inscription>
     </div>
     
    

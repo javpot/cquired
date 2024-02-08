@@ -333,7 +333,7 @@ p {
     width: 40vw;
 }
 .container-search > img {
-    background-color: #ad12c7;
+    background-color: #6EC3E7;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
@@ -355,7 +355,7 @@ h2 {
     font-weight: 600;
 }
 .section-2-info > p > span {
-    color: #ad12c7;
+    color: #6EC3E7;
 }
 /*carrousel a faire*/
 .carousel {
@@ -529,7 +529,7 @@ input:checked + .slide-container .nav label {
 .section-3-info > div > button {
     height: 40px;
     width: 250px;
-    background-color: #ad12c7;
+    background-color: #6EC3E7;
     color: white;
     border-radius: 30px;
 }
