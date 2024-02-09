@@ -14,12 +14,22 @@ export default {
             </div>
             <div class="progress-bar-1">
             </div>
-            <h2 class="text-3xl text-center">Je me trouve à</h2>
+            <h2 class="text-3xl text-center">je cherche de l'aide dans ce domaine</h2>
             <div class="model-client-freelancer-info">
             <div>
-                <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
-                 <input type="text">
-                <p class=" text-base ">*Entrez simplement le nom de votre ville, cela nous aidera à vous montrer les agences et les indépendants en fonction de leur proximité. </p>
+                
+                <button class="selection-btn">Developpement Web</button>
+                <button class="selection-btn">Intelligence Artificiel</button>
+                <button class="selection-btn">Montage Video</button>
+                <button class="selection-btn">Jeux Video</button>
+                <button class="selection-btn">SEO</button>
+                <button class="selection-btn">Effets Speciauxs</button>
+                
+                
+
+                
+
+                
             </div>
 
             <button class="continue-btn">Continue</button>
@@ -35,7 +45,7 @@ export default {
 <style scoped>
 
 .container-inscription-section-1{
-    height: 90vh;
+    height:90vh;
     width: 100vw;
 }
 .model-client-freelancer{
@@ -53,7 +63,7 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     width: 60%;
     background-color: #6EC3E7;;
     position: relative;
-    bottom : 0.3%;
+    bottom : 0.6%;
     z-index: 2;
 }
 .progress-bar-1{ 
@@ -76,11 +86,15 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
 .model-client-freelancer-info>div{
+    height: 50%;
     width: 80%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    
 }
 img{
     height: 100px;
@@ -94,14 +108,36 @@ img{
     top: 100px;
     display: none;
 }
-button{
+.selection-btn{
+    height: 50px;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+    color: #adadad;
+
+    border-radius: 15px;
+    border: 1px solid #adadad;
+    transition: 0.3s;
+}
+.selection-btn:hover{
+    border: 1px solid #6EC3E7;
+    color: #6EC3E7;
+}
+
+.continue-btn{
     height: 50px;
     width: 50%;
     background-color: #6EC3E7;
     text-align: center;
     border-radius: 30px;
+    color: black;
 }
 @media screen and (min-width: 900px) {
+    .container-inscription-section-1{
+    height: 90vh;
+    width: 100vw;
+}
     .model-client-freelancer{
         height: 90%;
         width: 60%;
@@ -116,7 +152,7 @@ button{
         width: 100%;
     }
     .model-client-freelancer-info{
-        height: 80%;
+        height: 90%;
         width: 100%;
         display: flex;
         flex-direction:column;
@@ -133,7 +169,7 @@ button{
         width: 60%;
         background-color: #6EC3E7;;
         position: relative;
-        bottom : 0%;
+        bottom : 0.3%;
         z-index: 2;
     }
     .progress-bar-1{ 

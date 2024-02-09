@@ -14,15 +14,22 @@ export default {
             </div>
             <div class="progress-bar-1">
             </div>
-            <h2 class="text-3xl text-center">Je me trouve à</h2>
+            
+
             <div class="model-client-freelancer-info">
             <div>
-                <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
-                 <input type="text">
-                <p class=" text-base ">*Entrez simplement le nom de votre ville, cela nous aidera à vous montrer les agences et les indépendants en fonction de leur proximité. </p>
+                
+              
+                
+                
+                <h2 class="text-3xl">👍 Bravo!! vous êtes inscrit</h2>
+
+                
+
+                
             </div>
 
-            <button class="continue-btn">Continue</button>
+       <!--<button class="continue-btn">Continue</button>-->  
            
         </div>
     </div>
@@ -33,9 +40,23 @@ export default {
 </template>
 
 <style scoped>
+h3{
+    margin-left: 10%;
+}
+.ligne{
+    height: 2px;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    background-color: black;
+}
+li{
+    list-style-type: none;
+    margin-left: 10%;
+}
 
 .container-inscription-section-1{
-    height: 90vh;
+    height:90vh;
     width: 100vw;
 }
 .model-client-freelancer{
@@ -50,10 +71,10 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .progress-bar{
     height: 5%;
-    width: 60%;
+    width: 100%;
     background-color: #6EC3E7;;
     position: relative;
-    bottom : 0.3%;
+    top : 0.5%;
     z-index: 2;
 }
 .progress-bar-1{ 
@@ -67,7 +88,7 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
 .model-client-freelancer-info{
-    height: 100%;
+    height: 90%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -76,12 +97,41 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
 .model-client-freelancer-info>div{
-    width: 80%;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+   
+    
+}
+.card-subscription{
+    height: 100%;
+    width: 20%;
+    
+    background-color: #a6d0e3;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-evenly;
+  
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.card-subscription:nth-child(2){
+    
+    background-color: #6EC3E7;
+}
+.card-subscription:nth-child(3){
+    
+    background-color: #3ab3e7;
+}
+.card-subscription:nth-child(4){
+    
+    background-color: #0f9edc;
+}
+
 img{
     height: 100px;
     width: 150px;
@@ -94,17 +144,53 @@ img{
     top: 100px;
     display: none;
 }
-button{
+.selection-btn{
+    height: 50px;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+    color: #adadad;
+
+    border-radius: 15px;
+    border: 1px solid #adadad;
+    transition: 0.3s;
+}
+.selection-btn:hover{
+    border: 1px solid #6EC3E7;
+    color: #6EC3E7;
+}
+
+.continue-btn{
     height: 50px;
     width: 50%;
     background-color: #6EC3E7;
     text-align: center;
     border-radius: 30px;
+    color: black;
 }
 @media screen and (min-width: 900px) {
+    .model-client-freelancer-info>div{
+        height: 80%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+       
+        
+    }
+    .container-inscription-section-1{
+    height: 90vh;
+    width: 100vw;
+}
+
+
     .model-client-freelancer{
         height: 90%;
-        width: 60%;
+        width: 95%;
         background-color: white;
     display: flex;
     flex-direction: column;
@@ -116,7 +202,7 @@ button{
         width: 100%;
     }
     .model-client-freelancer-info{
-        height: 80%;
+        height: 90%;
         width: 100%;
         display: flex;
         flex-direction:column;
@@ -130,10 +216,10 @@ button{
     }
     .progress-bar{
         height: 5%;
-        width: 60%;
+        width: 100%;
         background-color: #6EC3E7;;
         position: relative;
-        bottom : 0%;
+        bottom : 0.3%;
         z-index: 2;
     }
     .progress-bar-1{ 
