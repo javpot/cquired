@@ -10,6 +10,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\GoogleAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,8 @@ Route::apiResource('agency', AgencyController::class);
 Route::apiResource('client', ClientController::class);
 Route::apiResource('post', PostController::class);
 
+Route::get('auth/google/', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 
 /* COMMENT Route::apiResource fonctionne:
 
