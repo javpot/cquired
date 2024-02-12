@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class GoogleAuthController extends Controller
 {
@@ -18,7 +17,7 @@ class GoogleAuthController extends Controller
     {
         try {
             $google_user = Socialite::driver('google')->user();
-            $user = User::where('google_id', $google_user->getId())->first();
+            $user = User::where('google_id', $google_user->getId())->orWhere('email', $google_user->getEmail())->first();
 
             if (!$user) {
                 $new_user = User::create([
@@ -35,8 +34,12 @@ class GoogleAuthController extends Controller
 
                 return redirect()->intended('dashboard');
             }
-        } catch (\Throwable $e) {
-            dd('Something went wrong! ' . $e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                dd('Email address already exists.');
+            } else {
+                dd('Something went wrong! ' . $e->getMessage());
+            }
         }
     }
 }
