@@ -38,6 +38,8 @@ Route::get('/signup', function () {
     return Inertia::render('Auth/SignUp');
 })->name('signup');
 
+Route::post('/signup', [Controller::class, 'method'])->name('signup');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

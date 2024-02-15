@@ -21,7 +21,16 @@ export default {
                 srcset=""
             />
             <h1>Creer un compte</h1>
-            <div class="google-button">Continue with Google</div>
+            <a :href="route('google-auth')" class="google-auth-button">
+                <span class="inline-flex items-center">
+                    <img
+                        src="../../../assets/google.svg"
+                        alt="Google Icon"
+                        class="w-5 h-5 mr-2"
+                    />
+                    Continue with Google
+                </span>
+            </a>
             <div class="separateur">
                 <div class="ligne"></div>
                 <h2>Ou</h2>
@@ -35,7 +44,7 @@ export default {
                 <label for="mdp">Mot de passe*</label>
                 <input type="password" name="mdp" id="mdp" />
                 <div>
-                    <input type="submit" value="Connection" class="submit" />
+                    <input type="submit" value="Continuer" class="submit" />
                 </div>
             </form>
             <span>
