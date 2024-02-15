@@ -39,7 +39,8 @@ export default {
                 </div>
             </form>
             <span>
-                Vous avez déja un compte?<Link :href="login" class="inscrire">
+                Vous avez déja un compte?
+                <Link :href="route('login')" class="inscrire">
                     Se connecter</Link
                 ></span
             >

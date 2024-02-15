@@ -35,7 +35,7 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('/signup', function () {
-    return Inertia::render('SignUp');
+    return Inertia::render('Auth/SignUp');
 })->name('signup');
 
 Route::get('/dashboard', function () {
