@@ -1,18 +1,25 @@
 <script>
+import { Link } from "@inertiajs/vue3";
+
 export default {
     data() {
         return {};
     },
+    components: { Link },
 };
 </script>
 
 <template>
     <div class="container-login">
         <div class="img-holder">
-            <img src="../../assets/SignInImg.png" alt="" srcset="">
+            <img src="../../../assets/SignInImg.png" alt="" srcset="" />
         </div>
         <div class="log-info">
-            <img src="../../assets/logo-cquired-single.png" alt="" srcset="">
+            <img
+                src="../../../assets/logo-cquired-single.png"
+                alt=""
+                srcset=""
+            />
             <h1>Creer un compte</h1>
             <div class="google-button">Continue with Google</div>
             <div class="separateur">
@@ -22,43 +29,43 @@ export default {
             </div>
             <form action="" method="post">
                 <label for="name">Full name*</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" />
                 <label for="email">Adresse courriel*</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" />
                 <label for="mdp">Mot de passe*</label>
-                <input type="password" name="mdp" id="mdp">
+                <input type="password" name="mdp" id="mdp" />
                 <div>
-                    <input type="submit" value="Connection" class="submit">
+                    <input type="submit" value="Connection" class="submit" />
                 </div>
-                
             </form>
-           <span> Vous avez déja un compte?<a href="" class="inscrire"> Se connecter</a></span>
-
+            <span>
+                Vous avez déja un compte?<Link :href="login" class="inscrire">
+                    Se connecter</Link
+                ></span
+            >
         </div>
     </div>
-
-
 </template>
 
 <style scoped>
-.container-login{
+.container-login {
     height: 100vh;
     width: 100vw;
     display: flex;
-    
+
     align-items: center;
     justify-content: center;
 }
-img{
+img {
     height: 50px;
     width: 60px;
 }
-.img-holder>img{
+.img-holder > img {
     height: 60%;
-    width:70%;
+    width: 70%;
 }
 
-.log-info{
+.log-info {
     height: 90%;
     width: 80%;
     display: flex;
@@ -66,10 +73,8 @@ img{
     justify-content: center;
     align-items: center;
     gap: 10px;
-   
-    
 }
-.img-holder{
+.img-holder {
     height: 100%;
     width: 50%;
     display: flex;
@@ -79,15 +84,13 @@ img{
     align-items: center;
     gap: 10px;
     display: none;
-  
 }
-h1{
+h1 {
     font-size: 2em;
     font-weight: 600;
 }
 
-
-.google-button{
+.google-button {
     height: 35px;
     width: 100%;
     background-color: #6ec3e7;
@@ -97,19 +100,19 @@ h1{
     align-items: center;
     border-radius: 10px;
 }
-.separateur{
+.separateur {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
-.ligne{
+.ligne {
     height: 2px;
     width: 100%;
     background-color: black;
     margin: 5px;
 }
-form{
+form {
     width: 100%;
     gap: 15px;
     display: flex;
@@ -117,56 +120,53 @@ form{
     flex-direction: column;
     justify-content: center;
 }
-form>div{
+form > div {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.submit{
+.submit {
     height: 35px;
     width: 50%;
     background-color: #6ec3e7;
-    border-radius:10px;
+    border-radius: 10px;
 }
-.inscrire{
+.inscrire {
     color: #6ec3e7;
 }
 @media screen and (min-width: 650px) {
-    .log-info{
+    .log-info {
         height: 90%;
         width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        gap:15px
+        gap: 15px;
     }
-
 }
 @media screen and (min-width: 1000px) {
-    .container-login{
+    .container-login {
         height: 100vh;
         width: 100vw;
         display: flex;
-        
+
         align-items: center;
         justify-content: unset;
     }
-    .log-info{
+    .log-info {
         height: 90%;
         width: 30%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        gap:15px;
+        gap: 15px;
         margin-left: 10%;
     }
-    .img-holder{
+    .img-holder {
         display: flex;
     }
-
 }
-
 </style>

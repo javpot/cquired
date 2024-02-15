@@ -1,94 +1,140 @@
-<script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+<script>
+import { Link } from "@inertiajs/vue3";
 
-defineProps({
-    canResetPassword: {
-        type: Boolean,
+export default {
+    data() {
+        return {};
     },
-    status: {
-        type: String,
-    },
-});
-
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
-
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+    components: { Link },
 };
 </script>
-
 <template>
-    <GuestLayout>
-        <Head title="Log in" />
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+    <div class="container-login">
+        <div class="log-info">
+            <img
+                src="../../../assets/logo-cquired-single.png"
+                alt=""
+                srcset=""
+            />
+            <h1>Connection</h1>
+            <div class="text-center my-4">
+                <hr calss="my-2" />
+                <a :href="route('google-auth')" class="google-auth-button">
+                    <span class="inline-flex items-center">
+                        <img
+                            src="../../../assets/google.svg"
+                            alt="Google Icon"
+                            class="w-5 h-5 mr-2"
+                        />
+                        Continue with Google
+                    </span>
+                </a>
+            </div>
+            <div class="separateur">
+                <div class="ligne"></div>
+                <h2>Ou</h2>
+                <div class="ligne"></div>
+            </div>
+            <form action="" method="post">
+                <label for="email">Adresse courriel*</label>
+                <input type="email" name="email" id="email" />
+                <label for="mdp">Mot de passe*</label>
+                <input type="password" name="mdp" id="mdp" />
+                <div>
+                    <input type="submit" value="Connection" class="submit" />
+                </div>
+            </form>
+            <span><a href="">Mot de passe oublié?</a></span>
+            <span>
+                Vous n'avez pas de compte ?
+                <Link :href="route('signup')" class="inscrire"
+                    >S'inscrire</Link
+                ></span
+            >
         </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+    </div>
 </template>
+
+<style scoped>
+.container-login {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img {
+    height: 50px;
+    width: 60px;
+}
+.log-info {
+    height: 100px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+}
+h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.google-button {
+    height: 35px;
+    width: 100%;
+    background-color: #6ec3e7;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.separateur {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.ligne {
+    height: 2px;
+    width: 100%;
+    background-color: black;
+    margin: 5px;
+}
+form {
+    width: 100%;
+    gap: 15px;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+}
+form > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit {
+    height: 35px;
+    width: 50%;
+    background-color: #6ec3e7;
+    border-radius: 10px;
+}
+.inscrire {
+    color: #6ec3e7;
+}
+@media screen and (min-width: 650px) {
+    .log-info {
+        height: 90%;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 15px;
+    }
+}
+</style>

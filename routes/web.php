@@ -25,14 +25,18 @@ use App\Http\Controllers\GoogleAuthController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+Route::get('/', function () { // verif si use est connecter ou pas pour la redirection
+    return Inertia::render('Accueil', [
     ]);
 });
+
+Route::get('/login', function () {
+    return Inertia::render('Login');
+})->name('login');
+
+Route::get('/signup', function () {
+    return Inertia::render('SignUp');
+})->name('signup');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
