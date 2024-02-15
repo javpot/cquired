@@ -1,11 +1,26 @@
 <script>
 import { Link } from "@inertiajs/vue3";
+import { ref } from "vue";
 
 export default {
     data() {
-        return {};
+        return {
+            name: ref(""),
+            email: ref(""),
+            mdp: ref(""),
+        };
     },
     components: { Link },
+    methods: {
+        submit() {
+            route
+                .post("/signup", { email: email }) // Sa ne marche pas il est recommander d'utiliser soit axios ou fetchApi car on veut juste recevoir une reponse de l'api
+                .then((response) => {})
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+    },
 };
 </script>
 
@@ -36,17 +51,30 @@ export default {
                 <h2>Ou</h2>
                 <div class="ligne"></div>
             </div>
-            <form action="" method="post">
+            <form @submit.prevent="submit">
                 <label for="name">Full name*</label>
-                <input type="text" name="name" id="name" />
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    v-model="name"
+                    required
+                />
                 <label for="email">Adresse courriel*</label>
-                <input type="email" name="email" id="email" />
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    v-model="email"
+                    required
+                />
                 <label for="mdp">Mot de passe*</label>
-                <input type="password" name="mdp" id="mdp" />
+                <input type="password" name="mdp" id="mdp" v-model="mdp" />
                 <div>
                     <input type="submit" value="Continuer" class="submit" />
                 </div>
             </form>
+
             <span>
                 Vous avez déja un compte?
                 <Link :href="route('login')" class="inscrire">

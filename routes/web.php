@@ -11,6 +11,8 @@ use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,7 @@ Route::get('/signup', function () {
     return Inertia::render('Auth/SignUp');
 })->name('signup');
 
-Route::post('/signup', [Controller::class, 'method'])->name('signup');
+Route::post('/signup', [UserController::class, 'verifyEmail'])->name('signup.verify'); // Creer cette methode dans UserController elle check dans la table users si cette email existe
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
