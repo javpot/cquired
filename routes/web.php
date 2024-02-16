@@ -46,6 +46,22 @@ Route::get('/register-part1', function () {
     return Inertia::render('Inscription/InsClientFreelancer');
 })->name('register-part1');
 
+Route::get('/register-part2', function () {
+    return Inertia::render('Inscription/InsDomain');
+})->name('register-part2');
+
+Route::get('/register-part3', function () {
+    return Inertia::render('Inscription/InsLocation');
+})->name('register-part3');
+
+Route::get('/register-part4', function () {
+    return Inertia::render('Inscription/InsForfait');
+})->name('register-part4');
+
+Route::get('/register-part5', function () {
+    return Inertia::render('Inscription/InsInscriptionDone');
+})->name('register-part5');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

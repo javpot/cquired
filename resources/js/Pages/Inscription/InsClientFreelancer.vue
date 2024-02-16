@@ -17,20 +17,28 @@ export default {
             <div class="model-client-freelancer-info">
                 <div>
                     <img
-                        src="../../assets/checkmarkblue.png"
+                        src="../../../assets/checkmarkblue.png"
                         alt=""
                         class="check-blue"
                     />
-                    <img src="../../assets/Group 4670.png" alt="" srcset="" />
+                    <img
+                        src="../../../assets/Group 4670.png"
+                        alt=""
+                        srcset=""
+                    />
                     <p class="text-center text-xl">Freelancer or Agency</p>
                 </div>
                 <div>
                     <img
-                        src="../../assets/checkmarkblue.png"
+                        src="../../../assets/checkmarkblue.png"
                         alt=""
                         class="check-blue"
                     />
-                    <img src="../../assets/Group 4241.png" alt="" srcset="" />
+                    <img
+                        src="../../../assets/Group 4241.png"
+                        alt=""
+                        srcset=""
+                    />
                     <p class="text-center text-xl">Client</p>
                 </div>
             </div>
@@ -54,7 +62,7 @@ export default {
 }
 .progress-bar {
     height: 5%;
-    width: 10%;
+    width: 20%;
     background-color: #6ec3e7;
     position: relative;
     z-index: 2;
