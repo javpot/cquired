@@ -33,14 +33,19 @@ Route::get('/', function () { // verif si use est connecter ou pas pour la redir
 });
 
 Route::get('/login', function () {
-    return Inertia::render('Login');
+    return Inertia::render('Auth/Login');
 })->name('login');
 
-Route::get('/signup', function () {
-    return Inertia::render('Auth/SignUp');
-})->name('signup');
+Route::get('/register', function () {
+    return Inertia::render('Auth/Register');
+})->name('register');
 
 Route::post('/signup', [UserController::class, 'verifyEmail'])->name('signup.verify'); // Creer cette methode dans UserController elle check dans la table users si cette email existe
+
+Route::get('/register-part1', function () {
+    return Inertia::render('Inscription/InsClientFreelancer');
+})->name('register-part1');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

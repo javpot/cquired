@@ -1,11 +1,12 @@
 <script>
 import { Link } from "@inertiajs/vue3";
+import GoogleButton from "@/Components/GoogleButton.vue";
 
 export default {
     data() {
         return {};
     },
-    components: { Link },
+    components: { Link, GoogleButton },
 };
 </script>
 <template>
@@ -19,23 +20,9 @@ export default {
             <h1>Connection</h1>
             <div class="text-center my-4">
                 <hr calss="my-2" />
-                <a :href="route('google-auth')" class="google-auth-button">
-                    <span class="inline-flex items-center">
-                        <img
-                            src="../../../assets/google.svg"
-                            alt="Google Icon"
-                            class="w-5 h-5 mr-2"
-                        />
-                        Continue with Google
-                    </span>
-                </a>
             </div>
-            <div class="separateur">
-                <div class="ligne"></div>
-                <h2>Ou</h2>
-                <div class="ligne"></div>
-            </div>
-            <form action="" method="post">
+
+            <form action="" method="post" class="form">
                 <label for="email">Adresse courriel*</label>
                 <input type="email" name="email" id="email" />
                 <label for="mdp">Mot de passe*</label>
@@ -47,10 +34,16 @@ export default {
             <span><a href="">Mot de passe oublié?</a></span>
             <span>
                 Vous n'avez pas de compte ?
-                <Link :href="route('signup')" class="inscrire"
+                <Link :href="route('register')" class="inscrire"
                     >S'inscrire</Link
                 ></span
             >
+            <div class="separateur">
+                <div class="ligne"></div>
+                <h2>Ou</h2>
+                <div class="ligne"></div>
+            </div>
+            <GoogleButton />
         </div>
     </div>
 </template>
