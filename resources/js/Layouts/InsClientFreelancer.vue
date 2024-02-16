@@ -1,8 +1,14 @@
 <script>
+import Card from '../Components/Card.vue'
 export default {
     data() {
-        return {};
+        return {
+            imgSrc:''
+        };
     },
+    components:{
+    Card
+    }
 };
 </script>
 
@@ -13,19 +19,17 @@ export default {
             <div class="progress-bar">
             </div>
             <div class="progress-bar-1">
+                
 
             </div>
             <div class="model-client-freelancer-info">
-            <div>
-                <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
-                <img src="../../assets/Group 4670.png" alt="" srcset="">
-                <p class="text-center text-xl ">Freelancer or Agency</p>
-            </div>
-            <div>
-                <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
-                <img src="../../assets/Group 4241.png" alt="" srcset="">
-                <p class="text-center text-xl">Client</p>
-            </div>
+                <Card titre="Freelancer"></Card>
+                <Card titre="Agency"></Card>
+
+
+            
+                <Card titre="Client"></Card>
+
 
         </div>
     </div>

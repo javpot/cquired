@@ -5,6 +5,8 @@ import Accueil from '../Components/Accueil.vue'
 import LogIn from '@/Components/LogIn.vue';
 import SignIn from '@/Components/SignIn.vue';
 import Inscription from  '@/Components/Inscription.vue'
+import ServiceCard from '@/Components/ServiceCard.vue';
+import ServiceSelection from '@/Layouts/ServiceSelection.vue';
 
 defineProps({
     canLogin: {
@@ -32,7 +34,10 @@ defineProps({
       
      <!--<SignIn></SignIn>-->
  <!--<LogIn></LogIn>-->
- <Inscription></Inscription>
+ <!-- <Inscription></Inscription> -->
+ <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
+ <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
+<ServiceSelection></ServiceSelection>
     </div>
     
    
