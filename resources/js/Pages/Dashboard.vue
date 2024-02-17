@@ -27,11 +27,31 @@ import PageNumbers from "@/Components/PageNumbers.vue";
         </template>
 
         <div class="flex flex-row justify-around mt-4">
-            <AgencyCard />
-            <AgencyCard />
-            <AgencyCard />
-            <AgencyCard />
-            <AgencyCard />
+            <AgencyCard
+                image="../../assets/image9.png"
+                title="Jeff Agency"
+                description="I can build house for you for a cheap price we a are based..."
+            />
+            <AgencyCard
+                image="../../assets/image9.png"
+                title="Jeff Agency"
+                description="I can build house for you for a cheap price we a are based..."
+            />
+            <AgencyCard
+                image="../../assets/image9.png"
+                title="Jeff Agency"
+                description="I can build house for you for a cheap price we a are based..."
+            />
+            <AgencyCard
+                image="../../assets/image9.png"
+                title="Jeff Agency"
+                description="I can build house for you for a cheap price we a are based..."
+            />
+            <AgencyCard
+                image="../../assets/image9.png"
+                title="Jeff Agency"
+                description="I can build house for you for a cheap price we a are based..."
+            />
         </div>
         <PageNumbers />
     </AuthenticatedLayout>

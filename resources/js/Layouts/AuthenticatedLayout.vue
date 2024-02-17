@@ -37,20 +37,27 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Home
                                 </NavLink>
-                            </div>
-                            <div
-                                class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
-                            >
-                                <NavLink
-                                    :href="route('dashboard')"
-                                    :active="route().current('messages')"
-                                >
-                                    Messages
+                                <NavLink :href="route('explore')">
+                                    Explore
                                 </NavLink>
                             </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
+                            <!-- Icons -->
+                            <div class="flex flex-row right-0 space-x-8">
+                                <img
+                                    class="w-5 h-5 cursor-pointer"
+                                    src="../../assets/message-icon.png"
+                                    alt="message"
+                                />
+                                <img
+                                    class="w-5 h-5 cursor-pointer"
+                                    src="../../assets/bell-icon.png"
+                                    alt="bell"
+                                />
+                            </div>
+
                             <!-- Settings Dropdown -->
                             <div class="ms-3 relative">
                                 <Dropdown align="right" width="48">
@@ -166,7 +173,6 @@ const showingNavigationDropdown = ref(false);
                                 {{ $page.props.auth.user.email }}
                             </div>
                         </div>
-
                         <div class="mt-3 space-y-1">
                             <ResponsiveNavLink :href="route('profile.edit')">
                                 Profile

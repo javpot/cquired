@@ -62,6 +62,9 @@ Route::get('/register-part5', function () {
     return Inertia::render('Inscription/InsInscriptionDone');
 })->name('register-part5');
 
+Route::get('/explore', function () {
+    return Inertia::render('Dashboard');
+})->name('explore');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
