@@ -10,7 +10,7 @@ defineProps({
 
 <template>
     <div
-        class="h-full w-1/5 bg-white rounded-lg shadow-md flex justify-center items-center p-2"
+        class="h-full w-1/5 bg-myBlue rounded-lg shadow-md flex justify-center items-center p-2"
     >
         <div
             class="h-full w-full flex flex-col rounded-lg justify-between p-10 bg-myBlue"

@@ -21,8 +21,8 @@ export default {
                         alt=""
                         class="check-blue"
                     />
-                    <input type="text" />
-                    <p class="text-base">
+                    <input type="text" class="border-2 border-dark-300" />
+                    <p class="">
                         *Entrez simplement le nom de votre ville, cela nous
                         aidera à vous montrer les agences et les indépendants en
                         fonction de leur proximité.

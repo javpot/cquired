@@ -16,7 +16,7 @@ export default {
         <div class="model-client-freelancer">
             <div class="progress-bar"></div>
             <div class="progress-bar-1"></div>
-            <h2 class="text-xl text-center w-1/5">Subscriptions</h2>
+            <h2 class="text-3xl text-center w-1/5">Subscriptions</h2>
 
             <div class="model-client-freelancer-info">
                 <div class="flex flex-row">

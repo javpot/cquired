@@ -14,8 +14,9 @@ export default {
         <div class="model-client-freelancer">
             <div class="progress-bar"></div>
             <div class="progress-bar-1"></div>
+            <h1 class="text-center text-3xl">Choose your role</h1>
             <div class="model-client-freelancer-info">
-                <div>
+                <div class="border-4 border-gray-300 p-4">
                     <img
                         src="../../../assets/checkmarkblue.png"
                         alt=""
@@ -26,9 +27,23 @@ export default {
                         alt=""
                         srcset=""
                     />
-                    <p class="text-center text-xl">Freelancer or Agency</p>
+                    <p class="text-center text-xl">Freelancer</p>
                 </div>
-                <div>
+                <div class="border-4 border-gray-300 p-4">
+                    <img
+                        src="../../../assets/checkmarkblue.png"
+                        alt=""
+                        class="check-blue"
+                    />
+                    <img
+                        src="../../../assets/Group 4670.png"
+                        alt=""
+                        srcset=""
+                    />
+                    <p class="text-center text-xl">Agency</p>
+                </div>
+
+                <div class="border-4 border-gray-300 p-4">
                     <img
                         src="../../../assets/checkmarkblue.png"
                         alt=""
