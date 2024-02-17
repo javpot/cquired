@@ -66,6 +66,10 @@ Route::get('/explore', function () {
     return Inertia::render('Dashboard');
 })->name('explore');
 
+Route::get('/messages', function () {
+    return Inertia::render('Messages');
+})->name('messages');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
