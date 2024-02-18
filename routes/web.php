@@ -70,6 +70,14 @@ Route::get('/messages', function () {
     return Inertia::render('Messages');
 })->name('messages');
 
+Route::get('/agency-profile', function () {
+    return Inertia::render('AgencyDetails');
+})->name('agency-profile');
+
+Route::get('/freelancer-profile', function () {
+    return Inertia::render('FreelancerDetails');
+})->name('freelancer-profile');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
