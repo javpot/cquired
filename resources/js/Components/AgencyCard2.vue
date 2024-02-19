@@ -2,7 +2,7 @@
 <template>
     <div class="flex flex-col rounded-lg w-2/3 h-72 justify-end">
         <img
-            class="flex w-2/3 h-48 rounded-t-lg absolute z-40 top-4"
+            class="flex w-2/3 h-48 rounded-t-lg absolute z-40 top-20"
             src="../../assets/entrepriseImgAccueil.png"
             alt=""
         />
