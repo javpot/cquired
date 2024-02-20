@@ -34,7 +34,7 @@ import MessageBar from "@/Components/MessageBar.vue";
                     <li><ConversationCard /></li>
                 </ul>
             </div>
-            <div class="flex flex-col w-full">
+            <div class="flex flex-col w-full items-center">
                 <MessageHeader class="flex w-full" />
                 <PersonMessageCard
                     class=""
@@ -50,8 +50,8 @@ import MessageBar from "@/Components/MessageBar.vue";
 "
                 />
                 <MyMessageCard
-                    class="right-0 position-relative"
-                    message="            Lorem Ipsum is simply dummy text of the printing and typesetting
+                    class="left-20 position-relative"
+                    message=" Lore Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
             and scrambled it to make a type specimen book. It has survived not
