@@ -22,15 +22,26 @@ const submit = () => {
 </script>
 
 <template>
-    <div class="container-login">
-        <div class="img-holder">
-            <img src="../../../assets/SignInImg.png" alt="" srcset="" />
+    <div class="h-screen w-screen flex items-center justify-center">
+        <div
+            class="hidden lg:flex w-1/2 h-full flex-col items-center justify-around bg-blue-300 p-4"
+        >
+            <img
+                src="../../../assets/SignInImg.png"
+                alt=""
+                class="h-3/5 w-4/5"
+            />
         </div>
 
-        <GuestLayout class="log-info">
+        <GuestLayout
+            class="flex flex-col items-center justify-center gap-2.5 w-full lg:w-1/3 h-9/10 lg:h-9/10 mx-auto my-0"
+        >
             <Head title="Register" />
-            <form @submit.prevent="submit" class="form">
-                <div class="formItem">
+            <form
+                @submit.prevent="submit"
+                class="flex flex-col items-center justify-center w-full gap-3"
+            >
+                <div class="flex flex-col items-center w-full">
                     <InputLabel for="name" value="Name" />
                     <TextInput
                         id="name"
@@ -43,7 +54,7 @@ const submit = () => {
                     />
                     <InputError class="mt-2" :message="form.errors.name" />
                 </div>
-                <div class="formItem">
+                <div class="flex flex-col items-center w-full">
                     <InputLabel for="email" value="Email" />
                     <TextInput
                         id="email"
@@ -55,7 +66,7 @@ const submit = () => {
                     />
                     <InputError class="mt-2" :message="form.errors.email" />
                 </div>
-                <div class="formItem">
+                <div class="flex flex-col items-center w-full">
                     <InputLabel for="password" value="Password" />
                     <TextInput
                         id="password"
@@ -67,7 +78,7 @@ const submit = () => {
                     />
                     <InputError class="mt-2" :message="form.errors.password" />
                 </div>
-                <div class="formItem">
+                <div class="flex flex-col items-center w-full">
                     <InputLabel
                         for="password_confirmation"
                         value="Confirm Password"
@@ -86,7 +97,7 @@ const submit = () => {
                     />
                 </div>
                 <PrimaryButton
-                    class="submit"
+                    class="h-9 w-1/2 bg-blue-300 rounded-lg mt-4"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
@@ -95,146 +106,16 @@ const submit = () => {
             </form>
             <span class="flex justify-center items-center mt-7 mb-7 text-sm">
                 Vous avez déja un compte?
-                <Link :href="route('login')" class="inscrire">
-                    Se connecter</Link
-                ></span
-            >
-
-            <div class="separateur">
-                <div class="ligne"></div>
-                <h2>Ou</h2>
-                <div class="ligne"></div>
+                <Link :href="route('login')" class="text-blue-300 ml-2">
+                    Se connecter
+                </Link>
+            </span>
+            <div class="flex w-full justify-center items-center">
+                <div class="h-px w-full bg-black"></div>
+                <h2 class="px-4">Ou</h2>
+                <div class="h-px w-full bg-black"></div>
             </div>
-
             <GoogleButtonVue />
         </GuestLayout>
     </div>
 </template>
-
-<style scoped>
-.container-login {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-img {
-    height: 50px;
-    width: 60px;
-}
-.img-holder > img {
-    height: 60%;
-    width: 70%;
-}
-
-.log-info {
-    height: 90%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.form {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-}
-
-.formItem {
-    flex-direction: column;
-    margin-top: 4px;
-    align-items: flex-start;
-}
-.img-holder {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: #6ec3e7;
-    align-items: center;
-    gap: 10px;
-    display: none;
-}
-h1 {
-    font-size: 2em;
-    font-weight: 600;
-}
-
-.separateur {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.ligne {
-    height: 2px;
-    width: 100%;
-    background-color: black;
-}
-form {
-    width: 100%;
-    gap: 15px;
-    display: flex;
-
-    flex-direction: column;
-    justify-content: center;
-}
-form > div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.submit {
-    height: 35px;
-    width: 50%;
-    background-color: #6ec3e7;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-.inscrire {
-    color: #6ec3e7;
-    margin-left: 10px;
-}
-@media screen and (min-width: 650px) {
-    .log-info {
-        height: 90%;
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        gap: 15px;
-    }
-}
-@media screen and (min-width: 1000px) {
-    .container-login {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-
-        align-items: center;
-        justify-content: unset;
-    }
-    .log-info {
-        height: 90%;
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        gap: 15px;
-        margin-left: 10%;
-    }
-    .img-holder {
-        display: flex;
-    }
-}
-</style>

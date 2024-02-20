@@ -74,9 +74,9 @@ Route::get('/agency-profile', function () {
     return Inertia::render('AgencyDetails');
 })->name('agency-profile');
 
-Route::get('/freelancer-profile', function () {
-    return Inertia::render('FreelancerDetails');
-})->name('freelancer-profile');
+Route::get('/client-profile', function () {
+    return Inertia::render('ClientDetails');
+})->name('client-profile');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
