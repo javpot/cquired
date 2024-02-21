@@ -333,7 +333,7 @@ p {
     width: 40vw;
 }
 .container-search > img {
-    background-color: #6EC3E7;
+    background-color: #6ec3e7;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
@@ -355,7 +355,7 @@ h2 {
     font-weight: 600;
 }
 .section-2-info > p > span {
-    color: #6EC3E7;
+    color: #6ec3e7;
 }
 /*carrousel a faire*/
 .carousel {
@@ -529,11 +529,9 @@ input:checked + .slide-container .nav label {
 .section-3-info > div > button {
     height: 40px;
     width: 250px;
-    background-color: #6EC3E7;
+    background-color: #6ec3e7;
     color: white;
     border-radius: 30px;
-}
-.section-3-img-container {
 }
 .section-3-img-container > img {
     height: 300px;
