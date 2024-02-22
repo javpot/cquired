@@ -5,6 +5,7 @@ import UpdatePasswordForm from "./Partials/UpdatePasswordForm.vue";
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm.vue";
 import { Head } from "@inertiajs/vue3";
 import UpdateProfileImage from "./Partials/UpdateProfileImage.vue";
+import UpdateProfileBanner from "./Partials/UpdateProfileBanner.vue";
 
 defineProps({
     mustVerifyEmail: {
@@ -38,6 +39,10 @@ defineProps({
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                     <UpdateProfileImage class="" />
+                </div>
+
+                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <UpdateProfileBanner class="" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
