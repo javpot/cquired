@@ -4,6 +4,7 @@ import { Head } from "@inertiajs/vue3";
 import SearchBar from "@/Components/SearchBar.vue";
 import AgencyCard from "@/Components/AgencyCard.vue";
 import PageNumbers from "@/Components/PageNumbers.vue";
+import Footer from "@/Components/Footer.vue";
 </script>
 
 <template>
@@ -178,4 +179,5 @@ import PageNumbers from "@/Components/PageNumbers.vue";
             />
         </div>
     </AuthenticatedLayout>
+    <Footer></Footer>
 </template>
