@@ -16,10 +16,10 @@ export default {
 
     <div class="container-inscription h-screen w-screen">
 
-       <h1 class="text-center h-16 flex justify-center items-center text-xl font-bold ">Choissisez votre plan d'abonnement</h1>
+       <h1 class="text-center h-16 flex justify-center items-center text-xl font-bold">Choissisez votre plan d'abonnement</h1>
         <!-- <InsClientFreelancer></InsClientFreelancer> -->
-       <InsLocation></InsLocation>
-       <!-- <InsDomain></InsDomain> -->
+       <!-- <InsLocation></InsLocation> -->
+       <InsDomain></InsDomain>
        
        <!--InsForfait></InsForfait>-->
        <!-- <InsInscriptionDone></InsInscriptionDone> -->

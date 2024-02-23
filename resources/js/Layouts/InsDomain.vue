@@ -51,17 +51,17 @@ export default {
         bottom: 5%;
         z-index: 1;
     } -->
-    <div class="w-screen h-90 flex flex-col justify-center items-center">
-        <div class="h-90 w-3/5 bg-white flex flex-col shadow-md">
+    <div class="w-screen h-90h flex flex-col justify-center items-center">
+        <div class="h-90h w-3/5 bg-white flex flex-col shadow-md">
             <div class="h-8 bg-sky-300 w-3/5 relative z-20"></div>
             <div class="h-8 bg-stone-300 w-full relative z-10 bottom-7"></div>
-            <h2 class="text-3xl text-center">
+            <h2 class="text-3xl text-center ">
                 je cherche de l'aide dans ce domaine
             </h2>
-            <div class="h-90 w-full flex flex-col justify-evenly items-center">
+            <div class="h-90h w-full flex flex-col justify-evenly items-center">
                 <div class="h-1/2 w-4/5 flex flex-row flex-wrap justify-center items-center gap-4">
                     <button
-                        class="h-12 w-auto px-1 bg-white text-gray-400 border-solid border-2 border-gray-400  rounded-xl transition duration-150 ease-out hover:text-sky-400 hover:border-sky-400">Developpement
+                        class="h-12 w-auto px-1 bg-white text-gray-400 border-solid border-2 border-gray-400 rounded-xl transition duration-150 ease-out hover:text-sky-400 hover:border-sky-400">Developpement
                         Web</button>
                     <button
                         class="h-12 w-auto px-1 bg-white text-gray-400 border-solid border-2 border-gray-400  rounded-xl transition duration-150 ease-out hover:text-sky-400 hover:border-sky-400">

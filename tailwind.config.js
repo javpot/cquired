@@ -15,6 +15,15 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                "myBlue": "#6114ad",
+            },
+            spacing:{
+                '90-percent':'90%',
+                '90h':'90vh',
+                '90w':'90vw'
+            }
+           
         },
     },
 
