@@ -18,11 +18,11 @@ export default {
 
        <h1 class="text-center h-16 flex justify-center items-center text-xl font-bold ">Choissisez votre plan d'abonnement</h1>
         <!-- <InsClientFreelancer></InsClientFreelancer> -->
-       <!-- <InsLocation></InsLocation> -->
+       <InsLocation></InsLocation>
        <!-- <InsDomain></InsDomain> -->
        
        <!--InsForfait></InsForfait>-->
-       <InsInscriptionDone></InsInscriptionDone>
+       <!-- <InsInscriptionDone></InsInscriptionDone> -->
        
     </div>
 

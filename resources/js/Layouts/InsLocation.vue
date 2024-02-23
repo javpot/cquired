@@ -8,21 +8,18 @@ export default {
 
 <template>
 
-    <div class="container-inscription-section-1  flex flex-column justify-center items-center">
-        <div class="model-client-freelancer">
-            <div class="progress-bar">
-            </div>
-            <div class="progress-bar-1">
-            </div>
+    <div class="w-screen h-90 flex flex-col justify-center items-center">
+        <div class="h-90 w-3/5 bg-white flex flex-col shadow-md">
+            <div class="h-8 bg-sky-300 w-4/5 relative z-20"></div>
+            <div class="h-8 bg-stone-300 w-full relative z-10 bottom-7"></div>
             <h2 class="text-3xl text-center">Je me trouve à</h2>
-            <div class="model-client-freelancer-info">
+            <div class="h-90 w-full flex flex-col justify-evenly items-center">
             <div>
-                <img src="../../assets/checkmarkblue.png" alt="" class="check-blue">
                  <input type="text">
                 <p class=" text-base ">*Entrez simplement le nom de votre ville, cela nous aidera à vous montrer les agences et les indépendants en fonction de leur proximité. </p>
             </div>
 
-            <button class="continue-btn">Continue</button>
+            <button class="h-12 w-1/2 bg-sky-300 text-center rounded-xl">Continue</button>
            
         </div>
     </div>
@@ -33,6 +30,19 @@ export default {
 </template>
 
 <style scoped>
+.w-90-percent{
+    width: 90%;
+}
+.h-90-percent{
+    height: 90%;
+}
+.h-90 {
+    height: 90vh;
+}
+
+.w-90 {
+    width: 90vw;
+}
 
 .container-inscription-section-1{
     height: 90vh;
