@@ -1,6 +1,7 @@
 <script setup>
 import Credentials from "@/Components/Signup/Credentials.vue";
 import Type from "@/Components/Signup/Type.vue";
+import Location from "@/Components/Signup/Location.vue";
 import { ref } from "vue";
 
 let properties = ref({ type: "" });
@@ -14,7 +15,7 @@ let handleSubmit = (data, source) => {
             break;
         case "Type":
             properties.value = data;
-            currentStep.value = "Domain";
+            currentStep.value = "Location";
             break;
         case "Domain":
             properties.value = data;
@@ -45,6 +46,7 @@ let handleSubmit = (data, source) => {
             :submit="handleSubmit"
         />
         <Type v-if="currentStep === 'Type'" :submit="handleSubmit" />
+        <Location v-if="currentStep === 'Location'" :submit="handleSubmit" />
         <!-- CONFIGURE OTHER STEPS -->
     </div>
 </template>
