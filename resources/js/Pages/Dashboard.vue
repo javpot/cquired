@@ -18,7 +18,7 @@ import Footer from "@/Components/Footer.vue";
                 >
                     Web development
                 </h2>
-                <SearchBar class="w-35" />
+                <SearchBar class="w-96" />
             </div>
         </template>
 
