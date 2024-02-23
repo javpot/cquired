@@ -8,15 +8,13 @@ export default {
 
 <template>
 
-    <div class="container-inscription-section-1  flex flex-column justify-center items-center">
-        <div class="model-client-freelancer">
-            <div class="progress-bar">
-            </div>
-            <div class="progress-bar-1">
-            </div>
+    <div class="h-90 w-screen flex flex-col justify-center items-center">
+        <div class="h-90 w-90 flex flex-col shadow-md">
+            <div class="h-8 bg-sky-300 w-5/5 relative z-20"></div>
+            <div class="h-8 bg-stone-300 w-full relative z-10 bottom-7"></div>
             
 
-            <div class="model-client-freelancer-info">
+            <div class="h-90 w-full flex flex-col justify-evenly items-center">
             <div>
                 
               
@@ -40,6 +38,20 @@ export default {
 </template>
 
 <style scoped>
+.w-90-percent{
+    width: 90%;
+}
+.h-90-percent{
+    height: 90%;
+}
+.h-90 {
+    height: 90vh;
+}
+
+.w-90 {
+    width: 90vw;
+}
+
 h3{
     margin-left: 10%;
 }
