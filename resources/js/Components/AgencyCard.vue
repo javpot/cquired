@@ -1,7 +1,9 @@
 <script setup>
-import Bookmark from "./Bookmark.vue";
 import { Link } from "@inertiajs/vue3";
+import Bookmark from "./Bookmark.vue";
+
 defineProps({
+    id: Number,
     title: String,
     image: String,
     description: String,
@@ -9,25 +11,14 @@ defineProps({
 </script>
 
 <template>
-    <div class="h-52 w-60 flex">
+    <div class="h-52 w-60 flex flex-col">
         <Link :href="route('agency-profile')">
             <img src="../../assets/image9.png" alt="banner" class="w-60 z-10" />
-            <div class="h-1">
-            <img src="../../assets/icons-save.png" class="relative bottom-130  left-190 w-10"/>
-            </div>
-            <p class="text-lg font-medium">{{ title }}</p>
-            <p class="w-full text-sm">
-                {{ description }}
-            </p>
-            <!-- <Bookmark class="" /> -->
         </Link>
+        <Bookmark />
+        <p class="text-lg font-medium">{{ title }}</p>
+        <p class="w-full text-sm">
+            {{ description }}
+        </p>
     </div>
 </template>
-<style>
-.bottom-130{
-    bottom:130px
-}
-.left-190{
-    left:190px
-}
-</style>
