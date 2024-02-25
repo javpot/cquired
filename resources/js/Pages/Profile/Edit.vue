@@ -38,11 +38,11 @@ defineProps({
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                    <UpdateProfileImage class="max-w-4xl" />
+                    <UpdateProfileImage class="max-w-screen" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                    <UpdateProfileBanner class="max-w-4xl" />
+                    <UpdateProfileBanner class="max-w-screen" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

@@ -4,6 +4,7 @@ import DomainListDropdown from "@/Components/DomainListDropdown.vue";
 import SearchBar from "@/Components/SearchBar.vue";
 import AgencyCard from "@/Components/AgencyCard.vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
+import PageNumbers from "@/Components/PageNumbers.vue";
 </script>
 <template>
     <AuthenticatedLayout class="mb-4">
@@ -194,6 +195,7 @@ import FilterIcon from "@/Components/FilterIcon.vue";
                     />
                 </li>
             </ul>
+            <PageNumbers />
         </section>
     </AuthenticatedLayout>
 </template>
