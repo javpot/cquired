@@ -1,12 +1,12 @@
 <template>
     <div
-        class="w-9 h-9 bg-gray-200 rounded-full flex justify-center items-center hover:bg-gray-300 transition cursor-pointer"
+        class="bg-gray-200 rounded-full flex justify-center items-center hover:bg-gray-300 transition cursor-pointer"
     >
         <svg
             viewBox="6 6 24 24"
             fill="currentColor"
-            width="20"
-            height="20"
+            width="50%"
+            height="50%"
             class=""
             overflow="visible"
             style="--color: var(--primary-icon)"

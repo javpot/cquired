@@ -56,12 +56,16 @@ Route::get('/client-profile', function () {
 })->middleware(['auth', 'verified'])->name('client-profile');
 
 Route::get('/client-list', function () {
-    return Inertia::render('ClientList');
+    return Inertia::render('Clients');
 })->name('client-list');
 
 Route::get('/post-list', function () {
     return Inertia::render('Posts');
 })->name('post-list');
+
+Route::get('/post', function () {
+    return Inertia::render('Post');
+})->name('post');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -78,10 +82,10 @@ Route::middleware('auth')->group(function () {
 });
 
 // Added manually
-Route::apiResource('subscription', SubscriptionController::class);
-Route::apiResource('agency', AgencyController::class);
-Route::apiResource('client', ClientController::class);
-Route::apiResource('post', PostController::class);
+Route::apiResource('subscriptions', SubscriptionController::class);
+Route::apiResource('agencies', AgencyController::class);
+Route::apiResource('clients', ClientController::class);
+Route::apiResource('posts', PostController::class);
 
 Route::get('auth/google/', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);

@@ -6,7 +6,7 @@ import FilterIcon from "@/Components/FilterIcon.vue";
 <template>
     <AuthenticatedLayout class="bg-white">
         <section class="w-full flex flex-col items-center">
-            <div class="w-1/3 flex flex-row justify-between mt-4">
+            <div class="w-2/5 flex flex-row justify-between mt-4">
                 <h2 class="text-3xl">Clients</h2>
                 <FilterIcon />
             </div>

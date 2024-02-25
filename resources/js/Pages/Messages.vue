@@ -17,7 +17,7 @@ import MessageBar from "@/Components/MessageBar.vue";
                     class="flex flex-row w-full h-full justify-between mt-4 mb-4"
                 >
                     <h1 class="text-4xl">Chats</h1>
-                    <ComposeMessage class="mr-2" />
+                    <ComposeMessage class="w-9 h-9 mr-2" />
                 </div>
                 <SearchBar class="mb-6 mr-2" />
                 <ul class="mr-2">
