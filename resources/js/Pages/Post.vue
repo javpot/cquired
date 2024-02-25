@@ -39,7 +39,7 @@ const saveImage = () => {
         console.log("File to be saved:", fileName);
         console.log("Image:", file);
     } else {
-        alert("Please choose an image first.");
+        // alert("Please choose an image first.");
     }
 };
 
