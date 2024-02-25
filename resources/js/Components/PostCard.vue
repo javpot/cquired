@@ -4,7 +4,7 @@
         <div class="flex flex-row">
             <img class="w-12 h-12" src="../../assets/pfp-icon.png" alt="" />
             <div class="flex flex-col ml-4">
-                <h2>Zafer A.</h2>
+                <h2>Zafer Acar</h2>
                 <span class="flex flex-row space-x-2">
                     <h2 class="text-sm">29 min</h2>
                     <h2 class="text-sm">Montreal, QC</h2>

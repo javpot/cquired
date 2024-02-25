@@ -12,7 +12,7 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,11 +37,23 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Home
                                 </NavLink>
-                                <NavLink :href="route('explore')">
+                                <NavLink
+                                    :href="route('explore')"
+                                    :active="route().current('explore')"
+                                >
                                     Explore
                                 </NavLink>
-                                <NavLink :href="route('explore')">
-                                    Subcriptions
+                                <NavLink
+                                    :href="route('post-list')"
+                                    :active="route().current('post-list')"
+                                >
+                                    Posts
+                                </NavLink>
+                                <NavLink
+                                    :href="route('client-list')"
+                                    :active="route().current('client-list')"
+                                >
+                                    Clients
                                 </NavLink>
                             </div>
                         </div>
@@ -51,7 +63,7 @@ const showingNavigationDropdown = ref(false);
                             <div class="flex flex-row right-0 space-x-4">
                                 <Link :href="route('messages')">
                                     <button
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 hover:bg-gray-100 focus:outline-none transition ease-in-out duration-150"
                                     >
                                         <img
                                             class="w-5 h-5 cursor-pointer"
@@ -65,7 +77,7 @@ const showingNavigationDropdown = ref(false);
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 hover:bg-gray-100 focus:outline-none transition ease-in-out duration-150"
                                             >
                                                 <img
                                                     class="w-5 h-5 cursor-pointer"
@@ -129,9 +141,14 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <DropdownLink
+                                            :href="route('client-profile')"
+                                        >
+                                            View Profile
+                                        </DropdownLink>
+                                        <DropdownLink
                                             :href="route('profile.edit')"
                                         >
-                                            Profile
+                                            Settings
                                         </DropdownLink>
                                         <DropdownLink
                                             :href="route('logout')"

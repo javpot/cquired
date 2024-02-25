@@ -1,5 +1,5 @@
 <template>
-    <div class="input-container relative">
+    <div class="input-container flex flex-row relative items-center">
         <input
             type="text"
             class="w-full h-9 pl-2 pr-8 border rounded-md relative"

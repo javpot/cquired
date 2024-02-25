@@ -27,8 +27,8 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () { // verif si use est connecter ou pas pour la redirection
-    return Inertia::render('Accueil', [
+Route::get('/', function () { // verif si user est connecter ou pas pour la redirection
+    return Inertia::render('Auth/Login', [
     ]);
 });
 
@@ -40,27 +40,36 @@ Route::get('/register', function () {
     return Inertia::render('Auth/Register');
 })->name('register');
 
+// est ce quon utilise signup encore??? et la page aussi.
 Route::post('/signup', [UserController::class, 'verifyEmail'])->name('signup.verify'); // Creer cette methode dans UserController elle check dans la table users si cette email existe
-
-Route::get('/explore', function () {
-    return Inertia::render('Dashboard');
-})->name('explore');
 
 Route::get('/messages', function () {
     return Inertia::render('Messages');
-})->name('messages');
+})->middleware(['auth', 'verified'])->name('messages');
 
 Route::get('/agency-profile', function () {
     return Inertia::render('AgencyDetails');
-})->name('agency-profile');
+})->middleware(['auth', 'verified'])->name('agency-profile');
 
 Route::get('/client-profile', function () {
     return Inertia::render('ClientDetails');
-})->name('client-profile');
+})->middleware(['auth', 'verified'])->name('client-profile');
+
+Route::get('/client-list', function () {
+    return Inertia::render('ClientList');
+})->name('client-list');
+
+Route::get('/post-list', function () {
+    return Inertia::render('Posts');
+})->name('post-list');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/explore', function () {
+    return Inertia::render('Explore');
+})->middleware(['auth', 'verified'])->name('explore');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

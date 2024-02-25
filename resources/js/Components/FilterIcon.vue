@@ -10,10 +10,10 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                 <span class="inline-flex rounded-md">
                     <button
                         type="button"
-                        class="inline-flex items-center px-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                        class="inline-flex items-center ml-4 px-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 hover:bg-gray-100 focus:outline-none transition ease-in-out duration-150"
                     >
                         <img
-                            class="w-6 h-6 right-0 ml-8 mt-1 cursor-pointer"
+                            class="w-6 h-6 right-0 my-2 cursor-pointer"
                             src="../../assets/filter-icon.png"
                             alt="filter"
                         />
