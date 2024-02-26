@@ -15,7 +15,7 @@ defineProps({
         <div
             class="h-full w-full flex flex-col rounded-lg justify-between p-10 bg-myBlue"
         >
-            <h2 class="text-2xl">{{ title }}</h2>
+            <h2 class="text-2xl font-bold">{{ title }}</h2>
             <p class="text-white">
                 <span class="text-3xl text-black">$</span
                 ><span class="text-3xl text-black">{{ price }}</span> / Month

@@ -10,13 +10,11 @@ export default {
 </script>
 
 <template>
-    <div
-        class="w-screen h-90 flex flex-col justify-center items-center"
-    >
-        <div class="h-90 w-3/5 bg-white flex flex-col shadow-md">
+    <div class="w-screen h-screen flex flex-col justify-center items-center">
+        <div class="w-full h-full bg-white flex flex-col shadow-md">
             <div class="h-8 bg-sky-300 w-4/5 relative z-20"></div>
-            <div class="h-8 bg-stone-300 w-full relative z-10 bottom-7"></div>
-            <h2 class="text-3xl text-center w-1/5">Subscriptions</h2>
+            <div class="h-8 bg-stone-300 w-full absolute z-10"></div>
+            <p class="text-3xl text-center font-bold mt-10">Subscriptions</p>
 
             <div class="model-client-freelancer-info">
                 <div class="flex flex-row">
@@ -77,10 +75,10 @@ export default {
 </template>
 
 <style scoped>
-.w-90-percent{
+.w-90-percent {
     width: 90%;
 }
-.h-90-percent{
+.h-90-percent {
     height: 90%;
 }
 .h-90 {
