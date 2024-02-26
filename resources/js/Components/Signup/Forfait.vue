@@ -1,5 +1,15 @@
 <script setup>
 import ForfaitCardVue from "@/Components/ForfaitCard.vue";
+
+const { submit } = defineProps(["submit"]);
+
+const handleSubmit = (forfait) => {
+    try {
+        submit(forfait, "Credentials");
+    } catch (error) {
+        console.error("Error submitting form:", error);
+    }
+};
 </script>
 
 <template>
@@ -20,6 +30,7 @@ import ForfaitCardVue from "@/Components/ForfaitCard.vue";
                         price="0.00"
                         description="Join
                     our Starter plan"
+                        onclick='handleSubmit("start")'
                         :features="[
                             'limite of 25 people',
                             'limite of 25 messages',
@@ -32,6 +43,7 @@ import ForfaitCardVue from "@/Components/ForfaitCard.vue";
                         price="19.99"
                         description="Join
                     our Basic plan"
+                        onclick='handleSubmit("basic")'
                         :features="[
                             'limite of 25 people',
                             'limite of 25 messages',
@@ -44,6 +56,7 @@ import ForfaitCardVue from "@/Components/ForfaitCard.vue";
                         price="39.99"
                         description="Join
                     our Business plan"
+                        onclick='handleSubmit("business")'
                         :features="[
                             'limite of 25 people',
                             'limite of 25 messages',
@@ -56,6 +69,7 @@ import ForfaitCardVue from "@/Components/ForfaitCard.vue";
                         price="69.99"
                         description="Join
                     our Enterprise plan"
+                        onclick='handleSubmit("enterprise")'
                         :features="[
                             'special icon',
                             'limite of 25 messages',
@@ -65,8 +79,6 @@ import ForfaitCardVue from "@/Components/ForfaitCard.vue";
                     />
                 </div>
             </div>
-
-            <!--<button class="continue-btn">Continue</button>-->
         </div>
     </div>
 </template>

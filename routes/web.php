@@ -57,15 +57,15 @@ Route::get('/client-profile', function () {
 
 Route::get('/client-list', function () {
     return Inertia::render('Clients');
-})->name('client-list');
+})->middleware(['auth', 'verified'])->name('client-list');
 
 Route::get('/post-list', function () {
     return Inertia::render('Posts');
-})->name('post-list');
+})->middleware(['auth', 'verified'])->name('post-list');
 
 Route::get('/post', function () {
     return Inertia::render('Post');
-})->name('post');
+})->middleware(['auth', 'verified'])->name('post');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

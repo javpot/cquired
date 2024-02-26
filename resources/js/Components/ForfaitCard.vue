@@ -4,6 +4,7 @@ defineProps({
     title: String,
     price: Number,
     description: String,
+    onclick: Function,
     features: [String],
 });
 </script>
@@ -25,7 +26,7 @@ defineProps({
             <ul>
                 <li v-for="item in features">&#10003; {{ item }}</li>
             </ul>
-            <PrimaryButton>Select</PrimaryButton>
+            <PrimaryButton @click="onclick">Select</PrimaryButton>
         </div>
     </div>
 </template>
