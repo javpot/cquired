@@ -15,6 +15,8 @@ const handleLocationSelection = () => {
 
 const csvData = ref([]);
 
+const scalingDivRef = ref(null);
+
 onMounted(async () => {
     const response = await fetch("/world-cities.csv");
     const csvText = await response.text();
@@ -47,32 +49,56 @@ onMounted(async () => {
 
     csvData.value = data.filter((row) => row !== null);
     console.log(csvData.value);
+
+    const scalingDiv = scalingDivRef.value;
+    scalingDiv.addEventListener("animationend", () => {
+        scalingDiv.classList.remove("animate-scale-0");
+    });
 });
 </script>
 
 <template>
-    <div class="w-screen h-90 flex flex-col justify-center items-center">
-        <div class="h-90 w-3/5 bg-white flex flex-col shadow-md">
-            <div class="h-8 bg-sky-300 w-4/5 relative z-20"></div>
-            <div class="h-8 bg-stone-300 w-full relative z-10 bottom-7"></div>
-            <h2 class="text-3xl text-center">Je me trouve à</h2>
-            <div class="h-90 w-full flex flex-col justify-evenly items-center">
-                <div>
-                    <select name="rows" id="subcountrySelection">
-                        <option v-for="row in csvData" :key="row.id">
-                            {{ row.country }},
-                            {{ row.subcountry }}
-                        </option>
-                    </select>
-                </div>
+    <div class="h-8 bg-sky-300 w-4/5 absolute z-20 animate-scale-0"></div>
+    <div class="h-8 bg-stone-300 w-screen relative z-10"></div>
 
-                <button
-                    class="h-12 w-1/2 bg-sky-300 text-center rounded-xl"
-                    @click="handleLocationSelection()"
-                >
-                    Continue
-                </button>
+    <div class="w-screen h-screen flex flex-col justify-center items-center">
+        <div
+            class="w-1/2 h-2/3 bg-white flex flex-col items-center justify-around shadow-md border-2"
+        >
+            <h2 class="text-3xl text-center font-bold my-10">Location</h2>
+            <div>
+                <select name="rows" id="subcountrySelection">
+                    <option v-for="row in csvData" :key="row.id">
+                        {{ row.country }},
+                        {{ row.subcountry }}
+                    </option>
+                </select>
             </div>
+
+            <button
+                class="h-12 w-44 bg-sky-300 my-10 text-center rounded-xl"
+                @click="handleLocationSelection()"
+            >
+                Continue
+            </button>
         </div>
     </div>
 </template>
+
+<style scoped>
+/* Custom styles can be added here */
+@keyframes scaleAnimation {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left; /* Start the animation from the left */
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: left; /* End the animation at the right */
+    }
+}
+
+.animate-scale-0 {
+    animation: scaleAnimation 2s forwards; /* Adjust the duration as needed */
+}
+</style>

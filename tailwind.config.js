@@ -18,6 +18,9 @@ export default {
             colors: {
                 myBlue: "#a6d0e3",
             },
+            scale: {
+                170: "1.70",
+            },
         },
     },
 

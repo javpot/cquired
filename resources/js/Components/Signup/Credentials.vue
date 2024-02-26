@@ -45,7 +45,7 @@ const handleSubmit = () => {
                 @submit.prevent="handleSubmit"
                 class="flex flex-col items-center justify-center w-full gap-3"
             >
-                <div class="flex flex-col items-center w-full">
+                <div class="flex flex-col w-full">
                     <InputLabel for="name" value="Name" />
                     <TextInput
                         id="name"
@@ -58,7 +58,7 @@ const handleSubmit = () => {
                     />
                     <InputError class="mt-2" :message="form.errors.name" />
                 </div>
-                <div class="flex flex-col items-center w-full">
+                <div class="flex flex-col w-full">
                     <InputLabel for="email" value="Email" />
                     <TextInput
                         id="email"
@@ -70,7 +70,7 @@ const handleSubmit = () => {
                     />
                     <InputError class="mt-2" :message="form.errors.email" />
                 </div>
-                <div class="flex flex-col items-center w-full">
+                <div class="flex flex-col w-full">
                     <InputLabel for="password" value="Password" />
                     <TextInput
                         id="password"
@@ -82,7 +82,7 @@ const handleSubmit = () => {
                     />
                     <InputError class="mt-2" :message="form.errors.password" />
                 </div>
-                <div class="flex flex-col items-center w-full">
+                <div class="flex flex-col w-full">
                     <InputLabel
                         for="password_confirmation"
                         value="Confirm Password"
