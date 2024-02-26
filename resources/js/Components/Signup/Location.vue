@@ -1,6 +1,18 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+const { submit } = defineProps(["submit"]);
+
+const handleLocationSelection = () => {
+    try {
+        var e = document.getElementById("subcountrySelection");
+        var text = e.options[e.selectedIndex].text;
+        submit(text, "Location");
+    } catch (error) {
+        console.error("Error submitting location choice:", error);
+    }
+};
+
 const csvData = ref([]);
 
 onMounted(async () => {
@@ -9,6 +21,8 @@ onMounted(async () => {
 
     const rows = csvText.split("\n");
     const headers = rows[0].split(",");
+
+    const uniqueSubcountries = new Set();
 
     const data = rows.slice(1).map((row, rowIndex) => {
         const columns = row.split(",");
@@ -22,11 +36,16 @@ onMounted(async () => {
             }
         });
 
+        if (uniqueSubcountries.has(rowData.subcountry)) {
+            return null;
+        }
+
+        uniqueSubcountries.add(rowData.subcountry);
         rowData.id = rowIndex + 1;
         return rowData;
     });
 
-    csvData.value = data;
+    csvData.value = data.filter((row) => row !== null);
     console.log(csvData.value);
 });
 </script>
@@ -39,23 +58,21 @@ onMounted(async () => {
             <h2 class="text-3xl text-center">Je me trouve à</h2>
             <div class="h-90 w-full flex flex-col justify-evenly items-center">
                 <div>
-                    <input type="text" />
-                    <p class="text-base">
-                        *Entrez simplement le nom de votre ville, cela nous
-                        aidera à vous montrer les agences et les indépendants en
-                        fonction de leur proximité.
-                    </p>
+                    <select name="rows" id="subcountrySelection">
+                        <option v-for="row in csvData" :key="row.id">
+                            {{ row.country }},
+                            {{ row.subcountry }}
+                        </option>
+                    </select>
                 </div>
 
-                <button class="h-12 w-1/2 bg-sky-300 text-center rounded-xl">
+                <button
+                    class="h-12 w-1/2 bg-sky-300 text-center rounded-xl"
+                    @click="handleLocationSelection()"
+                >
                     Continue
                 </button>
             </div>
-            <ul>
-                <li v-for="row in csvData" :key="row.id">
-                    {{ row.name }}, {{ row.subcountry }}, {{ row.country }}
-                </li>
-            </ul>
         </div>
     </div>
 </template>
