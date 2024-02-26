@@ -15,6 +15,8 @@ const handleLocationSelection = () => {
 
 const csvData = ref([]);
 
+const scalingDivRef = ref(null);
+
 onMounted(async () => {
     const response = await fetch("/world-cities.csv");
     const csvText = await response.text();
@@ -47,11 +49,16 @@ onMounted(async () => {
 
     csvData.value = data.filter((row) => row !== null);
     console.log(csvData.value);
+
+    const scalingDiv = scalingDivRef.value;
+    scalingDiv.addEventListener("animationend", () => {
+        scalingDiv.classList.remove("animate-scale-0");
+    });
 });
 </script>
 
 <template>
-    <div class="h-8 bg-sky-300 w-4/5 absolute z-20"></div>
+    <div class="h-8 bg-sky-300 w-4/5 absolute z-20 animate-scale-0"></div>
     <div class="h-8 bg-stone-300 w-screen relative z-10"></div>
 
     <div class="w-screen h-screen flex flex-col justify-center items-center">
@@ -77,3 +84,21 @@ onMounted(async () => {
         </div>
     </div>
 </template>
+
+<style scoped>
+/* Custom styles can be added here */
+@keyframes scaleAnimation {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left; /* Start the animation from the left */
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: left; /* End the animation at the right */
+    }
+}
+
+.animate-scale-0 {
+    animation: scaleAnimation 2s forwards; /* Adjust the duration as needed */
+}
+</style>

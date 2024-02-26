@@ -6,12 +6,18 @@ import AgencyCard from "@/Components/AgencyCard.vue";
 import Footer from "@/Components/Footer.vue";
 import { Link } from "@inertiajs/vue3";
 import CarouselAgencyCard from "@/Components/CarouselAgencyCard.vue";
+import Category from "@/Components/Signup/Category.vue";
+import Domain from "@/Components/Signup/Domain.vue";
+import Forfait from "@/Components/Signup/Forfait.vue";
+import Location from "@/Components/Signup/Location.vue";
+import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
 </script>
 
 <template>
     <Head title="Home" />
 
-    <AuthenticatedLayout class="mb-4">
+    <InsInscriptionDone />
+    <!-- <AuthenticatedLayout class="mb-4">
         <template #header>
             <div class="w-full h-8 flex flex-row justify-between items-center">
                 <h2
@@ -142,5 +148,5 @@ import CarouselAgencyCard from "@/Components/CarouselAgencyCard.vue";
             />
         </div>
     </AuthenticatedLayout>
-    <Footer></Footer>
+    <Footer></Footer> -->
 </template>
