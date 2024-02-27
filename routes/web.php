@@ -99,7 +99,32 @@ Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']
 Route::get('/product-checkout', function (Request $request) {
     return $request->user()->checkout('https://buy.stripe.com/test_9AQ03H6iecsu22I5kn')->name('basic-stripe');
 });
+Route::get('/subscription-basic', function (Request $request) {
+    return $request->user()
+    ->newSubscription('default','price_basic_monthly')
+    ->checkout([
+        'success_url' => route('/dashboard'),
+        'cancel_url' => route('/register'),
+    ])->name('subscription-basic');
+});
 
+Route::get('/subscription-business', function (Request $request) {
+    return $request->user()
+    ->newSubscription('default','price_business_monthly')
+    ->checkout([
+        'success_url' => route('/dashboard'),
+        'cancel_url' => route('/register'),
+    ])->name('subscription-business');
+});
+
+Route::get('/subscription-enterprise', function (Request $request) {
+    return $request->user()
+    ->newSubscription('default','price_enterprise_monthly')
+    ->checkout([
+        'success_url' => route('/dashboard'),
+        'cancel_url' => route('/register'),
+    ])->name('subscription-enterprise');
+});
 
 /* COMMENT Route::apiResource fonctionne:
 
