@@ -96,6 +96,9 @@ Route::get('/get-user-data', function () {
 });
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+Route::get('/product-checkout', function (Request $request) {
+    return $request->user()->checkout('https://buy.stripe.com/test_9AQ03H6iecsu22I5kn')->name('basic-stripe');
+});
 
 
 /* COMMENT Route::apiResource fonctionne:

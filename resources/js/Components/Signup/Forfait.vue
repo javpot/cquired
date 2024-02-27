@@ -54,45 +54,52 @@ onMounted(() => {
                             'messaging feature',
                         ]"
                     />
-                    <ForfaitCardVue
-                        title="Basic"
-                        :price="20"
-                        description="Join
+                    <a href="">
+                        <ForfaitCardVue
+                            title="Basic"
+                            :price="20"
+                            description="Join
                     our Basic plan"
-                        :onclick="() => handleSubmit('basic')"
-                        :features="[
-                            'limite of 25 people',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                        ]"
-                    />
-                    <ForfaitCardVue
-                        title="Business"
-                        :price="0"
-                        description="Join
+                            :onclick="() => handleSubmit('basic')"
+                            :features="[
+                                'limite of 25 people',
+                                'limite of 25 messages',
+                                'limite of 25 messages',
+                                'limite of 25 messages',
+                            ]"
+                        />
+                    </a>
+                    <a href="https://buy.stripe.com/test_eVaeYB6iegIK22IfYZ">
+                        <ForfaitCardVue
+                            title="Business"
+                            :price="0"
+                            description="Join
                     our Business plan"
-                        :onclick="() => handleSubmit('business')"
-                        :features="[
-                            'limite of 25 people',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                        ]"
-                    />
-                    <ForfaitCardVue
-                        title="Enterprise"
-                        :price="70"
-                        description="Join
+                            :onclick="() => handleSubmit('business')"
+                            :features="[
+                                'limite of 25 people',
+                                'limite of 25 messages',
+                                'limite of 25 messages',
+                                'limite of 25 messages',
+                            ]"
+                        />
+                    </a>
+
+                    <a href="https://buy.stripe.com/test_bIY17LfSO646ePueUW">
+                        <ForfaitCardVue
+                            title="Enterprise"
+                            :price="70"
+                            description="Join
                     our Enterprise plan"
-                        :onclick="() => handleSubmit('enterprise')"
-                        :features="[
-                            'special icon',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                        ]"
-                    />
+                            :onclick="() => handleSubmit('enterprise')"
+                            :features="[
+                                'special icon',
+                                'limite of 25 messages',
+                                'limite of 25 messages',
+                                'limite of 25 messages',
+                            ]"
+                        />
+                    </a>
                 </div>
             </div>
         </div>

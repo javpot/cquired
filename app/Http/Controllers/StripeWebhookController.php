@@ -15,8 +15,8 @@ class StripeWebhookController extends CashierController
         $type = $payload['type'];
 
         switch ($type) {
-            case 'invoice.payment_succeeded':
-                // Gérer l'événement
+            case 'checkout.session.completed':
+               
                 break;
             case 'customer.subscription.deleted':
                 // Gérer l'événement
