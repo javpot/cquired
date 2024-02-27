@@ -6,6 +6,8 @@ import Domain from "@/Components/Signup/Domain.vue";
 import Forfait from "@/Components/Signup/Forfait.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { Inertia } from "@inertiajs/inertia";
+import { InertiaProgress } from "@inertiajs/progress";
 
 let properties = ref({
     type: null,
@@ -13,15 +15,13 @@ let properties = ref({
     domain: null,
     forfait: null,
 });
-
 let currentStep = ref("Credentials");
-
 let userData = ref(null);
+let googleDataUsed = false;
 
 onMounted(async () => {
-    console.log("Before: ", userData.value);
     await getGoogleData();
-    console.log("After: ", userData.value);
+
     if (userData.value != null) {
         properties.value = { ...properties.value, ...userData.value };
         currentStep.value = "Type";
@@ -30,15 +30,19 @@ onMounted(async () => {
 
 let getGoogleData = async () => {
     try {
-        const response = await axios.get("/get-user-data");
-        console.log(response.data);
-        userData.value = response.data;
+        if (!googleDataUsed) {
+            const response = await axios.get("/get-user-data");
+            if (response.data.name !== undefined) {
+                userData.value = response.data;
+                googleDataUsed = true;
+            }
+        }
     } catch (error) {
-        console.error(error.response.data);
+        console.error("Error fetching Google data:", error);
     }
 };
 
-let login = async () => {
+let login = async (redirect) => {
     try {
         let response = await axios.post("/register", {
             name: properties.value.name,
@@ -54,8 +58,9 @@ let login = async () => {
                 : null,
         });
 
-        if (response.data.success) {
-            console.log(route({ name: "dashboard" }));
+        if (response.status == 200 && redirect) {
+            console.log("SUCCEEEDED");
+            Inertia.visit(route("dashboard"));
         }
     } catch (error) {
         console.error(error.response.data);
@@ -72,10 +77,19 @@ let createEntity = async (type) => {
     }
 };
 
+let checkout = async () => {
+    try {
+        await Inertia.visit(route(`subscription-${properties.value.forfait}`));
+    } catch (error) {
+        console.error(error.response.data);
+    }
+};
+
 let handleSubmit = async (data, source) => {
     switch (source) {
         case "Credentials":
-            properties.value = { ...properties.value, ...data };
+            const newData = { name: data.name, email: data.email };
+            properties.value = { ...properties.value, ...newData };
             currentStep.value = "Type";
             break;
         case "Type":
@@ -92,13 +106,14 @@ let handleSubmit = async (data, source) => {
                 currentStep.value = "Forfait";
             } else {
                 await createEntity("Client");
-                await login();
+                await login(true);
             }
             break;
         case "Forfait":
             properties.value.forfait = data;
             await createEntity("");
-            await login();
+            await login(false);
+            await checkout();
             break;
     }
     console.log(properties.value);

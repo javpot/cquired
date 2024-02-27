@@ -92,13 +92,22 @@ Route::apiResource('posts', PostController::class);
 Route::get('auth/google/', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 Route::get('/get-user-data', function () {
-    return response()->json(Session::get('user_data'));
+	$res = response()->json(null);
+	if (Session::get('usedGoogle') == false) {
+		$res = response()->json(Session::get('user_data'));
+		Session::forget('usedGoogle');
+		Session::put('usedGoogle', true);
+	} else {
+		$res = response()->json(null);
+		Session::forget('user_data');
+		Session::forget('usedGoogle');
+		Session::put('usedGoogle', false);
+	}
+    return $res;
 });
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
-Route::get('/product-checkout', function (Request $request) {
-    return $request->user()->checkout('https://buy.stripe.com/test_9AQ03H6iecsu22I5kn')->name('basic-stripe');
-});
+
 Route::get('/subscription-basic', function (Request $request) {
     return $request->user()
     ->newSubscription('default','price_basic_monthly')

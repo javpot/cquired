@@ -5,7 +5,7 @@ import GoogleButton from "@/Components/GoogleButton.vue";
 import { Link } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
-import NProgress from "nprogress";
+
 InertiaProgress.init({
     color: "#29d",
     showSpinner: true,

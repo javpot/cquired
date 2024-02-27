@@ -28,6 +28,7 @@ class GoogleAuthController extends Controller
 
         if (!$user) {
             Session::put('user_data', $userData);
+			Session::put('usedGoogle', false);
 
     		return redirect()->to('register');
         } else {
