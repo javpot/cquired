@@ -17,7 +17,7 @@ const submitForm = async () => {
         const response = await axios.post("/login", formData.value);
 
         if (response.status == 200) {
-            route({ name: "dashboard" });
+            window.location.href = route("dashboard");
         }
     } catch (error) {
         console.error("Form submission error:", error);

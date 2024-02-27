@@ -55,7 +55,7 @@ let login = async () => {
         });
 
         if (response.data.success) {
-            route({ name: "dashboard" });
+            console.log(route({ name: "dashboard" }));
         }
     } catch (error) {
         console.error(error.response.data);
