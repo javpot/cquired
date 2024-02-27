@@ -5,7 +5,7 @@ defineProps({
     price: Number,
     description: String,
     onclick: Function,
-    features: [String],
+    features: Array,
 });
 </script>
 

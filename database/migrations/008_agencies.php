@@ -12,16 +12,16 @@ return new class extends Migration {
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('name');
-            $table->string('bio');
+            $table->timestamps()->nullable();
+            $table->string('name')->nullable();
+            $table->string('bio')->nullable();
             $table->string('email');
-            $table->string('pwd');
-            $table->string('category');
-            $table->string('location');
-            $table->string('picture');
-            $table->string('banner');
-            $table->string('domain');
+            $table->string('pwd')->nullable();
+            $table->string('category')->nullable();
+            $table->string('location')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('banner')->nullable();
+            $table->string('domain')->nullable();
             $table->foreignId('agencie_id')->constrained('subscriptions');
         });
     }

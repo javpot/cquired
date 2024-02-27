@@ -11,6 +11,7 @@ const handleRoleSelection = (role) => {
     }
 };
 
+/*
 const scalingDivRef = ref(null);
 
 onMounted(() => {
@@ -19,6 +20,7 @@ onMounted(() => {
         scalingDiv.classList.remove("animate-scale-0");
     });
 });
+*/
 </script>
 
 <template>

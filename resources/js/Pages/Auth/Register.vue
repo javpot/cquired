@@ -3,16 +3,51 @@ import Credentials from "@/Components/Signup/Credentials.vue";
 import Category from "@/Components/Signup/Category.vue";
 import Location from "@/Components/Signup/Location.vue";
 import Domain from "@/Components/Signup/Domain.vue";
+import Forfait from "@/Components/Signup/Forfait.vue";
 import { ref } from "vue";
+import axios from "axios";
 
-const submit = () => {
-    form.post(route("register"));
-};
-
-let properties = ref({ type: "", location: "", domain: "", forfait: "" });
+let properties = ref({
+    type: null,
+    location: null,
+    domain: null,
+    forfait: null,
+    google_id: null,
+});
 let currentStep = ref("Credentials");
 
-let handleSubmit = (data, source) => {
+let login = async () => {
+    try {
+        let response = await axios.post("/register", {
+            name: properties.value.name,
+            email: properties.value.email,
+            password: properties.value.password
+                ? properties.value.password
+                : null,
+            google_id: properties.value.google_id
+                ? properties.value.google_id
+                : null,
+        });
+
+        console.log(response.data);
+    } catch (error) {
+        console.error(error.response.data);
+    }
+};
+
+let createEntity = async (type) => {
+    try {
+        let path = type == "Client" ? "clients" : "agencies";
+
+        let response = await axios.post(path, properties.value);
+
+        console.log(response.data);
+    } catch (error) {
+        console.error(error.response.data);
+    }
+};
+
+let handleSubmit = async (data, source) => {
     switch (source) {
         case "Credentials":
             properties.value = { ...properties.value, ...data };
@@ -30,14 +65,15 @@ let handleSubmit = (data, source) => {
             properties.value.location = data;
             if (properties.value.type != "Client") {
                 currentStep.value = "Forfait";
+            } else {
+                await createEntity("Client");
+                await login();
             }
-            //Create USER HERE
-            //Create new CLIENT HERE
             break;
         case "Forfait":
             properties.value.forfait = data;
-            //Create USER HERE
-            //Create new AGENCY HERE
+            await createEntity("");
+            await login();
             break;
     }
     console.log(properties.value);
@@ -50,10 +86,9 @@ let handleSubmit = (data, source) => {
             v-if="currentStep === 'Credentials'"
             :submit="handleSubmit"
         />
-        <Type v-if="currentStep === 'Type'" :submit="handleSubmit" />
-        <Location v-if="currentStep === 'Location'" :submit="handleSubmit" />
+        <Category v-if="currentStep === 'Type'" :submit="handleSubmit" />
         <Domain v-if="currentStep === 'Domain'" :submit="handleSubmit" />
+        <Location v-if="currentStep === 'Location'" :submit="handleSubmit" />
         <Forfait v-if="currentStep === 'Forfait'" :submit="handleSubmit" />
-        <!-- CONFIGURE OTHER STEPS -->
     </div>
 </template>

@@ -12,16 +12,16 @@ return new class extends Migration {
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->timestamps()->nullable();
             $table->string('name');
-            $table->string('bio');
-            $table->string('picture');
-            $table->string('banner');
-            $table->string('location');
-            $table->string('status');
+            $table->string('bio')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('banner')->nullable();
+            $table->string('location')->nullable();
+            $table->string('status')->nullable();
             $table->string('email');
-            $table->string('password');
-            $table->string('domain');
+            $table->string('password')->nullable();
+            $table->string('domain')->nullable();
         });
     }
 

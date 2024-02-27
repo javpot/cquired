@@ -1,8 +1,19 @@
 <script setup>
 import DomainButton from "@/Components/DomainButton.vue";
 
+const { submit } = defineProps(["submit"]);
+
+const handleDomainSelection = (domain) => {
+    try {
+        submit(domain, "Domain");
+    } catch (error) {
+        console.error("Error submitting domain choice:", error);
+    }
+};
+
 import { ref, onMounted } from "vue";
 
+/*
 const scalingDivRef = ref(null);
 
 onMounted(() => {
@@ -11,6 +22,7 @@ onMounted(() => {
         scalingDiv.classList.remove("animate-scale-0");
     });
 });
+*/
 </script>
 
 <template>
@@ -28,12 +40,30 @@ onMounted(() => {
                 <div
                     class="h-1/2 w-4/5 flex flex-row flex-wrap justify-center items-center gap-4"
                 >
-                    <DomainButton title="Developpement Web" />
-                    <DomainButton title="Intelligence Artificiel" />
-                    <DomainButton title="Montage Video" />
-                    <DomainButton title="Jeux Video" />
-                    <DomainButton title="SEO" />
-                    <DomainButton title="Effets Speciauxs" />
+                    <DomainButton
+                        @click="handleDomainSelection('web dev')"
+                        title="Developpement Web"
+                    />
+                    <DomainButton
+                        @click="handleDomainSelection('AI')"
+                        title="Artificial Intelligence"
+                    />
+                    <DomainButton
+                        @click="handleDomainSelection('eideo editing')"
+                        title="Video editing"
+                    />
+                    <DomainButton
+                        @click="handleDomainSelection('video games')"
+                        title="Video Games"
+                    />
+                    <DomainButton
+                        @click="handleDomainSelection('SEO')"
+                        title="SEO"
+                    />
+                    <DomainButton
+                        @click="handleDomainSelection('special effects')"
+                        title="Special Effects"
+                    />
                 </div>
 
                 <button class="h-12 w-1/2 bg-sky-300 text-center rounded-xl">

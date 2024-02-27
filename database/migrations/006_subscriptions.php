@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('title');
             $table->string('price');
             $table->string('description');
-            $table->string('icon');
-            $table->string('status');
+            $table->string('icon')->nullable();
+            $table->string('status')->nullable();
             $table->string('client_limit');
             $table->string('message_limit');
         });

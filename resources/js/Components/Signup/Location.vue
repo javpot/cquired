@@ -50,10 +50,12 @@ onMounted(async () => {
     csvData.value = data.filter((row) => row !== null);
     console.log(csvData.value);
 
+    /*
     const scalingDiv = scalingDivRef.value;
     scalingDiv.addEventListener("animationend", () => {
         scalingDiv.classList.remove("animate-scale-0");
     });
+	*/
 });
 </script>
 
