@@ -6,6 +6,8 @@ import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationFor
 import { Head } from "@inertiajs/vue3";
 import UpdateProfileImage from "./Partials/UpdateProfileImage.vue";
 import UpdateProfileBanner from "./Partials/UpdateProfileBanner.vue";
+import UpdateProfileDomain from "./Partials/UpdateProfileDomain.vue";
+import UpdateProfileStatus from "./Partials/UpdateProfileStatus.vue";
 
 defineProps({
     mustVerifyEmail: {
@@ -35,6 +37,14 @@ defineProps({
                         :status="status"
                         class="max-w-xl"
                     />
+                </div>
+
+                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <UpdateProfileDomain class="max-w-xl" />
+                </div>
+
+                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <UpdateProfileStatus class="max-w-xl" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

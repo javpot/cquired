@@ -15,12 +15,11 @@ return new class extends Migration {
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('bio')->nullable();
-            $table->string('email');
-            $table->string('pwd')->nullable();
             $table->string('category')->nullable();
             $table->string('location')->nullable();
             $table->string('picture')->nullable();
             $table->string('banner')->nullable();
+            $table->string('email');
             $table->string('domain')->nullable();
         });
     }
