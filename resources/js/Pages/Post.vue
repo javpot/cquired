@@ -50,7 +50,7 @@ const createPost = () => {
 <template>
     <CancelPost class="fixed top-4 left-4" />
     <div class="flex items-center justify-center h-screen">
-        <div class="flex flex-col space-y-6 border border-4 p-8">
+        <div class="flex flex-col space-y-6 border-4 p-8">
             <h2 class="text-3xl text-center">Write a Post</h2>
             <TextInput class="" placeholder="Title" />
             <DomainListDropdown class="" />

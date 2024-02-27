@@ -18,6 +18,10 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "konsta": "^3.1.2"
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/progress": "^0.2.7",
+        "konsta": "^3.1.2",
+        "nprogress": "^0.2.0",
+        "vue-router": "^4.3.0"
     }
 }

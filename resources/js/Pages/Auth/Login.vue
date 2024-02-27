@@ -3,6 +3,13 @@ import { ref } from "vue";
 import axios from "axios";
 import GoogleButton from "@/Components/GoogleButton.vue";
 import { Link } from "@inertiajs/vue3";
+import { Inertia } from "@inertiajs/inertia";
+import { InertiaProgress } from "@inertiajs/progress";
+import NProgress from "nprogress";
+InertiaProgress.init({
+    color: "#29d",
+    showSpinner: true,
+});
 
 const csrfToken = window.csrf_token;
 const formData = ref({
@@ -17,13 +24,14 @@ const submitForm = async () => {
         const response = await axios.post("/login", formData.value);
 
         if (response.status == 200) {
-            window.location.href = route("dashboard");
+            Inertia.visit(route("dashboard"));
         }
     } catch (error) {
         console.error("Form submission error:", error);
     }
 };
 </script>
+
 <template>
     <div class="container-login">
         <div class="log-info">
