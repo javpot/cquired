@@ -4,6 +4,7 @@ defineProps({
     title: String,
     price: Number,
     description: String,
+    linkstripe: String,
     onclick: Function,
     features: Array,
 });
@@ -26,7 +27,9 @@ defineProps({
             <ul>
                 <li v-for="item in features">&#10003; {{ item }}</li>
             </ul>
-            <PrimaryButton @click="onclick">Select</PrimaryButton>
+            <a :href="linkstripe" class="self-center"
+                ><PrimaryButton @click="onclick">Select</PrimaryButton></a
+            >
         </div>
     </div>
 </template>

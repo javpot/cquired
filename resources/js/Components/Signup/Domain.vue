@@ -31,9 +31,11 @@ onMounted(() => {
 
     <div class="w-screen h-screen flex flex-col justify-center items-center">
         <div
-            class="w-1/2 h-2/3 bg-white flex flex-col items-center justify-around shadow-md border-2"
+            class="w-1/2 h-2/3 bg-white flex flex-col items-center justify-between shadow-md border-2"
         >
-            <h2 class="text-3xl text-center my-10">Domain</h2>
+            <h2 class="text-3xl text-center font-bold my-10">
+                Choose your domain
+            </h2>
             <div
                 class="h-full w-full flex flex-col justify-evenly items-center"
             >
@@ -66,9 +68,9 @@ onMounted(() => {
                     />
                 </div>
 
-                <button class="h-12 w-1/2 bg-sky-300 text-center rounded-xl">
+                <!-- <button class="h-12 w-1/2 bg-sky-300 text-center rounded-xl">
                     Continue
-                </button>
+                </button> -->
             </div>
         </div>
     </div>

@@ -22,7 +22,6 @@ return new class extends Migration {
             $table->string('picture')->nullable();
             $table->string('banner')->nullable();
             $table->string('domain')->nullable();
-            $table->foreignId('agencie_id')->constrained('subscriptions')->nullable();
         });
     }
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subscription', function (Blueprint $table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->string('type');
@@ -22,6 +22,10 @@ return new class extends Migration
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
+            $table->string('icon')->nullable();
+            $table->string('client_limit');
+            $table->string('message_limit');
+
 
             $table->index(['user_id', 'stripe_status']);
         });
@@ -32,6 +36,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscription');
+        Schema::dropIfExists('subscriptions');
     }
 };
+
+// add this to the model
+        // 'icon',
+        // 'client_limit',
+        // 'message_limit',

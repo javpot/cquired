@@ -84,7 +84,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Added manually
-Route::apiResource('subscriptions', SubscriptionController::class);
+// Route::apiResource('subscriptions', SubscriptionController::class); faut changer le controller et le model, car la table subscriptions quon utilise maintenant est celui generer par stripe
 Route::apiResource('agencies', AgencyController::class);
 Route::apiResource('clients', ClientController::class);
 Route::apiResource('posts', PostController::class);

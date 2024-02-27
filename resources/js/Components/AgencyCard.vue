@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="h-52 w-60 flex flex-col">
+    <div class="h-52 w-60 flex flex-col my-4">
         <Link :href="route('agency-profile')">
             <img src="../../assets/image9.png" alt="banner" class="w-60 z-10" />
         </Link>

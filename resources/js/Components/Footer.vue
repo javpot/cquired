@@ -28,7 +28,7 @@ import ApplicationLogo from "./ApplicationLogo.vue";
                 <p
                     class="text-sm leading-none text-gray-800 mt-4 dark:text-white"
                 >
-                    Copyright © 2021 Luxe
+                    Copyright © 2024 Cquired
                 </p>
                 <p
                     class="text-sm leading-none text-gray-800 mt-4 dark:text-white"
