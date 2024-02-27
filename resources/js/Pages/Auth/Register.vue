@@ -4,7 +4,7 @@ import Category from "@/Components/Signup/Category.vue";
 import Location from "@/Components/Signup/Location.vue";
 import Domain from "@/Components/Signup/Domain.vue";
 import Forfait from "@/Components/Signup/Forfait.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
 
 let properties = ref({
@@ -12,9 +12,31 @@ let properties = ref({
     location: null,
     domain: null,
     forfait: null,
-    google_id: null,
 });
+
 let currentStep = ref("Credentials");
+
+let userData = ref(null);
+
+onMounted(async () => {
+    console.log("Before: ", userData.value);
+    await getGoogleData();
+    console.log("After: ", userData.value);
+    if (userData.value != null) {
+        properties.value = { ...properties.value, ...userData.value };
+        currentStep.value = "Type";
+    }
+});
+
+let getGoogleData = async () => {
+    try {
+        const response = await axios.get("/get-user-data");
+        console.log(response.data);
+        userData.value = response.data;
+    } catch (error) {
+        console.error(error.response.data);
+    }
+};
 
 let login = async () => {
     try {
@@ -24,12 +46,17 @@ let login = async () => {
             password: properties.value.password
                 ? properties.value.password
                 : null,
+            password_confirmation: properties.value.password_confirmation
+                ? properties.value.password_confirmation
+                : null,
             google_id: properties.value.google_id
                 ? properties.value.google_id
                 : null,
         });
 
-        console.log(response.data);
+        if (response.data.success) {
+            route({ name: "dashboard" });
+        }
     } catch (error) {
         console.error(error.response.data);
     }
@@ -39,9 +66,7 @@ let createEntity = async (type) => {
     try {
         let path = type == "Client" ? "clients" : "agencies";
 
-        let response = await axios.post(path, properties.value);
-
-        console.log(response.data);
+        await axios.post(path, properties.value);
     } catch (error) {
         console.error(error.response.data);
     }

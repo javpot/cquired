@@ -9,7 +9,7 @@
                     alt="Google Icon"
                     class="w-10 h-10 mr-2"
                 />
-                Continuer avec Google
+                Continue with Google
             </span>
         </a>
     </div>

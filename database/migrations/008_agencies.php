@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
-            $table->timestamps()->nullable();
+            $table->timestamps();
             $table->string('name')->nullable();
             $table->string('bio')->nullable();
             $table->string('email');
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('picture')->nullable();
             $table->string('banner')->nullable();
             $table->string('domain')->nullable();
-            $table->foreignId('agencie_id')->constrained('subscriptions');
+            $table->foreignId('agencie_id')->constrained('subscriptions')->nullable();
         });
     }
 

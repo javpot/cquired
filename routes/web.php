@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Session;
 
 // Added manually. See line 48
 use App\Http\Controllers\UserController;
@@ -29,7 +30,7 @@ use App\Http\Controllers\StripeWebhookController;
 */
 
 Route::get('/', function () { // verif si user est connecter ou pas pour la redirection
-    return Inertia::render('Auth/Login', [
+    return Inertia::render('Accueil', [
     ]);
 });
 
@@ -90,6 +91,9 @@ Route::apiResource('posts', PostController::class);
 
 Route::get('auth/google/', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
+Route::get('/get-user-data', function () {
+    return response()->json(Session::get('user_data'));
+});
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
 

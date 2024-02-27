@@ -16,8 +16,8 @@ import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
 <template>
     <Head title="Home" />
 
-    <InsInscriptionDone />
-    <!-- <AuthenticatedLayout class="mb-4">
+    <!-- <InsInscriptionDone /> -->
+    <AuthenticatedLayout class="mb-4">
         <template #header>
             <div class="w-full h-8 flex flex-row justify-between items-center">
                 <h2
@@ -148,5 +148,5 @@ import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
             />
         </div>
     </AuthenticatedLayout>
-    <Footer></Footer> -->
+    <Footer />
 </template>

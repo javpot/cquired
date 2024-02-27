@@ -18,7 +18,11 @@ const { submit } = defineProps(["submit"]);
 
 const handleSubmit = () => {
     try {
-        submit(form, "Credentials");
+        if (form.password === form.password_confirmation) {
+            submit(form, "Credentials");
+        } else {
+            console.error("Passwords do not match");
+        }
     } catch (error) {
         console.error("Error submitting form:", error);
     }

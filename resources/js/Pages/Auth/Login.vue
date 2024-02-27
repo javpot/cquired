@@ -1,12 +1,27 @@
-<script>
-import { Link } from "@inertiajs/vue3";
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
 import GoogleButton from "@/Components/GoogleButton.vue";
+import { Link } from "@inertiajs/vue3";
 
-export default {
-    data() {
-        return {};
-    },
-    components: { Link, GoogleButton },
+const csrfToken = window.csrf_token;
+const formData = ref({
+    email: "",
+    password: "",
+});
+
+const submitForm = async () => {
+    try {
+        formData.value._token = csrfToken;
+
+        const response = await axios.post("/login", formData.value);
+
+        if (response.status == 200) {
+            route({ name: "dashboard" });
+        }
+    } catch (error) {
+        console.error("Form submission error:", error);
+    }
 };
 </script>
 <template>
@@ -22,11 +37,22 @@ export default {
                 <hr calss="my-2" />
             </div>
 
-            <form action="" method="post" class="form">
+            <form @submit.prevent="submitForm" class="form">
+                <input type="hidden" name="_token" :value="csrfToken" />
                 <label for="email">Adresse courriel*</label>
-                <input type="email" name="email" id="email" />
+                <input
+                    v-model="formData.email"
+                    type="email"
+                    name="email"
+                    id="email"
+                />
                 <label for="mdp">Mot de passe*</label>
-                <input type="password" name="mdp" id="mdp" />
+                <input
+                    v-model="formData.password"
+                    type="password"
+                    name="mdp"
+                    id="mdp"
+                />
                 <div>
                     <input type="submit" value="Connection" class="submit" />
                 </div>
