@@ -63,7 +63,6 @@ onMounted(() => {
                             'limite of 25 messages',
                             'limite of 25 messages',
                         ]"
-                        linkstripe="https://buy.stripe.com/test_9AQ03H6iecsu22I5kn"
                     />
                     <ForfaitCardVue
                         title="Business"
@@ -77,7 +76,7 @@ onMounted(() => {
                             'limite of 25 messages',
                             'limite of 25 messages',
                         ]"
-                        linkstripe="https://buy.stripe.com/test_eVaeYB6iegIK22IfYZ"
+                        
                     />
 
                     <ForfaitCardVue
@@ -92,7 +91,7 @@ onMounted(() => {
                             'limite of 25 messages',
                             'limite of 25 messages',
                         ]"
-                        linkstripe="https://buy.stripe.com/test_bIY17LfSO646ePueUW"
+                        
                     />
                 </div>
             </div>

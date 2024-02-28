@@ -10,22 +10,24 @@ class StripeWebhookController extends CashierController
 {
     public function handleWebhook(Request $request)
     {
-        // Vous pouvez ici personnaliser la gestion des différents types d'événements
         $payload = $request->all();
-        $type = $payload['type'];
+        $event = $payload['type'];
 
-        switch ($type) {
+        switch ($event) {
             case 'checkout.session.completed':
-               
+                // Gérer l'événement de paiement réussi
+                $this->handleSuccessfulPayment($payload);
                 break;
-            case 'customer.subscription.deleted':
-                // Gérer l'événement
-                break;
-            // Ajoutez d'autres cas au besoin
-            default:
-                return $this->missingMethod();
+            // Ajouter d'autres cas au besoin
         }
 
-        return parent::handleWebhook($request);
+        return response()->json(['status' => 'success']);
+    }
+
+    protected function handleSuccessfulPayment($payload)
+    {
+        // Logique pour gérer un paiement réussi, par exemple:
+        // - Mettre à jour le statut de l'abonnement de l'utilisateur
+        // - Rediriger l'utilisateur ou envoyer une notification
     }
 }

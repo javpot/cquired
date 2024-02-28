@@ -4,6 +4,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+
 
 // Added manually. See line 48
 use App\Http\Controllers\UserController;
@@ -109,30 +111,31 @@ Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']
 
 Route::get('/subscription-basic', function (Request $request) {
     return $request->user()
-    ->newSubscription('default','price_basic_monthly')
-    ->checkout([
-        'success_url' => route('/dashboard'),
-        'cancel_url' => route('/register'),
-    ])->name('subscription-basic');
-});
+        ->newSubscription('basic', 'price_1On0tLH95x8ZWvcZshsoURrW')
+        ->checkout([
+            'success_url' => route('dashboard'),
+            'cancel_url' => route('register'),
+        ]);
+})->name('subscription-basic');
+
 
 Route::get('/subscription-business', function (Request $request) {
     return $request->user()
-    ->newSubscription('default','price_business_monthly')
+    ->newSubscription('business','price_1On0yiH95x8ZWvcZ2dpAv8ka')
     ->checkout([
-        'success_url' => route('/dashboard'),
-        'cancel_url' => route('/register'),
-    ])->name('subscription-business');
-});
+        'success_url' => route('dashboard'),
+        'cancel_url' => route('register'),
+    ]);
+})->name('subscription-business');;
 
 Route::get('/subscription-enterprise', function (Request $request) {
     return $request->user()
-    ->newSubscription('default','price_enterprise_monthly')
+    ->newSubscription('enterprise','price_1On10FH95x8ZWvcZOcBBfjUk')
     ->checkout([
-        'success_url' => route('/dashboard'),
-        'cancel_url' => route('/register'),
-    ])->name('subscription-enterprise');
-});
+        'success_url' => route('dashboard'),
+        'cancel_url' => route('register'),
+    ]);
+})->name('subscription-enterprise');
 
 /* COMMENT Route::apiResource fonctionne:
 
