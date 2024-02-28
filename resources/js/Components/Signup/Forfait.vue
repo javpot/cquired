@@ -43,7 +43,7 @@ onMounted(() => {
                         :price="0"
                         description="Join
                     our Starter plan"
-                        :onclick="() => handleSubmit('start')"
+                        :onclick="() => handleSubmit('starter ')"
                         :features="[
                             'limite of 25 people',
                             'limite of 25 messages',

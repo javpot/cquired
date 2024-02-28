@@ -1,9 +1,11 @@
 <script setup>
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { Link } from "@inertiajs/vue3";
 defineProps({
     title: String,
     price: Number,
     description: String,
+    linkstripe: String,
     onclick: Function,
     features: Array,
 });
@@ -11,7 +13,7 @@ defineProps({
 
 <template>
     <div
-        class="h-full w-1/5 bg-myBlue rounded-lg shadow-md flex justify-center items-center p-2"
+        class="h-full w-1/5 bg-myBlue rounded-lg shadow-lg flex hover:scale-110 duration-500 justify-center items-center p-2"
     >
         <div
             class="h-full w-full flex flex-col rounded-lg justify-between p-10 bg-myBlue"
@@ -26,7 +28,9 @@ defineProps({
             <ul>
                 <li v-for="item in features">&#10003; {{ item }}</li>
             </ul>
-            <PrimaryButton @click="onclick">Select</PrimaryButton>
+            <a :href="linkstripe"
+                ><PrimaryButton @click="onclick">Select</PrimaryButton></a
+            >
         </div>
     </div>
 </template>
