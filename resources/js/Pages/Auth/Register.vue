@@ -57,6 +57,9 @@ let login = async (redirect) => {
             google_id: properties.value.google_id
                 ? properties.value.google_id
                 : null,
+            category: properties.value.category
+                ? properties.value.category
+                : null,
         });
 
         if (response.status == 200 && redirect) {

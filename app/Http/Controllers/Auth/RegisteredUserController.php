@@ -33,7 +33,8 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'category' => 'nullable|string',
         ]);
 
         $user = User::create([
@@ -41,6 +42,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
 			'google_id' => $request->google_id,
+            'category' => $request->category,
         ]);
 
         event(new Registered($user));

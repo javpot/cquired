@@ -31,4 +31,18 @@ class UserController extends Controller
             'message' => 'Email does not exist',
         ]);
     }
+    public function addCategory(Request $request){
+        $user = auth()->user();
+        if (!$user) {
+            // Gérer le cas où l'utilisateur n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'User not authenticated'], 401);
+        }
+    
+        $category = $request->input('category');
+        $user->category = $category;
+        $user->save();
+    
+        return response()->json(['message' => 'Category updated successfully']);
+    }
+    
 }

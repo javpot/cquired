@@ -107,6 +107,10 @@ Route::get('/get-user-data', function () {
 });
 Route::get('/validate-email', [UserController::class, 'verifyEmail']);
 
+Route::get('/add-category', [UserController::class, 'addCategory']);
+
+
+
 Route::post('/stripe/ourwebhook', [StripeWebhookController::class, 'handleWebhook']);
 
 Route::get('/subscription-starter', function (Request $request) {
