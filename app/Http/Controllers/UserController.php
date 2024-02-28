@@ -44,5 +44,7 @@ class UserController extends Controller
     
         return response()->json(['message' => 'Category updated successfully']);
     }
+
+    
     
 }

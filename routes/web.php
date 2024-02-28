@@ -29,9 +29,8 @@ use App\Http\Controllers\StripeWebhookController;
 |
 */
 
-Route::get('/', function () { // verif si user est connecter ou pas pour la redirection
-    return Inertia::render('Accueil', [
-    ]);
+Route::get('/', function () {
+    return Inertia::render('Auth/Register');
 });
 
 Route::get('/login', function () {

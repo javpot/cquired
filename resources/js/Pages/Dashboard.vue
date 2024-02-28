@@ -1,23 +1,20 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import SearchBar from "@/Components/SearchBar.vue";
 import AgencyCard from "@/Components/AgencyCard.vue";
 import Footer from "@/Components/Footer.vue";
 import { Link } from "@inertiajs/vue3";
 import CarouselAgencyCard from "@/Components/CarouselAgencyCard.vue";
-import Category from "@/Components/Signup/Category.vue";
-import Domain from "@/Components/Signup/Domain.vue";
-import Forfait from "@/Components/Signup/Forfait.vue";
-import Location from "@/Components/Signup/Location.vue";
-import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
+import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
+
+const user = usePage().props.auth.user;
 </script>
 
 <template>
     <Head title="Home" />
 
-    <!-- <InsInscriptionDone /> -->
-    <AuthenticatedLayout class="mb-4">
+    <AuthenticatedLayout class="mb-4" v-if="user.category === 'Client'">
         <template #header>
             <div class="w-full h-8 flex flex-row justify-between items-center">
                 <h2
@@ -147,7 +144,9 @@ import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
                 description="I can build house for you for a cheap price we a are based..."
             />
         </div>
-        <Link :href="route('billing')">Click me</Link>
     </AuthenticatedLayout>
-    <Footer />
+    <AuthenticatedLayoutAgency v-else
+        ><p>allo</p>
+        <Link :href="route('billing')">Click me</Link>
+    </AuthenticatedLayoutAgency>
 </template>

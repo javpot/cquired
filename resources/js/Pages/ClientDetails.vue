@@ -7,9 +7,9 @@ import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <AuthenticatedLayout>
+    <AuthenticatedLayout class="absolute z-50">
         <section
-            class="flex flex-col w-full h-full z-50 relative items-center bg-white"
+            class="flex flex-col w-full h-full z-40 relative items-center bg-white"
         >
             <img
                 class="flex w-full h-96 z-40 absolute"
