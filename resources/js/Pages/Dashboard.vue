@@ -11,7 +11,10 @@ import Domain from "@/Components/Signup/Domain.vue";
 import Forfait from "@/Components/Signup/Forfait.vue";
 import Location from "@/Components/Signup/Location.vue";
 import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
+
+
 </script>
+
 
 <template>
     <Head title="Home" />
@@ -147,6 +150,7 @@ import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
                 description="I can build house for you for a cheap price we a are based..."
             />
         </div>
+        <Link :href="route('billing')">Click me</Link>
     </AuthenticatedLayout>
     <Footer />
 </template>

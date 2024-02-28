@@ -136,6 +136,11 @@ Route::get('/subscription-enterprise', function (Request $request) {
         'cancel_url' => route('register'),
     ]);
 })->name('subscription-enterprise');
+ 
+// Route pour qu'un user agency ou freelance puisse modifer son abonnement
+Route::get('/billing', function (Request $request) {
+    return $request->user()->redirectToBillingPortal(route('dashboard'));
+})->middleware(['auth'])->name('billing');
 
 /* COMMENT Route::apiResource fonctionne:
 

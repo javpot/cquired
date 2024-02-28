@@ -22,10 +22,6 @@ return new class extends Migration
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
-            $table->string('icon')->nullable();
-            $table->string('client_limit');
-            $table->string('message_limit');
-
 
             $table->index(['user_id', 'stripe_status']);
         });
@@ -39,8 +35,3 @@ return new class extends Migration
         Schema::dropIfExists('subscriptions');
     }
 };
-
-// add this to the model
-        // 'icon',
-        // 'client_limit',
-        // 'message_limit',
