@@ -10,7 +10,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
 
 let properties = ref({
-    type: null,
+    category: null,
     location: null,
     domain: null,
     forfait: null,
@@ -68,9 +68,9 @@ let login = async (redirect) => {
     }
 };
 
-let createEntity = async (type) => {
+let createEntity = async (category) => {
     try {
-        let path = type == "Client" ? "clients" : "agencies";
+        let path = category == "Client" ? "clients" : "agencies";
 
         await axios.post(path, properties.value);
     } catch (error) {
@@ -94,7 +94,7 @@ let handleSubmit = async (data, source) => {
             currentStep.value = "Type";
             break;
         case "Type":
-            properties.value.type = data;
+            properties.value.category = data;
             currentStep.value = "Domain";
             break;
         case "Domain":
@@ -103,7 +103,7 @@ let handleSubmit = async (data, source) => {
             break;
         case "Location":
             properties.value.location = data;
-            if (properties.value.type != "Client") {
+            if (properties.value.category != "Client") {
                 currentStep.value = "Forfait";
             } else {
                 await createEntity("Client");
