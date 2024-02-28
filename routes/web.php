@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 // Added manually
 // Route::apiResource('subscriptions', SubscriptionController::class); faut changer le controller et le model, car la table subscriptions quon utilise maintenant est celui generer par stripe
 Route::apiResource('agencies', AgencyController::class);
@@ -109,6 +110,7 @@ Route::get('/validate-email', [UserController::class, 'verifyEmail']);
 Route::get('/add-category', [UserController::class, 'addCategory']);
 
 
+// API STRIPE
 
 Route::post('/stripe/ourwebhook', [StripeWebhookController::class, 'handleWebhook']);
 
@@ -151,6 +153,20 @@ Route::get('/subscription-enterprise', function (Request $request) {
 Route::get('/billing', function (Request $request) {
     return $request->user()->redirectToBillingPortal(route('dashboard'));
 })->middleware(['auth'])->name('billing');
+
+
+
+//All API DATA
+
+// Methode qui renvoi le domaine d'un client
+Route::post('/showDomain', [ClientController::class, 'showDomain'])->middleware(['auth', 'verified']);
+
+
+
+
+
+
+
 
 /* COMMENT Route::apiResource fonctionne:
 

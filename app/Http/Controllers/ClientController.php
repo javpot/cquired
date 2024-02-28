@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -28,6 +29,18 @@ class ClientController extends Controller
             ->header('Content-Type', 'application/json')
             ->header('Access-Control-Allow-Origin', '*');
     }
+
+    public function showDomain(Request $request){
+        $email = $request->input('email'); // Extraire l'email du corps de la requête
+        $client = Client::where('email', $email)->first();
+    
+        if ($client) {
+            return response()->json($client->domain);
+        } else {
+            return response()->json(['error' => 'Client not found'], 404);
+        }
+    }
+    
 
     /**
      * Display the specified resource.
