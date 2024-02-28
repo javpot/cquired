@@ -107,7 +107,13 @@ Route::get('/get-user-data', function () {
 });
 Route::get('/validate-email', [UserController::class, 'verifyEmail']);
 
-Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+Route::post('/stripe/ourwebhook', [StripeWebhookController::class, 'handleWebhook']);
+
+Route::get('/subscription-starter', function (Request $request) {
+     $request->user()
+        ->newSubscription('starter', 'price_1Ooq5uH95x8ZWvcZMXBs6NPq');
+        return Inertia::render('Dashboard');
+})->name('subscription-starter');
 
 Route::get('/subscription-basic', function (Request $request) {
     return $request->user()
@@ -116,6 +122,7 @@ Route::get('/subscription-basic', function (Request $request) {
             'success_url' => route('dashboard'),
             'cancel_url' => route('register'),
         ]);
+        
 })->name('subscription-basic');
 
 
@@ -126,7 +133,7 @@ Route::get('/subscription-business', function (Request $request) {
         'success_url' => route('dashboard'),
         'cancel_url' => route('register'),
     ]);
-})->name('subscription-business');;
+})->name('subscription-business');
 
 Route::get('/subscription-enterprise', function (Request $request) {
     return $request->user()

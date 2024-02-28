@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('pm_last_four', 4)->nullable();
             $table->timestamp('trial_ends_at')->nullable();
         });
+        
     }
 
     /**
@@ -32,5 +33,7 @@ return new class extends Migration
                 'trial_ends_at',
             ]);
         });
+
+       
     }
 };
