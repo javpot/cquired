@@ -113,7 +113,7 @@ let handleSubmit = async (data, source) => {
             properties.value.forfait = data;
             await createEntity("");
             await login(false);
-            await checkout();
+            //await checkout();
             break;
     }
     console.log(properties.value);

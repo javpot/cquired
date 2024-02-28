@@ -6,6 +6,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import GoogleButtonVue from "@/Components/GoogleButton.vue";
+import { ref } from "vue";
 
 const form = useForm({
     name: "",
@@ -16,10 +17,20 @@ const form = useForm({
 
 const { submit } = defineProps(["submit"]);
 
-const handleSubmit = () => {
+let response = ref(null);
+
+const handleSubmit = async () => {
     try {
+        response.value = await axios.get("/validate-email", {
+            params: {
+                email: form.email,
+            },
+        });
+
         if (form.password === form.password_confirmation) {
-            submit(form, "Credentials");
+            if (response.value.data.success) {
+                submit(form, "Credentials");
+            }
         } else {
             console.error("Passwords do not match");
         }
@@ -72,7 +83,15 @@ const handleSubmit = () => {
                         required
                         autocomplete="username"
                     />
-                    <InputError class="mt-2" :message="form.errors.email" />
+                    <InputError
+                        class="mt-2"
+                        :message="
+                            form.errors.email ||
+                            (response && !response.data.valid
+                                ? 'Email is already in use'
+                                : null)
+                        "
+                    />
                 </div>
                 <div class="flex flex-col w-full">
                     <InputLabel for="password" value="Password" />
@@ -110,7 +129,7 @@ const handleSubmit = () => {
                     :disabled="form.processing"
                     type="submit"
                 >
-                    > Continuer
+                    > Continue
                 </PrimaryButton>
             </form>
             <span class="flex justify-center items-center mt-7 mb-7 text-sm">

@@ -2,7 +2,6 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Session;
 
@@ -12,7 +11,6 @@ use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\StripeWebhookController;
 
 
@@ -105,6 +103,7 @@ Route::get('/get-user-data', function () {
 	}
     return $res;
 });
+Route::get('/validate-email', [UserController::class, 'verifyEmail']);
 
 Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
 
