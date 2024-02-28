@@ -11,10 +11,7 @@ import Domain from "@/Components/Signup/Domain.vue";
 import Forfait from "@/Components/Signup/Forfait.vue";
 import Location from "@/Components/Signup/Location.vue";
 import InsInscriptionDone from "@/Components/Signup/InsInscriptionDone.vue";
-
-
 </script>
-
 
 <template>
     <Head title="Home" />

@@ -114,10 +114,10 @@ Route::get('/add-category', [UserController::class, 'addCategory']);
 Route::post('/stripe/ourwebhook', [StripeWebhookController::class, 'handleWebhook']);
 
 Route::get('/subscription-starter', function (Request $request) {
-     $request->user()
-        ->newSubscription('starter', 'price_1Ooq5uH95x8ZWvcZMXBs6NPq');
-        return Inertia::render('Dashboard');
-})->name('subscription-starter');
+    $request->user()
+        ->newSubscription('starter', 'price_1Ooq5uH95x8ZWvcZMXBs6NPq')->create(null);
+    return Inertia::render('Dashboard');
+    })->name('subscription-starter');
 
 Route::get('/subscription-basic', function (Request $request) {
     return $request->user()
