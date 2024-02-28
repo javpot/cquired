@@ -5,6 +5,8 @@ import GoogleButton from "@/Components/GoogleButton.vue";
 import { Link } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { InertiaProgress } from "@inertiajs/progress";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 InertiaProgress.init({
     color: "#29d",
@@ -33,135 +35,46 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <div class="container-login">
-        <div class="log-info">
-            <img
-                src="../../../assets/logo-cquired-single.png"
-                alt=""
-                srcset=""
-            />
-            <h1>Connection</h1>
-            <div class="text-center my-4">
-                <hr calss="my-2" />
-            </div>
-
-            <form @submit.prevent="submitForm" class="form">
-                <input type="hidden" name="_token" :value="csrfToken" />
-                <label for="email">Adresse courriel*</label>
-                <input
-                    v-model="formData.email"
-                    type="email"
-                    name="email"
-                    id="email"
-                />
-                <label for="mdp">Mot de passe*</label>
-                <input
-                    v-model="formData.password"
-                    type="password"
-                    name="mdp"
-                    id="mdp"
-                />
-                <div>
-                    <input type="submit" value="Connection" class="submit" />
-                </div>
-            </form>
-            <span><a href="">Mot de passe oublié?</a></span>
-            <span>
-                Vous n'avez pas de compte ?
-                <Link :href="route('register')" class="inscrire"
-                    >S'inscrire</Link
-                ></span
-            >
-            <div class="separateur">
-                <div class="ligne"></div>
-                <h2>Ou</h2>
-                <div class="ligne"></div>
-            </div>
-            <GoogleButton />
+    <GuestLayout title="Login" class="w-screen h-screen flex flex-col">
+        <div class="text-center my-4">
+            <hr calss="my-2" />
         </div>
-    </div>
+
+        <form
+            @submit.prevent="submitForm"
+            class="w-full flex flex-col space-y-6"
+        >
+            <input type="hidden" name="_token" :value="csrfToken" />
+            <label for="email">Adresse courriel*</label>
+            <input
+                v-model="formData.email"
+                type="email"
+                name="email"
+                id="email"
+            />
+            <label for="mdp">Mot de passe*</label>
+            <input
+                v-model="formData.password"
+                type="password"
+                name="mdp"
+                id="mdp"
+            />
+            <PrimaryButton @click="submitForm">Login</PrimaryButton>
+        </form>
+        <div class="flex flex-col items-center space-y-6 my-6">
+            <Link href="" class="text-blue-300">Mot de passe oublié?</Link>
+            <span class="flex flex-row">
+                Vous n'avez pas de compte ?
+                <Link :href="route('register')" class="ml-2 text-blue-300"
+                    >S'inscrire
+                </Link>
+            </span>
+        </div>
+        <div class="flex w-full justify-center items-center">
+            <div class="h-px w-full bg-black"></div>
+            <h2 class="px-4">Ou</h2>
+            <div class="h-px w-full bg-black"></div>
+        </div>
+        <GoogleButton />
+    </GuestLayout>
 </template>
-
-<style scoped>
-.container-login {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-img {
-    height: 50px;
-    width: 60px;
-}
-.log-info {
-    height: 100px;
-    width: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    gap: 15px;
-}
-h1 {
-    font-size: 1.5em;
-    font-weight: 600;
-}
-
-.google-button {
-    height: 35px;
-    width: 100%;
-    background-color: #6ec3e7;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-.separateur {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.ligne {
-    height: 2px;
-    width: 100%;
-    background-color: black;
-    margin: 5px;
-}
-form {
-    width: 100%;
-    gap: 15px;
-    display: flex;
-
-    flex-direction: column;
-    justify-content: center;
-}
-form > div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.submit {
-    height: 35px;
-    width: 50%;
-    background-color: #6ec3e7;
-    border-radius: 10px;
-}
-.inscrire {
-    color: #6ec3e7;
-}
-@media screen and (min-width: 650px) {
-    .log-info {
-        height: 90%;
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        gap: 15px;
-    }
-}
-</style>

@@ -53,9 +53,14 @@ const handleSubmit = async () => {
         </div>
 
         <GuestLayout
+            title="Register"
             class="flex flex-col items-center justify-center gap-2.5 w-full lg:w-1/3 h-9/10 lg:h-9/10 mx-auto my-0 min-w-[300px]"
         >
             <Head title="Register" />
+            <div class="text-center my-4">
+                <hr calss="my-2" />
+            </div>
+
             <form
                 @submit.prevent="handleSubmit"
                 class="flex flex-col items-center justify-center w-full gap-3"
@@ -132,7 +137,7 @@ const handleSubmit = async () => {
                     > Continue
                 </PrimaryButton>
             </form>
-            <span class="flex justify-center items-center mt-7 mb-7 text-sm">
+            <span class="flex justify-center items-center mt-7 mb-7">
                 Vous avez déja un compte?
                 <Link :href="route('login')" class="text-blue-300 ml-2">
                     Se connecter

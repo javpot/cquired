@@ -1,13 +1,18 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import { Link } from "@inertiajs/vue3";
+
+defineProps({
+    title: String,
+});
 </script>
 
 <template>
-    <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+    <div
+        class="w-full h-full flex flex-col sm:justify-center items-center pt-6 sm:pt-0"
+    >
         <div>
             <ApplicationLogo class="w-20 h-16 fill-current text-gray-500" />
-            Connexion
+            <p class="text-center">{{ title }}</p>
         </div>
 
         <div

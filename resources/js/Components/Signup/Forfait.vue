@@ -43,7 +43,7 @@ onMounted(() => {
                         :price="0"
                         description="Join
                     our Starter plan"
-                        :onclick="() => handleSubmit('starter ')"
+                        :onclick="() => handleSubmit('starter')"
                         :features="[
                             'limite of 25 people',
                             'limite of 25 messages',
@@ -76,7 +76,6 @@ onMounted(() => {
                             'limite of 25 messages',
                             'limite of 25 messages',
                         ]"
-                        
                     />
 
                     <ForfaitCardVue
@@ -91,7 +90,6 @@ onMounted(() => {
                             'limite of 25 messages',
                             'limite of 25 messages',
                         ]"
-                        
                     />
                 </div>
             </div>
