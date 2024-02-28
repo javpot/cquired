@@ -1,10 +1,10 @@
 <script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ClientCard from "@/Components/ClientCard.vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
+import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
 </script>
 <template>
-    <AuthenticatedLayout class="bg-white">
+    <AuthenticatedLayoutAgency class="bg-white">
         <section class="w-full flex flex-col items-center">
             <div class="w-2/5 flex flex-row justify-between mt-4">
                 <h2 class="text-3xl">Clients</h2>
@@ -21,5 +21,5 @@ import FilterIcon from "@/Components/FilterIcon.vue";
                 <ClientCard class="max-w-xl" />
             </div>
         </section>
-    </AuthenticatedLayout>
+    </AuthenticatedLayoutAgency>
 </template>

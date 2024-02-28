@@ -4,6 +4,9 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
+import { ref } from "vue";
+
+const picked = ref("available");
 
 const user = usePage().props.auth.user;
 
@@ -24,19 +27,24 @@ const form = useForm({
         @submit.prevent="form.patch(route('profile.update'))"
         class="mt-6 space-y-6"
     >
-        <div>
-            <InputLabel for="status" value="Status" />
+        <InputLabel for="status" value="Status" />
 
-            <TextInput
-                id="status"
-                type="text"
-                class="mt-1 block w-full"
-                v-model="form.status"
-                required
-                autofocus
-                autocomplete="status"
+        <div class="flex flex-row">
+            <input
+                type="radio"
+                id="available"
+                value="available"
+                v-model="picked"
             />
+            <label for="available">Available</label>
 
+            <input
+                type="radio"
+                id="unavailable"
+                value="unavailable"
+                v-model="picked"
+            />
+            <label for="Unavailable">Unavailable</label>
             <InputError class="mt-2" :message="form.errors.status" />
         </div>
         <div class="flex items-center gap-4">

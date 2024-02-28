@@ -2,7 +2,7 @@
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import DomainListDropdown from "@/Components/DomainListDropdown.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 
 const user = usePage().props.auth.user;
@@ -27,15 +27,7 @@ const form = useForm({
         <div>
             <InputLabel for="domain" value="Domain" />
 
-            <TextInput
-                id="domain"
-                type="text"
-                class="mt-1 block w-full"
-                v-model="form.domain"
-                required
-                autofocus
-                autocomplete="domain"
-            />
+            <DomainListDropdown />
 
             <InputError class="mt-2" :message="form.errors.domain" />
         </div>

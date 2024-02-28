@@ -1,11 +1,11 @@
 <script setup>
 import PostCard from "@/Components/PostCard.vue";
 import SegmentedControl from "@/Components/SegmentedControl.vue";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
 </script>
 
 <template>
-    <AuthenticatedLayout>
+    <AuthenticatedLayoutAgency>
         <section
             class="flex flex-col w-full h-full z-50 relative items-center bg-white"
         >
@@ -29,20 +29,10 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
                     </div>
                 </div>
                 <div class="flex flex-row">
-                    <ul class="flex flex-row space-x-6">
-                        <li class="felx flex-col">
-                            <h2 class="text-center text-xl">43</h2>
-                            <h2 class="uppercase">Posts</h2>
-                        </li>
-                        <li class="felx flex-col">
-                            <h2 class="text-center text-xl">212</h2>
-                            <h2 class="uppercase">Followers</h2>
-                        </li>
-                        <li class="felx flex-col">
-                            <h2 class="text-center text-xl">4</h2>
-                            <h2 class="uppercase">Photos</h2>
-                        </li>
-                    </ul>
+                    <div class="flex flex-col justify-center items-center">
+                        <h2 class="text-center text-xl">43</h2>
+                        <h2 class="uppercase">Posts</h2>
+                    </div>
                 </div>
                 <SegmentedControl />
             </div>
@@ -53,7 +43,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
                 <PostCard />
             </div>
         </section>
-    </AuthenticatedLayout>
+    </AuthenticatedLayoutAgency>
 </template>
 <!-- ../../assets/pfp-icon.png -->
 <!-- ../../assets/entrepriseImgAccueil.png -->

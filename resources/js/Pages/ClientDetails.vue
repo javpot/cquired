@@ -2,6 +2,8 @@
 import PostCard from "@/Components/PostCard.vue";
 import SegmentedControl from "@/Components/SegmentedControl.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ComposeMessage from "@/Components/ComposeMessage.vue";
+import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
@@ -28,21 +30,9 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
                         <h3 class="">Montreal, Qc</h3>
                     </div>
                 </div>
-                <div class="flex flex-row">
-                    <ul class="flex flex-row space-x-6">
-                        <li class="felx flex-col">
-                            <h2 class="text-center text-xl">43</h2>
-                            <h2 class="uppercase">Posts</h2>
-                        </li>
-                        <li class="felx flex-col">
-                            <h2 class="text-center text-xl">212</h2>
-                            <h2 class="uppercase">Followers</h2>
-                        </li>
-                        <li class="felx flex-col">
-                            <h2 class="text-center text-xl">4</h2>
-                            <h2 class="uppercase">Photos</h2>
-                        </li>
-                    </ul>
+                <div class="flex flex-col justify-center items-center">
+                    <h2 class="text-center text-xl">43</h2>
+                    <h2 class="uppercase">Posts</h2>
                 </div>
                 <SegmentedControl />
             </div>
@@ -52,6 +42,16 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
                 <PostCard />
                 <PostCard />
             </div>
+            <Link :href="route('post')">
+                <div
+                    class="fixed bottom-4 right-4 flex items-center bg-gray-200 rounded-full justify-center hover:bg-gray-300 hover:scale-110 transition cursor-pointer"
+                >
+                    <p class="ml-4 mr-2 text-lg text-gray-700">Write a Post</p>
+                    <ComposeMessage
+                        class="w-16 h-16 bg-gray-300 rounded-full transform hover:scale-100 transition-transform"
+                    ></ComposeMessage>
+                </div>
+            </Link>
         </section>
     </AuthenticatedLayout>
 </template>

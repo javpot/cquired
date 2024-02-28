@@ -38,12 +38,6 @@ const showingNavigationDropdown = ref(false);
                                     Home
                                 </NavLink>
                                 <NavLink
-                                    :href="route('explore')"
-                                    :active="route().current('explore')"
-                                >
-                                    Explore
-                                </NavLink>
-                                <NavLink
                                     :href="route('post-list')"
                                     :active="route().current('post-list')"
                                 >
@@ -141,7 +135,7 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <DropdownLink
-                                            :href="route('client-profile')"
+                                            :href="route('agency-profile')"
                                         >
                                             View Profile
                                         </DropdownLink>

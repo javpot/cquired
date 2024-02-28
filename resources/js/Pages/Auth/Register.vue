@@ -14,6 +14,7 @@ let properties = ref({
     location: null,
     domain: null,
     forfait: null,
+    status: "available",
 });
 let currentStep = ref("Credentials");
 let userData = ref(null);

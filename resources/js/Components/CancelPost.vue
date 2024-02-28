@@ -2,7 +2,7 @@
 import { Link } from "@inertiajs/vue3";
 </script>
 <template>
-    <Link :href="route('post-list')">
+    <Link :href="route('client-profile')">
         <div class="flex flex-row items-center cursor-pointer">
             <svg
                 height="25"

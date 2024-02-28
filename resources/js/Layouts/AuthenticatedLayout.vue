@@ -43,18 +43,6 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Explore
                                 </NavLink>
-                                <NavLink
-                                    :href="route('post-list')"
-                                    :active="route().current('post-list')"
-                                >
-                                    Posts
-                                </NavLink>
-                                <NavLink
-                                    :href="route('client-list')"
-                                    :active="route().current('client-list')"
-                                >
-                                    Clients
-                                </NavLink>
                             </div>
                         </div>
 
