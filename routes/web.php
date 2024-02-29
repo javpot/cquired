@@ -29,6 +29,7 @@ use App\Http\Controllers\StripeWebhookController;
 |
 */
 
+// temporaire, nous n'avons pas une page d'accueil sans login
 Route::get('/', function () {
     return Inertia::render('Auth/Register');
 });
@@ -41,17 +42,19 @@ Route::get('/register', function () {
     return Inertia::render('Auth/Register');
 })->name('register');
 
-// est ce quon utilise signup encore??? et la page aussi.
+// inutile
 Route::post('/signup', [UserController::class, 'verifyEmail'])->name('signup.verify'); // Creer cette methode dans UserController elle check dans la table users si cette email existe
 
 Route::get('/messages', function () {
     return Inertia::render('Messages');
 })->middleware(['auth', 'verified'])->name('messages');
 
+// pourrait etre comme le group du profile
 Route::get('/agency-profile', function () {
     return Inertia::render('AgencyDetails');
 })->middleware(['auth', 'verified'])->name('agency-profile');
 
+// pourrait etre comme le group du profile
 Route::get('/client-profile', function () {
     return Inertia::render('ClientDetails');
 })->middleware(['auth', 'verified'])->name('client-profile');
@@ -64,6 +67,7 @@ Route::get('/post-list', function () {
     return Inertia::render('Posts');
 })->middleware(['auth', 'verified'])->name('post-list');
 
+// pour la creation dun post sa devrait etre comme celui du profile settings
 Route::get('/post', function () {
     return Inertia::render('Post');
 })->middleware(['auth', 'verified'])->name('post');
@@ -82,13 +86,38 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::patch('/client-profile', [ClientController::class, 'update'])->name('client-profile.update');
+    Route::delete('/client-profile', [ClientController::class, 'destroy'])->name('client-profile.destroy');
+});
 
-// Added manually
-// Route::apiResource('subscriptions', SubscriptionController::class); faut changer le controller et le model, car la table subscriptions quon utilise maintenant est celui generer par stripe
-Route::apiResource('agencies', AgencyController::class);
-Route::apiResource('clients', ClientController::class);
-Route::apiResource('posts', PostController::class);
 
+/* COMMENT Route::apiResource fonctionne:
+
+GET /resource
+GET /resource/{id}
+POST /resource + JSON {
+    "attribute1": "value1",
+    "attribute2": "value2",
+    // Additional attributes...
+}
+PUT /resource/{id} + JSON {
+    "attribute1": "new_value1",
+    "attribute2": "new_value2",
+    // Additional attributes...
+}
+*/
+
+// API DATA
+Route::apiResource('agencies', AgencyController::class)->middleware(['auth', 'verified']);
+Route::apiResource('clients', ClientController::class)->middleware(['auth', 'verified']);
+Route::apiResource('posts', PostController::class)->middleware(['auth', 'verified']);
+
+Route::get('/validate-email', [UserController::class, 'verifyEmail']);
+
+Route::get('/add-category', [UserController::class, 'addCategory']);
+
+// API GOOGLE
 Route::get('auth/google/', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 Route::get('/get-user-data', function () {
@@ -105,13 +134,9 @@ Route::get('/get-user-data', function () {
 	}
     return $res;
 });
-Route::get('/validate-email', [UserController::class, 'verifyEmail']);
-
-Route::get('/add-category', [UserController::class, 'addCategory']);
 
 
 // API STRIPE
-
 Route::post('/stripe/ourwebhook', [StripeWebhookController::class, 'handleWebhook']);
 
 Route::get('/subscription-starter', function (Request $request) {
@@ -149,39 +174,9 @@ Route::get('/subscription-enterprise', function (Request $request) {
     ]);
 })->name('subscription-enterprise');
  
-// Route pour qu'un user agency ou freelance puisse modifer son abonnement
+// Route pour qu'un agency ou freelance puisse modifer son abonnement
 Route::get('/billing', function (Request $request) {
     return $request->user()->redirectToBillingPortal(route('dashboard'));
 })->middleware(['auth'])->name('billing');
-
-
-
-// API DATA
-Route::post('/client', [ClientController::class, 'showClient'])->middleware(['auth', 'verified']);
-Route::post('/agency', [AgencyController::class, 'showAgency'])->middleware(['auth', 'verified']);
-
-
-
-
-
-
-/* COMMENT Route::apiResource fonctionne:
-
-GET /resource
-GET /resource/{id}
-POST /resource + JSON {
-    "attribute1": "value1",
-    "attribute2": "value2",
-    // Additional attributes...
-}
-PUT /resource/{id} + JSON {
-    "attribute1": "new_value1",
-    "attribute2": "new_value2",
-    // Additional attributes...
-}
-
-
-*/
-
 
 require __DIR__ . '/auth.php';

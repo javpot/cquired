@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agency;
 use Illuminate\Http\Request;
+use App\Http\Requests\AgencyUpdateRequest;
 
 class AgencyController extends Controller
 {
@@ -39,27 +40,21 @@ class AgencyController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
-    public function showAgency(Request $request){
-        $email = $request->input('email'); // Extraire l'email du corps de la requête
-        $agency = Agency::where('email', $email)->first();
-    
-        if ($agency) {
-            return response()->json($agency);
-        } else {
-            return response()->json(['error' => 'Agency not found'], 404);
-        }
-    }
-
-
     /**
-     * Update the specified resource in storage.
+     * Update the client's profile information. 
      */
-    public function update(Request $request, Agency $Agency)
+    public function update(AgencyUpdateRequest $request): RedirectResponse
     {
-        $Agency->update($request->all());
-        return response()->json(['Agency' => $Agency])
-            ->header('Content-Type', 'application/json')
-            ->header('Access-Control-Allow-Origin', '*');
+        //MODIFY FOR AGENCY !!!!
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit');
     }
 
     /**

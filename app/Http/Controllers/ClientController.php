@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientUpdateRequest;
 
 class ClientController extends Controller
 {
@@ -30,18 +31,6 @@ class ClientController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
-    public function showClient(Request $request){
-        $email = $request->input('email'); // Extraire l'email du corps de la requête
-        $client = Client::where('email', $email)->first();
-    
-        if ($client) {
-            return response()->json($client);
-        } else {
-            return response()->json(['error' => 'Client not found'], 404);
-        }
-    }
-    
-
     /**
      * Display the specified resource.
      */
@@ -53,14 +42,32 @@ class ClientController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Display the user's profile form.
      */
-    public function update(Request $request, Client $client)
+    public function edit(Request $request): Response
     {
-        $client->update($request->all());
-        return response()->json(['client' => $client])
-            ->header('Content-Type', 'application/json')
-            ->header('Access-Control-Allow-Origin', '*');
+        return Inertia::render('ClientDetails', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+
+
+    /**
+     * Update the client's profile information. 
+     */
+    public function update(ClientUpdateRequest $request): RedirectResponse
+    {
+        //MODIFY FOR CLIENT !!!!
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit');
     }
 
     /**

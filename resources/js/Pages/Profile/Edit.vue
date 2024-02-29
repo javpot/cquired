@@ -10,6 +10,7 @@ import UpdateProfileDomain from "./Partials/UpdateProfileDomain.vue";
 import UpdateProfileStatus from "./Partials/UpdateProfileStatus.vue";
 import { usePage } from "@inertiajs/vue3";
 import { onMounted, ref } from "vue";
+import UpdateProfileBio from "./Partials/UpdateProfileBio.vue";
 
 defineProps({
     mustVerifyEmail: {
@@ -21,30 +22,16 @@ defineProps({
 });
 
 const user = usePage().props.auth.user;
-const email = user.email;
 const category = user.category;
 const userData = ref("");
 
 onMounted(async () => {
     if (category === "Client") {
-        userData.value = await getClient(email);
+        userData.value = usePage().props.auth.client;
     } else {
-        userData.value = await getAgency(email);
+        userData.value = usePage().props.auth.agency;
     }
 });
-
-async function getClient(emailReceived) {
-    try {
-        const response = await axios.post("/client", {
-            email: emailReceived,
-        });
-        // Gérer la réponse ici, par exemple, afficher le domaine dans la console
-        return response.data;
-    } catch (error) {
-        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
-        console.error(error.response ? error.response.data : error.message);
-    }
-}
 </script>
 
 <template>
@@ -79,6 +66,13 @@ async function getClient(emailReceived) {
                     v-if="category === 'Client'"
                 >
                     <UpdateProfileStatus class="max-w-xl" />
+                </div>
+
+                <div
+                    class="p-4 sm:p-8 bg-white shadow sm:rounded-lg"
+                    v-if="category === 'Client'"
+                >
+                    <UpdateProfileBio class="max-w-screen" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

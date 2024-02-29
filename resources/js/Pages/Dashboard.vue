@@ -7,29 +7,36 @@ import Footer from "@/Components/Footer.vue";
 import { Link } from "@inertiajs/vue3";
 import CarouselAgencyCard from "@/Components/CarouselAgencyCard.vue";
 import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
+import RowClient from "@/Components/RowClient.vue";
 import axios from "axios";
 import { onMounted, ref } from "vue";
 
 const user = usePage().props.auth.user;
-const email = user.email;
 const category = user.category;
 const domain = ref("");
+const location = ref("");
+const agencies = ref([]);
+const posts = ref([]);
+const clients = ref([]);
 
 onMounted(async () => {
     if (category === "Client") {
-        const clientData = await getClient(email);
+        const clientData = usePage().props.auth.client;
         domain.value = clientData.domain;
+        location.value = clientData.location;
+        agencies.value = await getAgencies();
     } else {
-        const agencyData = await getAgency(email);
+        const agencyData = usePage().props.auth.agency;
         domain.value = agencyData.domain;
+        location.value = agencyData.location;
+        clients.value = await getClients();
+        posts.value = await getPosts();
     }
 });
 
-async function getClient(emailReceived) {
+async function getAgencies() {
     try {
-        const response = await axios.post("/client", {
-            email: emailReceived,
-        });
+        const response = await axios.get("/agencies");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         console.log(response.data);
         return response.data;
@@ -38,11 +45,20 @@ async function getClient(emailReceived) {
         console.error(error.response ? error.response.data : error.message);
     }
 }
-async function getAgency(emailReceived) {
+async function getPosts() {
     try {
-        const response = await axios.post("/agency", {
-            email: emailReceived,
-        });
+        const response = await axios.get("/posts");
+        // Gérer la réponse ici, par exemple, afficher le domain dans la console
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
+        console.error(error.response ? error.response.data : error.message);
+    }
+}
+async function getClients() {
+    try {
+        const response = await axios.get("/clients");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         console.log(response.data);
         return response.data;
@@ -189,6 +205,11 @@ async function getAgency(emailReceived) {
     </AuthenticatedLayout>
     <AuthenticatedLayoutAgency v-else
         ><p>{{ domain }}</p>
+
+        <div class="flex justify-center">
+            <RowClient :clients="clients" class="w-3/4" />
+        </div>
+
         <Link :href="route('billing')">Click me</Link>
     </AuthenticatedLayoutAgency>
     <Footer></Footer>

@@ -5,7 +5,8 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
 
-const status = ref("available");
+const client = usePage().props.auth.client;
+const status = ref(client.status);
 const form = useForm({
     status: status.value,
 });
@@ -20,12 +21,13 @@ const form = useForm({
     </header>
 
     <form
-        @submit.prevent="form.patch(route('profile.update'))"
+        @submit.prevent="form.patch(route('client-profile.update'))"
         class="mt-6 space-y-6"
     >
         <InputLabel for="status" value="Status" />
 
         <div class="flex flex-row">
+            <p>{{ client.status }}</p>
             <input
                 type="radio"
                 id="available"
