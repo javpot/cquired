@@ -18,13 +18,13 @@ class ClientFactory extends Factory
     {
         return [
             'name' => $this->faker->firstName,
-            'bio' => $this->faker->paragraph,
+            'bio' => $this->faker->text,
             'picture' => $this->faker->imageUrl,
             'banner' => $this->faker->imageUrl,
             'location' => $this->faker->city,
             'status' => $this->faker->word,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'), // Par défaut, un mot de passe chiffré pour 'password'
+             // Par défaut, un mot de passe chiffré pour 'password'
             'domain' => $this->faker->word,
         ];
     }
