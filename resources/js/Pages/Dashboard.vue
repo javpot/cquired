@@ -10,6 +10,7 @@ import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
 import RowClient from "@/Components/RowClient.vue";
 import axios from "axios";
 import { onMounted, ref } from "vue";
+import FilterIcon from "@/Components/FilterIcon.vue";
 
 const user = usePage().props.auth.user;
 const category = user.category;
@@ -28,7 +29,6 @@ onMounted(async () => {
     } else {
         const agencyData = usePage().props.auth.agency;
         domain.value = agencyData.domain;
-        location.value = agencyData.location;
         await getClients();
         await getPosts();
     }
@@ -38,6 +38,7 @@ async function getAgencies() {
     try {
         const response = await axios.get("/agencies");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
+        console.log(response.data.Agencies);
         agencies.value = response.data.Agencies;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
@@ -48,7 +49,7 @@ async function getPosts() {
     try {
         const response = await axios.get("/posts");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data);
+        console.log(response.data.Posts);
         posts.value = response.data.Posts;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
@@ -59,8 +60,8 @@ async function getClients() {
     try {
         const response = await axios.get("/clients");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data);
-        clients.value = response.data.Clients;
+        console.log(response.data.clients);
+        clients.value = response.data.clients;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
@@ -202,14 +203,26 @@ async function getClients() {
             />
         </div>
     </AuthenticatedLayout>
-    <AuthenticatedLayoutAgency v-else
-        ><p>{{ domain }}</p>
+    <AuthenticatedLayoutAgency v-else>
+        <template #header>
+            <div class="w-full h-8 flex flex-row justify-between items-center">
+                <h2
+                    class="font-semibold text-xl text-gray-800 leading-tight align-middle left-0"
+                >
+                    {{ domain }}
+                </h2>
 
-        <div class="flex justify-center">
-            <RowClient :clients="clients" class="w-3/4" />
+                <span class="flex flex-row items-center">
+                    <SearchBar class="w-80" />
+                    <FilterIcon />
+                </span>
+            </div>
+        </template>
+
+        <div class="flex flex-col items-center">
+            <h2 class="text-lg text-center my-2">List of Clients</h2>
+            <RowClient :clients="clients" class="w-3/4 h-screen" />
         </div>
-
-        <Link :href="route('billing')">Click me</Link>
     </AuthenticatedLayoutAgency>
     <Footer></Footer>
 </template>

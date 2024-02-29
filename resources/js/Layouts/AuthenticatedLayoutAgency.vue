@@ -43,12 +43,6 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Posts
                                 </NavLink>
-                                <NavLink
-                                    :href="route('client-list')"
-                                    :active="route().current('client-list')"
-                                >
-                                    Clients
-                                </NavLink>
                             </div>
                         </div>
 

@@ -151,7 +151,6 @@ Route::get('/subscription-basic', function (Request $request) {
         
 })->name('subscription-basic');
 
-
 Route::get('/subscription-business', function (Request $request) {
     return $request->user()
     ->newSubscription('business','price_1On0yiH95x8ZWvcZ2dpAv8ka')
