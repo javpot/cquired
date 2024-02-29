@@ -17,27 +17,5 @@
                 <span class="text-cyan-500">See more</span>
             </p>
         </div>
-        <div class="flex flex-row">
-            <div class="flex flex-col w-1/4 p-4 space-y-4">
-                <h2 class="text-xl flex flex-row w-full">
-                    Marketing expertise
-                </h2>
-                <p class="text-cyan-500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h2 class="text-base">Open to networking</h2>
-                <h2 class="text-green-400 text-xl">Yes</h2>
-            </div>
-            <div class="flex flex-col w-1/4 p-4 space-y-4">
-                <h2 class="text-xl flex flex-row w-full">
-                    Marketing interests
-                </h2>
-                <p class="text-cyan-500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h2 class="">Open to advising</h2>
-                <h2 class="text-green-400 text-xl">Yes</h2>
-            </div>
-        </div>
     </div>
 </template>

@@ -13,7 +13,7 @@
         />
         <div class="w-full flex flex-row justify-between items-center ml-4">
             <span class="flex flex-row items-center mt-4">
-                <h2 class="text-3xl mt-4">Zafer Acar</h2>
+                <h2 class="text-3xl mt-4">{{ $page.props.auth.user.name }}</h2>
                 <img
                     class="w-6 h-6p mx-2 mt-4"
                     src="../../assets/checkmarkblue.png"
