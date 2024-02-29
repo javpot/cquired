@@ -59,10 +59,6 @@ Route::get('/client-profile', function () {
     return Inertia::render('ClientDetails');
 })->middleware(['auth', 'verified'])->name('client-profile');
 
-Route::get('/client-list', function () {
-    return Inertia::render('Clients');
-})->middleware(['auth', 'verified'])->name('client-list');
-
 Route::get('/post-list', function () {
     return Inertia::render('Posts');
 })->middleware(['auth', 'verified'])->name('post-list');
@@ -109,9 +105,9 @@ PUT /resource/{id} + JSON {
 */
 
 // API DATA
-Route::apiResource('agencies', AgencyController::class)->middleware(['auth', 'verified']);
-Route::apiResource('clients', ClientController::class)->middleware(['auth', 'verified']);
-Route::apiResource('posts', PostController::class)->middleware(['auth', 'verified']);
+Route::apiResource('agencies', AgencyController::class);
+Route::apiResource('clients', ClientController::class);
+Route::apiResource('posts', PostController::class);
 
 Route::get('/validate-email', [UserController::class, 'verifyEmail']);
 

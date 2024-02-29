@@ -15,22 +15,22 @@ const user = usePage().props.auth.user;
 const category = user.category;
 const domain = ref("");
 const location = ref("");
-const agencies = ref([]);
-const posts = ref([]);
-const clients = ref([]);
+let agencies = ref([]);
+let posts = ref([]);
+let clients = ref([]);
 
 onMounted(async () => {
     if (category === "Client") {
         const clientData = usePage().props.auth.client;
         domain.value = clientData.domain;
         location.value = clientData.location;
-        agencies.value = await getAgencies();
+        await getAgencies();
     } else {
         const agencyData = usePage().props.auth.agency;
         domain.value = agencyData.domain;
         location.value = agencyData.location;
-        clients.value = await getClients();
-        posts.value = await getPosts();
+        await getClients();
+        await getPosts();
     }
 });
 
@@ -38,8 +38,7 @@ async function getAgencies() {
     try {
         const response = await axios.get("/agencies");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data);
-        return response.data;
+        agencies.value = response.data.Agencies;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
@@ -50,7 +49,7 @@ async function getPosts() {
         const response = await axios.get("/posts");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         console.log(response.data);
-        return response.data;
+        posts.value = response.data.Posts;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
@@ -61,7 +60,7 @@ async function getClients() {
         const response = await axios.get("/clients");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         console.log(response.data);
-        return response.data;
+        clients.value = response.data.Clients;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);

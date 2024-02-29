@@ -41,8 +41,6 @@ public function share(Request $request): array
             // Si un client est trouvé, utiliser ses données directement
             // Vous pourriez vouloir limiter les informations partagées pour des raisons de sécurité
             $clientInfo = $client;
-        }else {
-            return 'Client pas trouver';
         }
 
         } else {
@@ -51,9 +49,7 @@ public function share(Request $request): array
             // Si un agency est trouvé, utiliser ses données directement
             // Vous pourriez vouloir limiter les informations partagées pour des raisons de sécurité
             $agencyInfo = $agency;
-        } else {
-            return 'Agency pas trouver';
-        }
+        } 
 
         }
 
