@@ -30,12 +30,12 @@ class ClientController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
-    public function showDomain(Request $request){
+    public function showClient(Request $request){
         $email = $request->input('email'); // Extraire l'email du corps de la requête
         $client = Client::where('email', $email)->first();
     
         if ($client) {
-            return response()->json($client->domain);
+            return response()->json($client);
         } else {
             return response()->json(['error' => 'Client not found'], 404);
         }

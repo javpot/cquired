@@ -39,6 +39,18 @@ class AgencyController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
+    public function showAgency(Request $request){
+        $email = $request->input('email'); // Extraire l'email du corps de la requête
+        $agency = Agency::where('email', $email)->first();
+    
+        if ($agency) {
+            return response()->json($agency);
+        } else {
+            return response()->json(['error' => 'Agency not found'], 404);
+        }
+    }
+
+
     /**
      * Update the specified resource in storage.
      */

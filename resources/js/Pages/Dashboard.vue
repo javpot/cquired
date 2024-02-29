@@ -13,17 +13,37 @@ import { onMounted, ref } from "vue";
 const user = usePage().props.auth.user;
 const email = user.email;
 const category = user.category;
-const domaine = ref("");
+const domain = ref("");
+
 onMounted(async () => {
-    domaine.value = await getDomainClient(email);
+    if (category === "Client") {
+        const clientData = await getClient(email);
+        domain.value = clientData.domain;
+    } else {
+        const agencyData = await getAgency(email);
+        domain.value = agencyData.domain;
+    }
 });
 
-async function getDomainClient(emailReceived) {
+async function getClient(emailReceived) {
     try {
-        const response = await axios.post("/showDomain", {
+        const response = await axios.post("/client", {
             email: emailReceived,
         });
-        // Gérer la réponse ici, par exemple, afficher le domaine dans la console
+        // Gérer la réponse ici, par exemple, afficher le domain dans la console
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
+        console.error(error.response ? error.response.data : error.message);
+    }
+}
+async function getAgency(emailReceived) {
+    try {
+        const response = await axios.post("/agency", {
+            email: emailReceived,
+        });
+        // Gérer la réponse ici, par exemple, afficher le domain dans la console
         console.log(response.data);
         return response.data;
     } catch (error) {
@@ -42,7 +62,7 @@ async function getDomainClient(emailReceived) {
                 <h2
                     class="font-semibold text-xl text-gray-800 leading-tight align-middle left-0"
                 >
-                    {{ domaine }}
+                    {{ domain }}
                 </h2>
 
                 <SearchBar class="w-80" />
@@ -168,7 +188,8 @@ async function getDomainClient(emailReceived) {
         </div>
     </AuthenticatedLayout>
     <AuthenticatedLayoutAgency v-else
-        ><p>allo</p>
+        ><p>{{ domain }}</p>
         <Link :href="route('billing')">Click me</Link>
     </AuthenticatedLayoutAgency>
+    <Footer></Footer>
 </template>

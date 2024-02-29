@@ -156,12 +156,9 @@ Route::get('/billing', function (Request $request) {
 
 
 
-//All API DATA
-
-// Methode qui renvoi le domaine d'un client
-Route::post('/showDomain', [ClientController::class, 'showDomain'])->middleware(['auth', 'verified']);
-
-
+// API DATA
+Route::post('/client', [ClientController::class, 'showClient'])->middleware(['auth', 'verified']);
+Route::post('/agency', [AgencyController::class, 'showAgency'])->middleware(['auth', 'verified']);
 
 
 

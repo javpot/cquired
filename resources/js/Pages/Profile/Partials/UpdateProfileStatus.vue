@@ -2,16 +2,12 @@
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
 
-const picked = ref("available");
-
-const user = usePage().props.auth.user;
-
+const status = ref("available");
 const form = useForm({
-    status: user.status,
+    status: status.value,
 });
 </script>
 <template>
@@ -34,7 +30,7 @@ const form = useForm({
                 type="radio"
                 id="available"
                 value="available"
-                v-model="picked"
+                v-model="status"
             />
             <label for="available">Available</label>
 
@@ -42,7 +38,7 @@ const form = useForm({
                 type="radio"
                 id="unavailable"
                 value="unavailable"
-                v-model="picked"
+                v-model="status"
             />
             <label for="Unavailable">Unavailable</label>
             <InputError class="mt-2" :message="form.errors.status" />
