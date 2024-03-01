@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
 use App\Models\User;
+use Inertia\Inertia;
+use Inertia\Response;
+use App\Models\Client;
+
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ClientUpdateRequest;
 
 class ClientController extends Controller
@@ -69,6 +74,29 @@ class ClientController extends Controller
 
         return Redirect::route('profile.edit');
     }
+
+    public function uploadImage(Request $request)
+{
+    // ERROR client does not exist
+    $client = auth()->client();
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+    $path = $request->file('picture')->store();
+    $client->picture = $path;
+    $client->save();
+
+        return response()->json(['message' => 'picture updated successfully']);
+}
+
+// a changer
+    public function loadImage(Client $client)
+    {
+        return response()->json(['client' => $client])
+            ->header('Content-Type', 'application/json')
+            ->header('Access-Control-Allow-Origin', '*');
+}
 
     /**
      * Remove the specified resource from storage.

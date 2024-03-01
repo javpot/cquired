@@ -82,10 +82,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::patch('/client-profile', [ClientController::class, 'update'])->name('client-profile.update');
-    Route::delete('/client-profile', [ClientController::class, 'destroy'])->name('client-profile.destroy');
-});
+Route::post('/client-profile/image', [ClientController::class, 'uploadImage'])->middleware(['auth', 'verified']);
+Route::post('/agency-profile/image', [AgencyController::class, 'uploadImage'])->middleware(['auth', 'verified']);
 
 
 /* COMMENT Route::apiResource fonctionne:

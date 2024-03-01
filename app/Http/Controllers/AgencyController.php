@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Agency;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\AgencyUpdateRequest;
+
 
 class AgencyController extends Controller
 {
@@ -56,6 +59,21 @@ class AgencyController extends Controller
 
         return Redirect::route('profile.edit');
     }
+
+    public function uploadImage(Request $request)
+{
+    // ERROR agency does not exist
+    $agency = auth()->agency();
+        if (!$agency) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Agency not authenticated'], 401);
+        }
+    $path = $request->file('picture')->store();
+    $agency->picture = $path;
+    $agency->save();
+
+        return response()->json(['message' => 'picture updated successfully']);
+}
 
     /**
      * Remove the specified resource from storage.

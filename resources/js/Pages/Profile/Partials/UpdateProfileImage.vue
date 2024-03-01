@@ -1,20 +1,17 @@
 <script setup>
 import DangerButton from "@/Components/DangerButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { useForm, usePage } from "@inertiajs/vue3";
+import axios from "axios";
 import { ref } from "vue";
+import { usePage } from "@inertiajs/vue3";
 
 const user = usePage().props.auth.user;
-
 const imageFile = ref(null);
 const imageName = ref("");
 
 const removeImage = () => {
     // Implement logic to remove the image
     // You may want to reset both imageFile and imageName
-
-    // here we would have to send a delete request to the database
-
     imageFile.value = null;
     imageName.value = "";
 };
@@ -32,20 +29,31 @@ const handleFileChange = (event) => {
         imageName.value = "";
         // alert("Please choose an image first.");
     }
-
-    // Perform any additional handling if needed
 };
 
-const saveImage = () => {
-    // Access the image file and name from the refs
-    const file = imageFile.value;
-    const fileName = imageName.value;
+const saveImage = async () => {
+    if (imageFile.value && imageName.value) {
+        // Create a FormData object and append the image file
+        const formData = new FormData();
+        formData.append("picture", imageFile.value);
 
-    if (file && fileName) {
-        // Perform any additional handling here if needed
-        // For now, let's just log the filename and file to the console
-        console.log("File to be saved:", fileName);
-        console.log("Image:", file);
+        try {
+            if (user.category === "Client") {
+                await axios.post("/client-profile/image", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+            } else {
+                await axios.post("/agency-profile/image", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+        }
     } else {
         alert("Please choose an image first.");
     }
@@ -68,25 +76,28 @@ const saveImage = () => {
                 alt=""
             />
             <p class="w-80 ml-4 text-sm text-gray-600">
-                PNG and JPEG under 15mb.
+                PNG and JPEG under 4mb.
             </p>
 
-            <div class="flex flex-row-reverse gap-4 w-full items-center">
+            <form
+                @submit.prevent="saveImage"
+                method="post"
+                class="flex flex-row-reverse gap-4 w-full items-center"
+                enctype="multipart/form-data"
+            >
                 <DangerButton @click="removeImage">Remove</DangerButton>
-                <PrimaryButton type="submit" @click="saveImage"
-                    >Save</PrimaryButton
-                >
+                <PrimaryButton type="submit">Save</PrimaryButton>
+
                 <input
-                    class="w-60 hidden"
+                    class="w-60"
                     type="file"
                     accept="image/png, image/jpeg"
                     @change="handleFileChange"
                     ref="fileInput"
+                    name="picture"
                 />
-                <PrimaryButton @click="$refs.fileInput.click()"
-                    >Choose</PrimaryButton
-                >
-            </div>
+                <!-- <PrimaryButton @click="fileInput.click()">Choose</PrimaryButton> -->
+            </form>
         </div>
     </section>
 </template>

@@ -25,9 +25,9 @@ defineProps({
 
 const user = usePage().props.auth.user;
 const category = user.category;
-const userData = ref("");
+let userData = ref([]);
 
-onMounted(async () => {
+onMounted(() => {
     if (category === "Client") {
         userData.value = usePage().props.auth.client;
     } else {
