@@ -19,7 +19,7 @@ const location = ref("");
 let agencies = ref([]);
 let posts = ref([]);
 let clients = ref([]);
-
+const textplaceholder = "Look for a city..";
 onMounted(async () => {
     if (category === "Client") {
         const clientData = usePage().props.auth.client;
@@ -213,7 +213,7 @@ async function getClients() {
                 </h2>
 
                 <span class="flex flex-row items-center">
-                    <SearchBar class="w-80" />
+                    <SearchBar :placeholder="textplaceholder" class="w-80" />
                     <FilterIcon />
                 </span>
             </div>

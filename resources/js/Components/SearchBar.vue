@@ -1,8 +1,16 @@
+<script setup>
+import { defineProps } from "vue";
+
+const props = defineProps({
+    placeholder: String,
+});
+</script>
 <template>
     <div class="input-container flex flex-row relative items-center">
         <input
             type="text"
             class="w-full h-9 pl-2 pr-8 border rounded-md relative"
+            :placeholder="placeholder || ''"
         />
         <img
             src="../../assets/loupe2.png"
