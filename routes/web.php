@@ -83,6 +83,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+// get picture
+Route::get('/client-profile/picture', [ClientController::class, 'getPicture']);
+Route::get('/agency-profile/picture', [AgencyController::class, 'getPicture']);
+// get banner
+Route::get('/client-profile/banner', [ClientController::class, 'getBanner']);
+Route::get('/agency-profile/banner', [AgencyController::class, 'getBanner']);
 // update picture
 Route::post('/client-profile/picture', [ClientController::class, 'uploadPicture']);
 Route::post('/agency-profile/picture', [AgencyController::class, 'uploadPicture']);

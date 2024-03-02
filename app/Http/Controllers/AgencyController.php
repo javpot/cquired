@@ -55,8 +55,7 @@ class AgencyController extends Controller
     /**
      * Update the agency's profile information. 
      */
-    public function update(AgencyUpdateRequest $request): RedirectResponse
-    {
+public function update(AgencyUpdateRequest $request): RedirectResponse {
         //MODIFY FOR AGENCY !!!!
         $request->user()->fill($request->validated());
 
@@ -67,10 +66,9 @@ class AgencyController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit');
-    }
+}
 
-    public function uploadPicture(Request $request)
-{
+public function uploadPicture(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -86,8 +84,7 @@ class AgencyController extends Controller
         return response()->json(['message' => 'picture updated successfully']);
 }
 
-public function deletePicture(Request $request)
-{
+public function deletePicture(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -113,8 +110,7 @@ public function deletePicture(Request $request)
     }
 }
 
-public function uploadBanner(Request $request)
-{
+public function uploadBanner(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -130,8 +126,7 @@ public function uploadBanner(Request $request)
         return response()->json(['message' => 'picture updated successfully']);
 }
 
-public function deleteBanner(Request $request)
-{
+public function deleteBanner(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -157,9 +152,63 @@ public function deleteBanner(Request $request)
     }
 }
 
+public function getPicture(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
 
-public function updateBio(Request $request)
-{
+    $agency = $this->getagencyByEmail($userEmail);
+        if (!$agency) {
+            // Gérer le cas où le agency n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'agency not authenticated'], 401);
+        }
+
+    $picturePath = $agency->picture;
+
+    if ($picturePath) {
+        // Get the content of the picture file
+        $pictureContent = Storage::get($picturePath);
+
+        // Convert the binary content to base64 for inclusion in JSON response
+        $base64Picture = base64_encode($pictureContent);
+
+        return response()->json([
+            'picture' => $base64Picture,
+        ])->header('Content-Type', 'application/json')
+          ->header('Access-Control-Allow-Origin', '*');
+    } else {
+        return response()->json(['message' => 'agency does not have a picture'], 404);
+    }
+}
+
+public function getBanner(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $agency = $this->getagencyByEmail($userEmail);
+        if (!$agency) {
+            // Gérer le cas où le agency n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'agency not authenticated'], 401);
+        }
+
+    $bannerPath = $agency->banner;
+
+    if ($bannerPath) {
+        // Get the content of the picture file
+        $bannerContent = Storage::get($bannerPath);
+
+        // Convert the binary content to base64 for inclusion in JSON response
+        $base64Banner = base64_encode($bannerContent);
+
+        return response()->json([
+            'banner' => $base64Banner,
+        ])->header('Content-Type', 'application/json')
+          ->header('Access-Control-Allow-Origin', '*');
+    } else {
+        return response()->json(['message' => 'agency does not have a banner'], 404);
+    }
+}
+
+public function updateBio(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 

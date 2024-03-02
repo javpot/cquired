@@ -68,8 +68,7 @@ class ClientController extends Controller
     /**
      * Update the client's profile information. 
      */
-    public function update(ClientUpdateRequest $request): RedirectResponse
-    {
+public function update(ClientUpdateRequest $request): RedirectResponse {
         //MODIFY FOR CLIENT !!!!
         $request->user()->fill($request->validated());
 
@@ -80,10 +79,9 @@ class ClientController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit');
-    }
+}
 
-    public function uploadPicture(Request $request)
-{
+public function uploadPicture(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -99,8 +97,7 @@ class ClientController extends Controller
         return response()->json(['message' => 'picture updated successfully']);
 }
 
-public function deletePicture(Request $request)
-{
+public function deletePicture(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -125,8 +122,8 @@ public function deletePicture(Request $request)
         return response()->json(['message' => 'Client does not have a picture'], 400);
     }
 }
-    public function uploadBanner(Request $request)
-{
+
+public function uploadBanner(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -142,8 +139,7 @@ public function deletePicture(Request $request)
         return response()->json(['message' => 'picture updated successfully']);
 }
 
-public function deleteBanner(Request $request)
-{
+public function deleteBanner(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
@@ -165,17 +161,66 @@ public function deleteBanner(Request $request)
 
         return response()->json(['message' => 'Banner deleted successfully']);
     } else {
-        return response()->json(['message' => 'client does not have a picture'], 400);
+        return response()->json(['message' => 'client does not have a banner'], 400);
     }
 }
 
-// a changer
-    public function loadImage(Client $client)
-    {
-        return response()->json(['client' => $client])
-            ->header('Content-Type', 'application/json')
-            ->header('Access-Control-Allow-Origin', '*');
+public function getPicture(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+
+    $picturePath = $client->picture;
+
+    if ($picturePath) {
+        // Get the content of the picture file
+        $pictureContent = Storage::get($picturePath);
+
+        // Convert the binary content to base64 for inclusion in JSON response
+        $base64Picture = base64_encode($pictureContent);
+
+        return response()->json([
+            'picture' => $base64Picture,
+        ])->header('Content-Type', 'application/json')
+          ->header('Access-Control-Allow-Origin', '*');
+    } else {
+        return response()->json(['message' => 'Client does not have a picture'], 404);
+    }
 }
+
+public function getBanner(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+
+    $bannerPath = $client->banner;
+
+    if ($bannerPath) {
+        // Get the content of the picture file
+        $bannerContent = Storage::get($bannerPath);
+
+        // Convert the binary content to base64 for inclusion in JSON response
+        $base64Banner = base64_encode($bannerContent);
+
+        return response()->json([
+            'banner' => $base64Banner,
+        ])->header('Content-Type', 'application/json')
+          ->header('Access-Control-Allow-Origin', '*');
+    } else {
+        return response()->json(['message' => 'Client does not have a banner'], 404);
+    }
+}
+
 
 public function updateStatus(Request $request) {
     $user = auth()->user();
@@ -212,11 +257,10 @@ public function updateBio(Request $request) {
 }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Client $client)
-    {
+/**
+ * Remove the specified resource from storage.
+ */
+public function destroy(Client $client) {
         $client->delete();
         return response()->json(null, 204)
             ->header('Content-Type', 'application/json')

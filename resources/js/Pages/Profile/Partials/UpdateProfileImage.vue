@@ -10,6 +10,22 @@ const user = usePage().props.auth.user;
 const imageFile = ref(null);
 const imageName = ref("");
 
+onMounted(async () => {
+    let loadedPicture;
+    try {
+            if (user.category === "Client") {
+                loadedPicture = await axios.get("/client-profile/picture");
+            } else {
+                loadedPicture = await axios.get("/agency-profile/picture");
+            }
+        } catch (error) {
+            console.error("Error loading image:", error);
+        }
+    console.log(loadedPicture); // return encoded, a changer
+    let pictureImg = document.getElementById('picture');
+    // pictureImg.src = loadedPicture;
+});
+
 const removeImage = async () => {
     imageFile.value = null;
     imageName.value = "";
@@ -82,6 +98,7 @@ const saveImage = async () => {
         <div class="w-full flex flex-row items-center justify-between">
             <span class="flex flex-row items-center">
                 <img
+                    id="picture"
                     class="w-20 h-20 mt-2"
                     src="../../../../assets/pfp-icon.png"
                     alt=""

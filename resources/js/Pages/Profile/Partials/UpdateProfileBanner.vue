@@ -4,10 +4,27 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import axios from "axios";
 import { ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
+import { onMounted } from "vue";
 
 const user = usePage().props.auth.user;
 const imageFile = ref(null);
 const imageName = ref("");
+
+onMounted(async () => {
+    let loadedBanner;
+    try {
+            if (user.category === "Client") {
+                loadedBanner = await axios.get("/client-profile/banner");
+            } else {
+                loadedBanner = await axios.get("/agency-profile/banner");
+            }
+        } catch (error) {
+            console.error("Error loading image:", error);
+        }
+    console.log(loadedBanner); // return encoded, a changer
+    let bannerImg = document.getElementById('banner');
+    // bannerImg.src = loadedBanner;
+});
 
 const removeImage = async () => {
     imageFile.value = null;
@@ -81,6 +98,7 @@ const saveImage = async () => {
         <div class="w-full flex flex-row items-center justify-between">
             <span class="flex flex-row items-center">
                 <img
+                id="banner"
                     class="w-20 h-20 mt-2"
                     src="../../../../assets/entrepriseImgAccueil.png"
                     alt=""
