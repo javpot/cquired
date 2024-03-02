@@ -1,6 +1,10 @@
 <script setup>
+import { inject } from "vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
+
+// Utilisez inject pour récupérer des propriétés fournies par un ancêtre
+const domains = inject("domains");
 </script>
 
 <template>
@@ -34,8 +38,9 @@ import DropdownLink from "@/Components/DropdownLink.vue";
         </template>
 
         <template #content>
-            <DropdownLink> Content creation </DropdownLink>
-            <DropdownLink> Editing </DropdownLink>
+            <DropdownLink v-for="(service, index) in domains" :key="index">
+                {{ service }}
+            </DropdownLink>
         </template>
     </Dropdown>
 </template>

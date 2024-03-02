@@ -76,6 +76,9 @@ function changePage(page) {
                 v-for="page in totalPages"
                 :key="page"
                 @click="changePage(page)"
+                :class="{
+                    ' text-darkBlue': page === currentPage,
+                }"
             >
                 {{ page }}
             </button>

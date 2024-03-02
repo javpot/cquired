@@ -17,6 +17,7 @@ export default {
             },
             colors: {
                 myBlue: "#a6d0e3",
+                darkBlue: "#5accff",
             },
             scale: {
                 170: "1.70",

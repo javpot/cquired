@@ -1,6 +1,6 @@
 <script setup>
 import DomainButton from "@/Components/DomainButton.vue";
-
+import { inject } from "vue";
 const { submit } = defineProps(["submit"]);
 
 const handleDomainSelection = (domain) => {
@@ -10,8 +10,7 @@ const handleDomainSelection = (domain) => {
         console.error("Error submitting domain choice:", error);
     }
 };
-
-import { ref, onMounted } from "vue";
+const domains = inject("domains");
 
 /*
 const scalingDivRef = ref(null);
@@ -47,24 +46,10 @@ onMounted(() => {
                         title="Developpement Web"
                     />
                     <DomainButton
-                        @click="handleDomainSelection('AI')"
-                        title="Artificial Intelligence"
-                    />
-                    <DomainButton
-                        @click="handleDomainSelection('eideo editing')"
-                        title="Video editing"
-                    />
-                    <DomainButton
-                        @click="handleDomainSelection('video games')"
-                        title="Video Games"
-                    />
-                    <DomainButton
-                        @click="handleDomainSelection('SEO')"
-                        title="SEO"
-                    />
-                    <DomainButton
-                        @click="handleDomainSelection('special effects')"
-                        title="Special Effects"
+                        v-for="(service, index) in domains"
+                        :key="index"
+                        @click="handleDomainSelection(service)"
+                        :title="service"
                     />
                 </div>
 
