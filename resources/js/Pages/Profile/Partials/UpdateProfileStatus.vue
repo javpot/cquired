@@ -4,12 +4,38 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
+import { onMounted } from "vue";
 
 const client = usePage().props.auth.client;
-const status = ref(client.status);
+const status = ref("");
 const form = useForm({
-    status: status.value,
+    status : status.value,
+})
+
+onMounted(() => {
+    status.value = client.status;
+
+    let availableRadio = document.getElementById('available');
+    let unavailableRadio = document.getElementById('unavailable');
+
+    if (status.value === 'available') {
+        availableRadio.checked = true;
+    } else {
+        unavailableRadio.checked = true;
+    }
 });
+
+const submit = async () => {
+    if(status) {
+
+        try {
+            await axios.post("/client-profile/status", form);
+        } catch (error) {
+            console.error("Error uploading image:", error);
+        }
+    }
+}
+
 </script>
 <template>
     <header>
@@ -21,32 +47,35 @@ const form = useForm({
     </header>
 
     <form
-        @submit.prevent="form.patch(route('client-profile.update'))"
+        @submit.prevent="submit"
         class="mt-6 space-y-6"
     >
         <InputLabel for="status" value="Status" />
-
-        <div class="flex flex-row">
-            <p>{{ client.status }}</p>
-            <input
+        <div class="flex flex-row items-center space-x-6">
+            <span class="flex flex-row items-center">            
+                <input
                 type="radio"
                 id="available"
                 value="available"
-                v-model="status"
+                name="status"
+                v-model="form.status"
             />
-            <label for="available">Available</label>
-
-            <input
-                type="radio"
-                id="unavailable"
-                value="unavailable"
-                v-model="status"
-            />
-            <label for="Unavailable">Unavailable</label>
+            <label class="ml-2" for="available">Available</label>
+            </span>
+            <span class="flex flex-row items-center">
+                <input
+                    type="radio"
+                    id="unavailable"
+                    value="unavailable"
+                    name="status"
+                    v-model="form.status"
+                                />
+                <label class="ml-2" for="unavailable">Unavailable</label>
+            </span>
             <InputError class="mt-2" :message="form.errors.status" />
         </div>
         <div class="flex items-center gap-4">
-            <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+            <PrimaryButton type="submit" :disabled="form.processing">Save</PrimaryButton>
 
             <Transition
                 enter-active-class="transition ease-in-out"

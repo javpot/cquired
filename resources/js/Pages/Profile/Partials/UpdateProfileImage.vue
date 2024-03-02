@@ -4,16 +4,26 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import axios from "axios";
 import { ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
+import { onMounted } from "vue";
 
 const user = usePage().props.auth.user;
 const imageFile = ref(null);
 const imageName = ref("");
 
-const removeImage = () => {
-    // Implement logic to remove the image
-    // You may want to reset both imageFile and imageName
+const removeImage = async () => {
     imageFile.value = null;
     imageName.value = "";
+
+    try {
+            if (user.category === "Client") {
+                await axios.delete("/client-profile/picture");
+            } else {
+                await axios.delete("/agency-profile/picture");
+            }
+        } catch (error) {
+            console.error("Error deleting picture:", error);
+        }
+
 };
 
 const handleFileChange = (event) => {
@@ -39,13 +49,13 @@ const saveImage = async () => {
 
         try {
             if (user.category === "Client") {
-                await axios.post("/client-profile/image", formData, {
+                await axios.post("/client-profile/picture", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 });
             } else {
-                await axios.post("/agency-profile/image", formData, {
+                await axios.post("/agency-profile/picture", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -69,23 +79,23 @@ const saveImage = async () => {
             </p>
         </header>
 
-        <div class="w-full flex flex-row items-center">
-            <img
-                class="w-20 h-20 mt-2"
-                src="../../../../assets/pfp-icon.png"
-                alt=""
-            />
-            <p class="w-80 ml-4 text-sm text-gray-600">
-                PNG and JPEG under 4mb.
-            </p>
-
+        <div class="w-full flex flex-row items-center justify-between">
+            <span class="flex flex-row items-center">
+                <img
+                    class="w-20 h-20 mt-2"
+                    src="../../../../assets/pfp-icon.png"
+                    alt=""
+                />
+                <p class="w-80 ml-4 text-sm text-gray-600">
+                    PNG and JPEG under 4mb.
+                </p>
+            </span>
             <form
                 @submit.prevent="saveImage"
                 method="post"
                 class="flex flex-row-reverse gap-4 w-full items-center"
                 enctype="multipart/form-data"
             >
-                <DangerButton @click="removeImage">Remove</DangerButton>
                 <PrimaryButton type="submit">Save</PrimaryButton>
 
                 <input
@@ -96,8 +106,9 @@ const saveImage = async () => {
                     ref="fileInput"
                     name="picture"
                 />
-                <!-- <PrimaryButton @click="fileInput.click()">Choose</PrimaryButton> -->
             </form>
+            <DangerButton class="ml-4" @click="removeImage">Remove</DangerButton>
+
         </div>
     </section>
 </template>

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ClientUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -57,6 +58,12 @@ class ClientController extends Controller
         ]);
     }
 
+        public function getClientByEmail($email)
+    {
+        $client = Client::where('email', $email)->first();
+
+        return $client;
+    }
 
     /**
      * Update the client's profile information. 
@@ -75,10 +82,12 @@ class ClientController extends Controller
         return Redirect::route('profile.edit');
     }
 
-    public function uploadImage(Request $request)
+    public function uploadPicture(Request $request)
 {
-    // ERROR client does not exist
-    $client = auth()->client();
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
         if (!$client) {
             // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
             return response()->json(['message' => 'Client not authenticated'], 401);
@@ -90,6 +99,76 @@ class ClientController extends Controller
         return response()->json(['message' => 'picture updated successfully']);
 }
 
+public function deletePicture(Request $request)
+{
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+    if (!$client) {
+        // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+        return response()->json(['message' => 'Client not authenticated'], 401);
+    }
+
+    $currentPicture = $client->picture;
+
+    if ($currentPicture) {
+        // Delete the picture from storage
+        Storage::delete($currentPicture);
+
+        $client->picture = null; // instead of null we could have a default image
+
+        $client->save();
+
+        return response()->json(['message' => 'Picture deleted successfully']);
+    } else {
+        return response()->json(['message' => 'Client does not have a picture'], 400);
+    }
+}
+    public function uploadBanner(Request $request)
+{
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+    $path = $request->file('banner')->store();
+    $client->banner = $path;
+    $client->save();
+
+        return response()->json(['message' => 'picture updated successfully']);
+}
+
+public function deleteBanner(Request $request)
+{
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getclientByEmail($userEmail);
+    if (!$client) {
+        // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+        return response()->json(['message' => 'client not authenticated'], 401);
+    }
+
+    $currentBanner = $client->banner;
+
+    if ($currentBanner) {
+        // Delete the Banner from storage
+        Storage::delete($currentBanner);
+
+        $client->banner = null; // instead of null we could have a default image
+
+        $client->save();
+
+        return response()->json(['message' => 'Banner deleted successfully']);
+    } else {
+        return response()->json(['message' => 'client does not have a picture'], 400);
+    }
+}
+
 // a changer
     public function loadImage(Client $client)
     {
@@ -97,6 +176,41 @@ class ClientController extends Controller
             ->header('Content-Type', 'application/json')
             ->header('Access-Control-Allow-Origin', '*');
 }
+
+public function updateStatus(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+    $status = $request->input('status');
+    $client->status = $status;
+    $client->save();
+
+        return response()->json(['message' => 'status updated successfully']);
+
+}
+
+public function updateBio(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+    $bio = $request->input('bio');
+    $client->bio = $bio;
+    $client->save();
+
+        return response()->json(['message' => 'bio updated successfully']);
+
+}
+
 
     /**
      * Remove the specified resource from storage.

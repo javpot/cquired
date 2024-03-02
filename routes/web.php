@@ -82,8 +82,26 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/client-profile/image', [ClientController::class, 'uploadImage'])->middleware(['auth', 'verified']);
-Route::post('/agency-profile/image', [AgencyController::class, 'uploadImage'])->middleware(['auth', 'verified']);
+Route::middleware('auth')->group(function () {
+// update picture
+Route::post('/client-profile/picture', [ClientController::class, 'uploadPicture']);
+Route::post('/agency-profile/picture', [AgencyController::class, 'uploadPicture']);
+// update banner
+Route::post('/client-profile/banner', [ClientController::class, 'uploadBanner']);
+Route::post('/agency-profile/banner', [AgencyController::class, 'uploadBanner']);
+// update status
+Route::post('/client-profile/status', [ClientController::class, 'updateStatus']);
+// update bio
+Route::post('/client-profile/bio', [ClientController::class, 'updateBio']);
+Route::post('/agency-profile/bio', [AgencyController::class, 'updateBio']);
+// remove picture
+Route::delete('/client-profile/picture', [ClientController::class, 'deletePicture']);
+Route::delete('/agency-profile/picture', [AgencyController::class, 'deletePicture']);
+// remove banner
+Route::delete('/client-profile/banner', [ClientController::class, 'deleteBanner']);
+Route::delete('/agency-profile/banner', [AgencyController::class, 'deleteBanner']);
+});
+
 
 
 /* COMMENT Route::apiResource fonctionne:
