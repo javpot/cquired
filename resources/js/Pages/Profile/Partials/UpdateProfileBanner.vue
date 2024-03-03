@@ -101,11 +101,11 @@ const saveImage = async () => {
             <span class="flex flex-row items-center">
                 <img
                 id="banner"
-                    class="w-20 h-20 mt-2"
+                    class="w-40 h-20 mt-2"
                     :src="picturePath"
                     alt=""
                 />
-                <p class="w-80 ml-4 text-sm text-gray-600">
+                <p class="w-96 ml-4 text-sm text-gray-600">
                     PNG and JPEG under 4mb.
                 </p>
             </span>

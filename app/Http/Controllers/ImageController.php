@@ -31,7 +31,15 @@ public function getPicture(Request $request, $image) {
         ->header('Content-Type' , $contentType)
         ->header('Access-Control-Allow-Origin' , '*');
     } else {
-        return response()->json(['message' => 'User does not have a picture'], 404);
+        $pictureContent = Storage::get("/public/profile_images/pfp-icon.png");
+
+        // Set the appropriate content type header
+        $contentType = Storage::mimeType($picturePath);
+        
+        // Return the binary data with the correct content type
+        return response($pictureContent)
+        ->header('Content-Type' , $contentType)
+        ->header('Access-Control-Allow-Origin' , '*');
     }
 }
 
@@ -51,7 +59,15 @@ public function getBanner(Request $request, $image) {
         ->header('Content-Type' , $contentType)
         ->header('Access-Control-Allow-Origin' , '*');
     } else {
-        return response()->json(['message' => 'User does not have a picture'], 404);
+        $pictureContent = Storage::get("/public/banner_images/clientImgAccueil.jpg");
+
+        // Set the appropriate content type header
+        $contentType = Storage::mimeType($picturePath);
+        
+        // Return the binary data with the correct content type
+        return response($pictureContent)
+        ->header('Content-Type' , $contentType)
+        ->header('Access-Control-Allow-Origin' , '*');
     }
 }
 

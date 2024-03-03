@@ -1,19 +1,35 @@
 <script setup>
 import { ref, onMounted } from "vue";
-
+import InputError from "@/Components/InputError.vue";
 const { submit } = defineProps(["submit"]);
 
 const handleLocationSelection = () => {
     try {
-        var e = document.getElementById("subcountrySelection");
-        var text = e.options[e.selectedIndex].text;
-        submit(text, "Location");
+        // var e = document.getElementById("subcountriesList");
+        // var text = e.options[e.selectedIndex].text;
+        var text = searchInput.value;
+
+        if (
+            csvData.value.find(
+                (row) => `${row.country}, ${row.subcountry}` === text
+            )
+        ) {
+            submit(text, "Location");
+            errorMessage.value = "";
+            status.value = true;
+        } else {
+            status.value = false;
+            errorMessage.value = "Please choose a Location from the list";
+        }
     } catch (error) {
         console.error("Error submitting location choice:", error);
     }
 };
 
 const csvData = ref([]);
+const searchInput = ref(""); // pour la barre de search
+const status = ref(false);
+const errorMessage = ref("");
 
 const scalingDivRef = ref(null);
 
@@ -68,13 +84,37 @@ onMounted(async () => {
             class="w-1/2 h-2/3 bg-white flex flex-col items-center justify-around shadow-md border-2"
         >
             <h2 class="text-3xl text-center font-bold my-10">Location</h2>
-            <div>
+            <!-- <div>
                 <select name="rows" id="subcountrySelection">
                     <option v-for="row in csvData" :key="row.id">
                         {{ row.country }},
                         {{ row.subcountry }}
                     </option>
                 </select>
+            </div> -->
+            <div>
+                <input
+                    class="w-80"
+                    type="text"
+                    id="subcountryInput"
+                    list="subcountriesList"
+                    v-model="searchInput"
+                    placeholder="Type to search..."
+                />
+                <datalist id="subcountriesList">
+                    <option v-for="row in csvData" :key="row.id">
+                        {{ row.country }}, {{ row.subcountry }}
+                    </option>
+                </datalist>
+                <InputError :message="errorMessage" />
+                <Transition
+                    enter-active-class="transition ease-in-out"
+                    enter-from-class="opacity-0"
+                    leave-active-class="transition ease-in-out"
+                    leave-to-class="opacity-0"
+                >
+                    <p v-if="status" class="text-sm text-gray-600">Saved.</p>
+                </Transition>
             </div>
 
             <button

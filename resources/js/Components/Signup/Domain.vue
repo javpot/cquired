@@ -42,10 +42,6 @@ onMounted(() => {
                     class="h-1/2 w-4/5 flex flex-row flex-wrap justify-center items-center gap-4"
                 >
                     <DomainButton
-                        @click="handleDomainSelection('web dev')"
-                        title="Developpement Web"
-                    />
-                    <DomainButton
                         v-for="(service, index) in domains"
                         :key="index"
                         @click="handleDomainSelection(service)"
