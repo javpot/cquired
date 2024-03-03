@@ -28,7 +28,7 @@ onMounted(async () => {
     } else {
         const agencyData = usePage().props.auth.agency;
         domain.value = agencyData.domain;
-        await getClients();
+        await getClientsByDomain();
     }
 });
 
@@ -51,6 +51,17 @@ async function getClients() {
         clients.value = response.data.clients;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
+        console.error(error.response ? error.response.data : error.message);
+    }
+}
+
+async function getClientsByDomain() {
+    try {
+        const response = await axios.post("/clients-domain", {
+            domain: domain.value,
+        });
+        clients.value = response.data.clients;
+    } catch (error) {
         console.error(error.response ? error.response.data : error.message);
     }
 }

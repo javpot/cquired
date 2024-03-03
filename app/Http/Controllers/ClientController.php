@@ -26,6 +26,15 @@ class ClientController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
+    public function getClientsByDomain(Request $request){
+        $domain = $request->input('domain');
+        $clients = Client::where('domain', $domain)->get();
+        return response()->json(['clients' => $clients])
+            ->header('Content-Type', 'application/json')
+            ->header('Access-Control-Allow-Origin', '*');
+    }
+    
+
     /**
      * Store a newly created resource in storage.
      */

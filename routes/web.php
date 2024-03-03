@@ -129,6 +129,7 @@ Route::apiResource('agencies', AgencyController::class);
 Route::apiResource('clients', ClientController::class);
 Route::apiResource('posts', PostController::class);
 
+Route::post('/clients-domain', [ClientController::class, 'getClientsByDomain']);
 Route::get('/validate-email', [UserController::class, 'verifyEmail']);
 
 Route::get('/add-category', [UserController::class, 'addCategory']);
