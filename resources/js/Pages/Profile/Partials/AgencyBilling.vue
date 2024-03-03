@@ -1,6 +1,15 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { Inertia } from "@inertiajs/inertia";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+
+let visitBilling = () => {
+    try {
+        Inertia.visit(route("billing"));
+    } catch (error) {
+        console.error(error);
+    }
+};
 </script>
 <template>
     <section>
@@ -11,8 +20,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                 Consult the billing for your subscription.
             </p>
         </header>
-        <Link :href="route('billing')"
-            ><PrimaryButton>View</PrimaryButton></Link
-        >
+
+        <PrimaryButton @click="visitBilling">View</PrimaryButton>
     </section>
 </template>

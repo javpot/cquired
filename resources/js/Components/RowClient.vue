@@ -77,7 +77,7 @@ function changePage(page) {
                 :key="page"
                 @click="changePage(page)"
                 :class="{
-                    ' text-darkBlue': page === currentPage,
+                    ' text-cyan-400': page === currentPage,
                 }"
             >
                 {{ page }}
