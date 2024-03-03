@@ -9,21 +9,23 @@ import { onMounted } from "vue";
 const user = usePage().props.auth.user;
 const imageFile = ref(null);
 const imageName = ref("");
+const picturePath = ref("");
 
 onMounted(async () => {
     let loadedBanner;
     try {
             if (user.category === "Client") {
-                loadedBanner = await axios.get("/client-profile/banner");
+                let client = usePage().props.auth.client;
+                loadedBanner = client.banner;
+                console.log('loadedBanner', loadedBanner);
             } else {
-                loadedBanner = await axios.get("/agency-profile/banner");
+                let agency = usePage().props.auth.agency;
+                loadedBanner = agency.banner;
             }
         } catch (error) {
             console.error("Error loading image:", error);
         }
-    console.log(loadedBanner); // return encoded, a changer
-    let bannerImg = document.getElementById('banner');
-    // bannerImg.src = loadedBanner;
+    picturePath.value = loadedBanner;
 });
 
 const removeImage = async () => {
@@ -100,7 +102,7 @@ const saveImage = async () => {
                 <img
                 id="banner"
                     class="w-20 h-20 mt-2"
-                    src="../../../../assets/entrepriseImgAccueil.png"
+                    :src="picturePath"
                     alt=""
                 />
                 <p class="w-80 ml-4 text-sm text-gray-600">

@@ -17,7 +17,6 @@ const category = user.category;
 const domain = ref("");
 const location = ref("");
 let agencies = ref([]);
-let posts = ref([]);
 let clients = ref([]);
 const textplaceholder = "Look for a city..";
 onMounted(async () => {
@@ -30,7 +29,6 @@ onMounted(async () => {
         const agencyData = usePage().props.auth.agency;
         domain.value = agencyData.domain;
         await getClients();
-        await getPosts();
     }
 });
 
@@ -38,19 +36,8 @@ async function getAgencies() {
     try {
         const response = await axios.get("/agencies");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data.Agencies);
+        // console.log(response.data.Agencies);
         agencies.value = response.data.Agencies;
-    } catch (error) {
-        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
-        console.error(error.response ? error.response.data : error.message);
-    }
-}
-async function getPosts() {
-    try {
-        const response = await axios.get("/posts");
-        // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data.Posts);
-        posts.value = response.data.Posts;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
@@ -60,7 +47,7 @@ async function getClients() {
     try {
         const response = await axios.get("/clients");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data.clients);
+        // console.log(response.data.clients);
         clients.value = response.data.clients;
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console

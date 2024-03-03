@@ -9,21 +9,23 @@ import { onMounted } from "vue";
 const user = usePage().props.auth.user;
 const imageFile = ref(null);
 const imageName = ref("");
+const picturePath = ref("");
 
 onMounted(async () => {
     let loadedPicture;
     try {
             if (user.category === "Client") {
-                loadedPicture = await axios.get("/client-profile/picture");
+                let client = usePage().props.auth.client;
+                loadedPicture = client.picture;
+                console.log('loadedpicture', loadedPicture);
             } else {
-                loadedPicture = await axios.get("/agency-profile/picture");
+                let agency = usePage().props.auth.agency;
+                loadedPicture = agency.picture;
             }
         } catch (error) {
             console.error("Error loading image:", error);
         }
-    console.log(loadedPicture); // return encoded, a changer
-    let pictureImg = document.getElementById('picture');
-    // pictureImg.src = loadedPicture;
+    picturePath.value = loadedPicture;
 });
 
 const removeImage = async () => {
@@ -100,7 +102,7 @@ const saveImage = async () => {
                 <img
                     id="picture"
                     class="w-20 h-20 mt-2"
-                    src="../../../../assets/pfp-icon.png"
+                    :src="picturePath"
                     alt=""
                 />
                 <p class="w-80 ml-4 text-sm text-gray-600">

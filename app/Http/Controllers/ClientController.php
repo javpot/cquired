@@ -50,12 +50,9 @@ class ClientController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request)
     {
-        return Inertia::render('ClientDetails', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+        return Inertia::render('ClientDetails');
     }
 
         public function getClientByEmail($email)
@@ -90,7 +87,7 @@ public function uploadPicture(Request $request) {
             // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
             return response()->json(['message' => 'Client not authenticated'], 401);
         }
-    $path = $request->file('picture')->store();
+    $path = $request->file('picture')->store('public/profile_images');
     $client->picture = $path;
     $client->save();
 
@@ -132,7 +129,7 @@ public function uploadBanner(Request $request) {
             // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
             return response()->json(['message' => 'Client not authenticated'], 401);
         }
-    $path = $request->file('banner')->store();
+    $path = $request->file('banner')->store('public/banner_images');
     $client->banner = $path;
     $client->save();
 
@@ -164,63 +161,6 @@ public function deleteBanner(Request $request) {
         return response()->json(['message' => 'client does not have a banner'], 400);
     }
 }
-
-public function getPicture(Request $request) {
-    $user = auth()->user();
-    $userEmail = $user->email;
-
-    $client = $this->getClientByEmail($userEmail);
-        if (!$client) {
-            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
-            return response()->json(['message' => 'Client not authenticated'], 401);
-        }
-
-    $picturePath = $client->picture;
-
-    if ($picturePath) {
-        // Get the content of the picture file
-        $pictureContent = Storage::get($picturePath);
-
-        // Convert the binary content to base64 for inclusion in JSON response
-        $base64Picture = base64_encode($pictureContent);
-
-        return response()->json([
-            'picture' => $base64Picture,
-        ])->header('Content-Type', 'application/json')
-          ->header('Access-Control-Allow-Origin', '*');
-    } else {
-        return response()->json(['message' => 'Client does not have a picture'], 404);
-    }
-}
-
-public function getBanner(Request $request) {
-    $user = auth()->user();
-    $userEmail = $user->email;
-
-    $client = $this->getClientByEmail($userEmail);
-        if (!$client) {
-            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
-            return response()->json(['message' => 'Client not authenticated'], 401);
-        }
-
-    $bannerPath = $client->banner;
-
-    if ($bannerPath) {
-        // Get the content of the picture file
-        $bannerContent = Storage::get($bannerPath);
-
-        // Convert the binary content to base64 for inclusion in JSON response
-        $base64Banner = base64_encode($bannerContent);
-
-        return response()->json([
-            'banner' => $base64Banner,
-        ])->header('Content-Type', 'application/json')
-          ->header('Access-Control-Allow-Origin', '*');
-    } else {
-        return response()->json(['message' => 'Client does not have a banner'], 404);
-    }
-}
-
 
 public function updateStatus(Request $request) {
     $user = auth()->user();

@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\StripeWebhookController;
 
@@ -54,10 +55,11 @@ Route::get('/agency-profile', function () {
     return Inertia::render('AgencyDetails');
 })->middleware(['auth', 'verified'])->name('agency-profile');
 
-// pourrait etre comme le group du profile
-Route::get('/client-profile', function () {
-    return Inertia::render('ClientDetails');
-})->middleware(['auth', 'verified'])->name('client-profile');
+Route::middleware('auth')->group(function () {
+    Route::get('/client-profile', [ClientController::class, 'edit'])->name('client-profile');
+    Route::post('/client-profile', [ClientController::class, 'update'])->name('client-profile');
+    Route::delete('/client-profile', [ClientController::class, 'update'])->name('client-profile');
+});
 
 Route::get('/post-list', function () {
     return Inertia::render('Posts');
@@ -84,11 +86,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 // get picture
-Route::get('/client-profile/picture', [ClientController::class, 'getPicture']);
-Route::get('/agency-profile/picture', [AgencyController::class, 'getPicture']);
-// get banner
-Route::get('/client-profile/banner', [ClientController::class, 'getBanner']);
-Route::get('/agency-profile/banner', [AgencyController::class, 'getBanner']);
+Route::get('/public/profile_images/{image}', [ImageController::class, 'getPicture']);
+Route::get('/public/banner_images/{image}', [ImageController::class, 'getBanner']);
 // update picture
 Route::post('/client-profile/picture', [ClientController::class, 'uploadPicture']);
 Route::post('/agency-profile/picture', [AgencyController::class, 'uploadPicture']);
@@ -107,7 +106,6 @@ Route::delete('/agency-profile/picture', [AgencyController::class, 'deletePictur
 Route::delete('/client-profile/banner', [ClientController::class, 'deleteBanner']);
 Route::delete('/agency-profile/banner', [AgencyController::class, 'deleteBanner']);
 });
-
 
 
 /* COMMENT Route::apiResource fonctionne:
