@@ -100,7 +100,8 @@ public function deletePicture(Request $request) {
         // Delete the picture from storage
         Storage::delete($currentPicture);
 
-        $agency->picture = null; // instead of null we could have a default image
+        $defaultPic = 'public/profile_images/pfp-icon.png';
+        $agency->picture = $defaultPic;
 
         $agency->save();
 
@@ -142,7 +143,8 @@ public function deleteBanner(Request $request) {
         // Delete the Banner from storage
         Storage::delete($currentBanner);
 
-        $agency->banner = null; // instead of null we could have a default image
+        $defaultPic = 'public/banner_images/clientImgAccueil.jpg';
+        $agency->banner = $defaultPic;
 
         $agency->save();
 

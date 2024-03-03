@@ -118,9 +118,10 @@ public function deletePicture(Request $request) {
     if ($currentPicture) {
         // Delete the picture from storage
         Storage::delete($currentPicture);
-
-        $client->picture = null; // instead of null we could have a default image
-
+        
+        $defaultPic = 'public/profile_images/pfp-icon.png';
+        $client->picture = $defaultPic;
+        
         $client->save();
 
         return response()->json(['message' => 'Picture deleted successfully']);
@@ -161,7 +162,8 @@ public function deleteBanner(Request $request) {
         // Delete the Banner from storage
         Storage::delete($currentBanner);
 
-        $client->banner = null; // instead of null we could have a default image
+        $defaultPic = 'public/banner_images/clientImgAccueil.jpg';
+        $client->banner = $defaultPic;
 
         $client->save();
 
