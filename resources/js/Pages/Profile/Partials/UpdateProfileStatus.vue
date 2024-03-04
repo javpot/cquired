@@ -9,16 +9,16 @@ import { onMounted } from "vue";
 const client = usePage().props.auth.client;
 const status = ref("");
 const form = useForm({
-    status : status.value,
-})
+    status: status.value,
+});
 
 onMounted(() => {
     status.value = client.status;
 
-    let availableRadio = document.getElementById('available');
-    let unavailableRadio = document.getElementById('unavailable');
+    let availableRadio = document.getElementById("available");
+    let unavailableRadio = document.getElementById("unavailable");
 
-    if (status.value === 'available') {
+    if (status.value === "available") {
         availableRadio.checked = true;
     } else {
         unavailableRadio.checked = true;
@@ -26,16 +26,15 @@ onMounted(() => {
 });
 
 const submit = async () => {
-    if(status) {
-
+    if (status) {
         try {
             await axios.post("/client-profile/status", form);
+            form.recentlySuccessful = true;
         } catch (error) {
             console.error("Error uploading image:", error);
         }
     }
-}
-
+};
 </script>
 <template>
     <header>
@@ -46,21 +45,18 @@ const submit = async () => {
         </p>
     </header>
 
-    <form
-        @submit.prevent="submit"
-        class="mt-6 space-y-6"
-    >
+    <form @submit.prevent="submit" class="mt-6 space-y-6">
         <InputLabel for="status" value="Status" />
         <div class="flex flex-row items-center space-x-6">
-            <span class="flex flex-row items-center">            
+            <span class="flex flex-row items-center">
                 <input
-                type="radio"
-                id="available"
-                value="available"
-                name="status"
-                v-model="form.status"
-            />
-            <label class="ml-2" for="available">Available</label>
+                    type="radio"
+                    id="available"
+                    value="available"
+                    name="status"
+                    v-model="form.status"
+                />
+                <label class="ml-2" for="available">Available</label>
             </span>
             <span class="flex flex-row items-center">
                 <input
@@ -69,13 +65,15 @@ const submit = async () => {
                     value="unavailable"
                     name="status"
                     v-model="form.status"
-                                />
+                />
                 <label class="ml-2" for="unavailable">Unavailable</label>
             </span>
             <InputError class="mt-2" :message="form.errors.status" />
         </div>
         <div class="flex items-center gap-4">
-            <PrimaryButton type="submit" :disabled="form.processing">Save</PrimaryButton>
+            <PrimaryButton type="submit" :disabled="form.processing"
+                >Save</PrimaryButton
+            >
 
             <Transition
                 enter-active-class="transition ease-in-out"

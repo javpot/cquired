@@ -14,17 +14,16 @@ const picturePath = ref("");
 onMounted(async () => {
     let loadedPicture;
     try {
-            if (user.category === "Client") {
-                let client = usePage().props.auth.client;
-                loadedPicture = client.picture;
-                console.log('loadedpicture', loadedPicture);
-            } else {
-                let agency = usePage().props.auth.agency;
-                loadedPicture = agency.picture;
-            }
-        } catch (error) {
-            console.error("Error loading image:", error);
+        if (user.category === "Client") {
+            let client = usePage().props.auth.client;
+            loadedPicture = client.picture;
+        } else {
+            let agency = usePage().props.auth.agency;
+            loadedPicture = agency.picture;
         }
+    } catch (error) {
+        console.error("Error loading image:", error);
+    }
     picturePath.value = loadedPicture;
 });
 
@@ -33,15 +32,14 @@ const removeImage = async () => {
     imageName.value = "";
 
     try {
-            if (user.category === "Client") {
-                await axios.delete("/client-profile/picture");
-            } else {
-                await axios.delete("/agency-profile/picture");
-            }
-        } catch (error) {
-            console.error("Error deleting picture:", error);
+        if (user.category === "Client") {
+            await axios.delete("/client-profile/picture");
+        } else {
+            await axios.delete("/agency-profile/picture");
         }
-
+    } catch (error) {
+        console.error("Error deleting picture:", error);
+    }
 };
 
 const handleFileChange = (event) => {
@@ -109,25 +107,27 @@ const saveImage = async () => {
                     PNG and JPEG under 4mb.
                 </p>
             </span>
-            <form
-                @submit.prevent="saveImage"
-                method="post"
-                class="flex flex-row-reverse gap-4 w-full items-center"
-                enctype="multipart/form-data"
-            >
-                <PrimaryButton type="submit">Save</PrimaryButton>
-
-                <input
-                    class="w-60"
-                    type="file"
-                    accept="image/png, image/jpeg"
-                    @change="handleFileChange"
-                    ref="fileInput"
-                    name="picture"
-                />
-            </form>
-            <DangerButton class="ml-4" @click="removeImage">Remove</DangerButton>
-
+            <div class="flex flex-row">
+                <form
+                    @submit.prevent="saveImage"
+                    method="post"
+                    class="flex flex-row-reverse gap-4 items-center"
+                    enctype="multipart/form-data"
+                >
+                    <PrimaryButton type="submit">Save</PrimaryButton>
+                    <input
+                        class="w-60"
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        @change="handleFileChange"
+                        ref="fileInput"
+                        name="picture"
+                    />
+                </form>
+                <DangerButton class="ml-4" @click="removeImage"
+                    >Remove</DangerButton
+                >
+            </div>
         </div>
     </section>
 </template>

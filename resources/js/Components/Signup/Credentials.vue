@@ -26,16 +26,48 @@ const handleSubmit = async () => {
                 email: form.email,
             },
         });
-
-        if (form.password === form.password_confirmation) {
-            if (response.value.data.success) {
-                submit(form, "Credentials");
+        if (isNameValid()) {
+            if (isPwdValid()) {
+                if (form.password === form.password_confirmation) {
+                    if (response.value.data.success) {
+                        submit(form, "Credentials");
+                    } else {
+                        form.errors.email = "Email is already in use";
+                    }
+                } else {
+                    form.errors.password_confirmation =
+                        "Passwords do not match";
+                }
             }
-        } else {
-            console.error("Passwords do not match");
         }
     } catch (error) {
         console.error("Error submitting form:", error);
+    }
+};
+
+const isNameValid = () => {
+    const regex = /^[A-Za-z\s]+$/; // Regular expression to allow only letters
+    if (!regex.test(form.name)) {
+        form.errors.name =
+            "Special characters are not permitted for this field";
+        return false;
+    } else {
+        form.errors.name = null;
+        return true;
+    }
+};
+
+// Function to check if the password meets the specified criteria
+const isPwdValid = () => {
+    const regex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!regex.test(form.password)) {
+        form.errors.password =
+            "Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character";
+        return false;
+    } else {
+        form.errors.password = null;
+        return true;
     }
 };
 </script>
@@ -75,6 +107,7 @@ const handleSubmit = async () => {
                         required
                         autofocus
                         autocomplete="name"
+                        @input="isNameValid"
                     />
                     <InputError class="mt-2" :message="form.errors.name" />
                 </div>
@@ -88,15 +121,7 @@ const handleSubmit = async () => {
                         required
                         autocomplete="username"
                     />
-                    <InputError
-                        class="mt-2"
-                        :message="
-                            form.errors.email ||
-                            (response && !response.data.valid
-                                ? 'Email is already in use'
-                                : null)
-                        "
-                    />
+                    <InputError class="mt-2" :message="form.errors.email" />
                 </div>
                 <div class="flex flex-col w-full">
                     <InputLabel for="password" value="Password" />
@@ -122,6 +147,7 @@ const handleSubmit = async () => {
                         v-model="form.password_confirmation"
                         required
                         autocomplete="new-password"
+                        @input="isPwdValid"
                     />
                     <InputError
                         class="mt-2"

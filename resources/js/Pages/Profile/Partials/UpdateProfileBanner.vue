@@ -14,17 +14,16 @@ const picturePath = ref("");
 onMounted(async () => {
     let loadedBanner;
     try {
-            if (user.category === "Client") {
-                let client = usePage().props.auth.client;
-                loadedBanner = client.banner;
-                console.log('loadedBanner', loadedBanner);
-            } else {
-                let agency = usePage().props.auth.agency;
-                loadedBanner = agency.banner;
-            }
-        } catch (error) {
-            console.error("Error loading image:", error);
+        if (user.category === "Client") {
+            let client = usePage().props.auth.client;
+            loadedBanner = client.banner;
+        } else {
+            let agency = usePage().props.auth.agency;
+            loadedBanner = agency.banner;
         }
+    } catch (error) {
+        console.error("Error loading image:", error);
+    }
     picturePath.value = loadedBanner;
 });
 
@@ -33,15 +32,14 @@ const removeImage = async () => {
     imageName.value = "";
 
     try {
-            if (user.category === "Client") {
-                await axios.delete("/client-profile/banner");
-            } else {
-                await axios.delete("/agency-profile/banner");
-            }
-        } catch (error) {
-            console.error("Error deleting banner:", error);
+        if (user.category === "Client") {
+            await axios.delete("/client-profile/banner");
+        } else {
+            await axios.delete("/agency-profile/banner");
         }
-
+    } catch (error) {
+        console.error("Error deleting banner:", error);
+    }
 };
 
 const handleFileChange = (event) => {
@@ -100,33 +98,36 @@ const saveImage = async () => {
         <div class="w-full flex flex-row items-center justify-between">
             <span class="flex flex-row items-center">
                 <img
-                id="banner"
+                    id="banner"
                     class="w-40 h-20 mt-2"
                     :src="picturePath"
                     alt=""
                 />
-                <p class="w-96 ml-4 text-sm text-gray-600">
+                <p class="w-80 ml-4 text-sm text-gray-600">
                     PNG and JPEG under 4mb.
                 </p>
             </span>
-            <form
-                @submit.prevent="saveImage"
-                method="post"
-                class="flex flex-row-reverse gap-4 w-full items-center"
-                enctype="multipart/form-data"
-            >
-                <PrimaryButton type="submit">Save</PrimaryButton>
-
-                <input
-                    class="w-60"
-                    type="file"
-                    accept="image/png, image/jpeg"
-                    @change="handleFileChange"
-                    ref="fileInput"
-                    name="banner"
-                />
-            </form>
-            <DangerButton class="ml-4" @click="removeImage">Remove</DangerButton>
+            <div class="flex flex-row">
+                <form
+                    @submit.prevent="saveImage"
+                    method="post"
+                    class="flex flex-row-reverse gap-4 w-full items-center"
+                    enctype="multipart/form-data"
+                >
+                    <PrimaryButton type="submit">Save</PrimaryButton>
+                    <input
+                        class="w-60"
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        @change="handleFileChange"
+                        ref="fileInput"
+                        name="banner"
+                    />
+                </form>
+                <DangerButton class="ml-4" @click="removeImage"
+                    >Remove</DangerButton
+                >
+            </div>
         </div>
     </section>
 </template>

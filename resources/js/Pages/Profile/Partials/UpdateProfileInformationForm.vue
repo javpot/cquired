@@ -20,6 +20,17 @@ const form = useForm({
     name: user.name,
     email: user.email,
 });
+
+const isNameValid = () => {
+    const regex = /^[A-Za-z\s]+$/; // Regular expression to allow only letters
+    if (!regex.test(form.name)) {
+        form.errors.name = "Only letters are allowed for the name field.";
+        return false;
+    } else {
+        form.errors.name = null;
+        return true;
+    }
+};
 </script>
 
 <template>
@@ -49,6 +60,7 @@ const form = useForm({
                     required
                     autofocus
                     autocomplete="name"
+                    @input="isNameValid"
                 />
 
                 <InputError class="mt-2" :message="form.errors.name" />
@@ -69,7 +81,7 @@ const form = useForm({
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div v-if="mustVerifyEmail && user.email_verified_at === null">
+            <div v-if="user.email_verified_at === null">
                 <p class="text-sm mt-2 text-gray-800">
                     Your email address is unverified.
                     <Link
@@ -91,7 +103,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                <PrimaryButton :disabled="!isNameValid">Save</PrimaryButton>
 
                 <Transition
                     enter-active-class="transition ease-in-out"

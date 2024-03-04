@@ -20,26 +20,22 @@ onMounted(async () => {
         userData.value = usePage().props.auth.agency;
     }
     bio.value = userData.value.bio;
-    let bioText = document.getElementById('bio');
+    let bioText = document.getElementById("bio");
     bioText.value = bio.value;
-
 });
 
 const submit = async () => {
-    if(bio) {
-
-        try {
-            if (user.category === "Client") {
-                await axios.post("/client-profile/bio", form);
-            } else {
-                await axios.post("/agency-profile/bio", form);
-            }
-        } catch (error) {
-            console.error("Error uploading bio:", error);
+    try {
+        if (user.category === "Client") {
+            await axios.post("/client-profile/bio", form);
+        } else {
+            await axios.post("/agency-profile/bio", form);
         }
+        form.recentlySuccessful = true;
+    } catch (error) {
+        console.error("Error uploading bio:", error);
     }
-}
-
+};
 </script>
 <template>
     <section>
@@ -51,10 +47,7 @@ const submit = async () => {
             </p>
         </header>
 
-        <form
-            @submit.prevent="submit"
-            class="mt-6 space-y-6"
-        >
+        <form @submit.prevent="submit" class="mt-6 space-y-6">
             <div>
                 <InputLabel for="bio" value="Bio" />
 
