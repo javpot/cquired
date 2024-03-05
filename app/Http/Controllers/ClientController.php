@@ -207,6 +207,23 @@ public function updateBio(Request $request) {
 
 }
 
+public function updateDomain(Request $request) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+    $domain = $request->input('domain');
+    $client->domain = $domain;
+    $client->save();
+
+        return response()->json(['message' => 'domain updated successfully']);
+
+}
+
 
 /**
  * Remove the specified resource from storage.

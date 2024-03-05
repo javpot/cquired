@@ -13,7 +13,7 @@ const form = useForm({
     bio: bio.value,
 });
 
-onMounted(async () => {
+onMounted(() => {
     if (category === "Client") {
         userData.value = usePage().props.auth.client;
     } else {

@@ -96,6 +96,8 @@ Route::post('/client-profile/banner', [ClientController::class, 'uploadBanner'])
 Route::post('/agency-profile/banner', [AgencyController::class, 'uploadBanner']);
 // update status
 Route::post('/client-profile/status', [ClientController::class, 'updateStatus']);
+// update domain
+Route::post('/client-profile/domain', [ClientController::class, 'updateDomain']);
 // update bio
 Route::post('/client-profile/bio', [ClientController::class, 'updateBio']);
 Route::post('/agency-profile/bio', [AgencyController::class, 'updateBio']);
