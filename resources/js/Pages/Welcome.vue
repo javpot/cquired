@@ -7,6 +7,7 @@ import SignIn from '@/Components/SignIn.vue';
 import Inscription from  '@/Components/Inscription.vue'
 import ServiceCard from '@/Components/ServiceCard.vue';
 import ServiceSelection from '@/Layouts/ServiceSelection.vue';
+import Home from '@/Components/Home.vue'
 
 defineProps({
     canLogin: {
@@ -27,14 +28,18 @@ defineProps({
 </script>
 
 <template>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
    
     <div class="container">
         <!--<NavView></NavView>-->
-        <!--<Accueil></Accueil>-->
+        <!-- <Accueil></Accueil> -->
+        <Home></Home>
       
      <!--<SignIn></SignIn>-->
  <!--<LogIn></LogIn>-->
- <Inscription></Inscription>
+ <!-- <Inscription></Inscription> -->
  <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
  <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
 <!-- <ServiceSelection></ServiceSelection> -->

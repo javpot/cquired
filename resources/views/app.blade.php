@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
