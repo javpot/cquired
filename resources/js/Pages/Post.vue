@@ -1,83 +1,76 @@
 <script setup>
 import CancelPost from "@/Components/CancelPost.vue";
 import TextInput from "@/Components/TextInput.vue";
-import DomainListDropdown from "@/Components/DomainListDropdown.vue";
+import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { inject, ref } from "vue";
 
-const user = usePage().props.auth.user;
+const client = usePage().props.auth.client;
+const domains = inject("domains");
+const form = useForm({
+    titre: "",
+    domain: client.domain,
+    status: "unresolved",
+    description: "",
+    client_id: client.id,
+}); // maybe add images after
 
-const imageFile = ref(null);
-const imageName = ref("");
-
-const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-
-    if (selectedFile) {
-        // Set the image file and name
-        imageFile.value = selectedFile;
-        imageName.value = selectedFile.name;
-    } else {
-        // Reset if no file is selected
-        imageFile.value = null;
-        imageName.value = "";
-        // alert("Please choose an image first.");
+const createPost = async () => {
+    try {
+        await axios.post("posts", form);
+        // form.errors.domain = null;
+        // form.recentlySuccessful = true;
+    } catch (error) {
+        console.error(error.response.data);
     }
-
-    // Perform any additional handling if needed
-};
-
-const saveImage = () => {
-    // Access the image file and name from the refs
-    const file = imageFile.value;
-    const fileName = imageName.value;
-
-    if (file && fileName) {
-        // Perform any additional handling here if needed
-        // For now, let's just log the filename and file to the console
-        console.log("File to be saved:", fileName);
-        console.log("Image:", file);
-    } else {
-        // alert("Please choose an image first.");
-    }
-};
-
-const createPost = () => {
-    saveImage();
 };
 </script>
+
 <template>
     <CancelPost class="fixed top-4 left-4" />
     <div class="flex items-center justify-center h-screen">
-        <div class="flex flex-col space-y-6 border-4 p-8">
-            <h2 class="text-3xl text-center">Write a Post</h2>
-            <TextInput class="" placeholder="Title" />
-            <DomainListDropdown class="" />
-            <textarea
-                name="Description"
-                id="Description"
-                placeholder="Description"
-                cols="80"
-                rows="10"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-            ></textarea>
-            <div class="flex flex-row items-center">
-                <input
-                    class="hidden"
-                    type="file"
-                    accept="image/png, image/jpeg"
-                    @change="handleFileChange"
-                    ref="fileInput"
-                />
-                <PrimaryButton @click="$refs.fileInput.click()"
-                    >Choose</PrimaryButton
+        <form @submit.prevent="createPost">
+            <div class="flex flex-col space-y-6 border-4 p-8">
+                <h2 class="text-3xl text-center">Write a Post</h2>
+                <TextInput class="" placeholder="Title" v-model="form.titre" />
+                <div class="">
+                    <select
+                        name="domain"
+                        id="domain"
+                        v-model="form.domain"
+                        class="w-80 p-2 rounded-md focus:outline-none ease-in-out"
+                    >
+                        <option
+                            v-for="domain in domains"
+                            :key="domain"
+                            :value="domain"
+                        >
+                            {{ domain }}
+                        </option>
+                    </select>
+                </div>
+                <textarea
+                    name="Description"
+                    id="Description"
+                    placeholder="Description"
+                    cols="80"
+                    rows="10"
+                    required
+                    v-model="form.description"
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                ></textarea>
+                <!-- <div class="flex flex-row items-center">
+                    <p class="ml-4">add an image (optional)</p>
+                </div> -->
+                <InputError class="mt-2" :message="form.errors.domain" />
+                <PrimaryButton
+                    class="self-center"
+                    type="submit"
+                    :disabled="form.processing"
+                    >Post</PrimaryButton
                 >
-                <p class="ml-4">add an image (optional)</p>
             </div>
-            <PrimaryButton class="self-center" type="submit" @click="createPost"
-                >Post</PrimaryButton
-            >
-        </div>
+        </form>
     </div>
 </template>

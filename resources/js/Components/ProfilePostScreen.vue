@@ -1,0 +1,36 @@
+<script setup>
+import PostCard from "@/Components/PostCard.vue";
+import { Link } from "@inertiajs/vue3";
+import ComposeMessage from "@/Components/ComposeMessage.vue";
+
+defineProps({
+    clientposts: Array,
+    clientdata: Array,
+});
+</script>
+
+<template>
+    <div class="flex flex-col w-1/2 mt-8">
+        <h2 class="text-xl py-4">Recent Posts</h2>
+        <div class="text-center my-4">
+            <hr calss="my-2" />
+        </div>
+
+        <PostCard
+            v-for="post in clientposts"
+            :key="post.id"
+            :postdata="post"
+            :clientdata="clientdata"
+        />
+    </div>
+    <Link :href="route('post')">
+        <div
+            class="fixed bottom-4 right-4 flex items-center bg-gray-200 rounded-full justify-center hover:bg-gray-300 hover:scale-110 transition cursor-pointer"
+        >
+            <p class="ml-4 mr-2 text-lg text-gray-700">Write a Post</p>
+            <ComposeMessage
+                class="w-16 h-16 bg-gray-300 rounded-full transform hover:scale-100 transition-transform"
+            ></ComposeMessage>
+        </div>
+    </Link>
+</template>

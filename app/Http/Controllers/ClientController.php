@@ -64,12 +64,29 @@ class ClientController extends Controller
         return Inertia::render('ClientDetails');
     }
 
-        public function getClientByEmail($email)
-    {
+public function getClientByEmail($email) {
         $client = Client::where('email', $email)->first();
 
         return $client;
     }
+
+public function getClientById($id) {
+        $client = Client::where('id', $id)->first();
+
+        return $client;
+    }
+
+public function viewGuest(Request $request, $id) {
+    $client = $this->getClientById($id);
+
+    if (!$client) {
+        return response()->json(['error' => 'client not found'], 404);
+    }
+
+    return Inertia::render('ClientDetailsVisitor', [
+        'client' => $client,
+    ]);
+}
 
     /**
      * Update the client's profile information. 
@@ -150,7 +167,7 @@ public function deleteBanner(Request $request) {
     $user = auth()->user();
     $userEmail = $user->email;
 
-    $client = $this->getclientByEmail($userEmail);
+    $client = $this->getClientByEmail($userEmail);
     if (!$client) {
         // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
         return response()->json(['message' => 'client not authenticated'], 401);

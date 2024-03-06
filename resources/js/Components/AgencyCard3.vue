@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+defineProps({
+    agencydata: Array,
+});
+</script>
 <template>
     <div class="flex flex-col ml-12 w-1/4">
         <h2 class="text-xl border-b-4 flex flex-row w-full mb-2 p-4">Intro</h2>
@@ -38,7 +42,7 @@
                     </g>
                 </svg>
 
-                <h2>{{ $page.props.auth.agency.domain }}</h2>
+                <h2>{{ agencydata.domain }}</h2>
             </li>
 
             <li class="flex flex-row w-full text-lg">
@@ -54,7 +58,7 @@
                         d="m12 0c-4.962 0-9 4.066-9 9.065 0 7.103 8.154 14.437 8.501 14.745.143.127.321.19.499.19s.356-.063.499-.189c.347-.309 8.501-7.643 8.501-14.746 0-4.999-4.038-9.065-9-9.065zm0 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
                     />
                 </svg>
-                <h2>{{ $page.props.auth.agency.location }}</h2>
+                <h2>{{ agencydata.location }}</h2>
             </li>
 
             <li class="flex flex-row w-full text-lg">
@@ -74,7 +78,9 @@
                         d="m20.05 148.858 209.803 139.874c7.942 5.295 17.044 7.942 26.146 7.942 9.103 0 18.206-2.648 26.148-7.942l209.803-139.874c12.555-8.365 20.05-22.365 20.05-37.475 0-25.981-21.137-47.117-47.117-47.117h-417.766c-25.98.001-47.117 21.137-47.117 47.142 0 15.085 7.496 29.085 20.05 37.45z"
                     />
                 </svg>
-                <h2>{{ $page.props.auth.agency.email }}</h2>
+                <a class="text-cyan-500" :href="`mailto:${agencydata.email}`">{{
+                    agencydata.email
+                }}</a>
             </li>
         </ul>
     </div>

@@ -1,4 +1,5 @@
 <script setup>
+import axios from "axios";
 import { ref, computed } from "vue";
 import { defineProps } from "vue";
 
@@ -50,6 +51,7 @@ function changePage(page) {
                 <tr
                     v-for="(client, index) in paginatedClients"
                     :key="index"
+                    @click="route(`/client-profile/${client.id}`)"
                     class="bg-white border-2 border-gray-50"
                 >
                     <th

@@ -11,7 +11,7 @@ const imageFile = ref(null);
 const imageName = ref("");
 const picturePath = ref("");
 
-onMounted(async () => {
+onMounted(() => {
     let loadedPicture;
     try {
         if (user.category === "Client") {

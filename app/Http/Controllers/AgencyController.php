@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Inertia\Inertia;
+use Inertia\Response;
 use App\Models\Agency;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\AgencyUpdateRequest;
 use Illuminate\Support\Facades\Storage;
+
 
 
 class AgencyController extends Controller
@@ -44,28 +49,35 @@ class AgencyController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
-            public function getAgencyByEmail($email)
+    public function getAgencyByEmail($email)
     {
         $agency = Agency::where('email', $email)->first();
 
         return $agency;
     }
 
+    public function getAgencyById($id)
+    {
+        $agency = Agency::where('id', $id)->first();
 
-    /**
-     * Update the agency's profile information. 
-     */
-public function update(AgencyUpdateRequest $request): RedirectResponse {
-        //MODIFY FOR AGENCY !!!!
-        $request->user()->fill($request->validated());
+        return $agency;
+    }
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+    public function edit(Request $request) 
+    {
+        return Inertia::render('AgencyDetails');
+    }
+    
+public function viewGuest(Request $request, $id) {
+    $agency = $this->getAgencyById($id);
 
-        $request->user()->save();
+    if (!$agency) {
+        return response()->json(['error' => 'Agency not found'], 404);
+    }
 
-        return Redirect::route('profile.edit');
+    return Inertia::render('AgencyDetailsVisitor', [
+        'agency' => $agency,
+    ]);
 }
 
 public function uploadPicture(Request $request) {

@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->timestamps();
             $table->string('titre');
             $table->string('description');
-            $table->string('status')->nullable();
+            $table->string('domain');            
+            $table->string('status');
             $table->foreignId('client_id')->constrained('clients');
         });
     

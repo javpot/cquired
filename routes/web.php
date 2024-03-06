@@ -50,12 +50,15 @@ Route::get('/messages', function () {
     return Inertia::render('Messages');
 })->middleware(['auth', 'verified'])->name('messages');
 
-// pourrait etre comme le group du profile
-Route::get('/agency-profile', function () {
-    return Inertia::render('AgencyDetails');
-})->middleware(['auth', 'verified'])->name('agency-profile');
+Route::middleware('auth')->group(function () {
+    Route::get('/agency-profile/{id}', [AgencyController::class, 'viewGuest']);
+    Route::get('/agency-profile', [AgencyController::class, 'edit'])->name('agency-profile');
+    Route::post('/agency-profile', [AgencyController::class, 'update'])->name('agency-profile');
+    Route::delete('/agency-profile', [AgencyController::class, 'update'])->name('agency-profile');
+});
 
 Route::middleware('auth')->group(function () {
+    Route::get('/client-profile/{id}', [ClientController::class, 'viewGuest']);
     Route::get('/client-profile', [ClientController::class, 'edit'])->name('client-profile');
     Route::post('/client-profile', [ClientController::class, 'update'])->name('client-profile');
     Route::delete('/client-profile', [ClientController::class, 'update'])->name('client-profile');
@@ -65,10 +68,11 @@ Route::get('/post-list', function () {
     return Inertia::render('Posts');
 })->middleware(['auth', 'verified'])->name('post-list');
 
-// pour la creation dun post sa devrait etre comme celui du profile settings
-Route::get('/post', function () {
-    return Inertia::render('Post');
-})->middleware(['auth', 'verified'])->name('post');
+Route::middleware('auth')->group(function () {
+    Route::get('/post', [PostController::class, 'edit'])->name('post');
+    // Route::post('/post', [PostController::class, 'store']);
+    // Route::delete('/post', [PostController::class, 'destroy']);
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -88,6 +92,12 @@ Route::middleware('auth')->group(function () {
 // get picture
 Route::get('/public/profile_images/{image}', [ImageController::class, 'getPicture']);
 Route::get('/public/banner_images/{image}', [ImageController::class, 'getBanner']);
+// get images visitor client
+Route::get('/client-profile/public/profile_images/{image}', [ImageController::class, 'getPicture']);
+Route::get('/client-profile/public/banner_images/{image}', [ImageController::class, 'getBanner']);
+// get images visitor agency
+Route::get('/agency-profile/public/profile_images/{image}', [ImageController::class, 'getPicture']);
+Route::get('/agency-profile/public/banner_images/{image}', [ImageController::class, 'getBanner']);
 // update picture
 Route::post('/client-profile/picture', [ClientController::class, 'uploadPicture']);
 Route::post('/agency-profile/picture', [AgencyController::class, 'uploadPicture']);

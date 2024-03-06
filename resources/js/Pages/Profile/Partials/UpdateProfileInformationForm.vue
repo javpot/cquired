@@ -81,7 +81,7 @@ const isNameValid = () => {
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div v-if="user.email_verified_at === null">
+            <div v-if="user.email_verified_at && mustVerifyEmail === null">
                 <p class="text-sm mt-2 text-gray-800">
                     Your email address is unverified.
                     <Link

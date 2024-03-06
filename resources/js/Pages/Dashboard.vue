@@ -18,7 +18,8 @@ const domain = ref("");
 const location = ref("");
 let agencies = ref([]);
 let clients = ref([]);
-const textplaceholder = "Look for a city..";
+let textplaceholder = "Look for a city..";
+
 onMounted(async () => {
     if (category === "Client") {
         const clientData = usePage().props.auth.client;
@@ -28,7 +29,7 @@ onMounted(async () => {
     } else {
         const agencyData = usePage().props.auth.agency;
         domain.value = agencyData.domain;
-        await getClientsByDomain();
+        await getClients();
     }
 });
 

@@ -83,9 +83,9 @@ let createEntity = async (category) => {
     }
 };
 
-let checkout = async () => {
+let checkout = () => {
     try {
-        await Inertia.visit(route(`subscription-${properties.value.forfait}`));
+        Inertia.visit(route(`subscription-${properties.value.forfait}`));
     } catch (error) {
         console.error(error);
     }
@@ -119,7 +119,7 @@ let handleSubmit = async (data, source) => {
             properties.value.forfait = data;
             await createEntity("");
             await login(false);
-            await checkout();
+            checkout();
             break;
     }
     console.log(properties.value);

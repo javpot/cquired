@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -28,6 +29,11 @@ class PostController extends Controller
             ->header('Content-Type', 'application/json')
             ->header('Access-Control-Allow-Origin', '*');
     }
+
+    public function edit(Request $request) {
+        return Inertia::render('Post');
+    }
+
 
     /**
      * Display the specified resource.
@@ -60,4 +66,6 @@ class PostController extends Controller
             ->header('Content-Type', 'application/json')
             ->header('Access-Control-Allow-Origin', '*');
     }
+
+
 }
