@@ -8,6 +8,7 @@ import Inscription from  '@/Components/Inscription.vue'
 import ServiceCard from '@/Components/ServiceCard.vue';
 import ServiceSelection from '@/Layouts/ServiceSelection.vue';
 import Home from '@/Components/Home.vue'
+import Caroussel from '@/Components/Caroussel.vue';
 
 defineProps({
     canLogin: {
@@ -35,7 +36,7 @@ defineProps({
     <div class="container">
         <!--<NavView></NavView>-->
         <!-- <Accueil></Accueil> -->
-        <Home></Home>
+        <!-- <Home></Home> -->
       
      <!--<SignIn></SignIn>-->
  <!--<LogIn></LogIn>-->
@@ -43,6 +44,7 @@ defineProps({
  <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
  <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
 <!-- <ServiceSelection></ServiceSelection> -->
+<Caroussel></Caroussel>
     </div>
     
    
