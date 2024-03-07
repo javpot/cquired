@@ -46,23 +46,13 @@ async function getAgencies() {
 }
 async function getClients() {
     try {
-        const response = await axios.get("/clients");
+        const response = await axios.get("/get-clients-by-limit");
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         // console.log(response.data.clients);
         clients.value = response.data.clients;
+        console.log(response);
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
-        console.error(error.response ? error.response.data : error.message);
-    }
-}
-
-async function getClientsByDomain() {
-    try {
-        const response = await axios.post("/clients-domain", {
-            domain: domain.value,
-        });
-        clients.value = response.data.clients;
-    } catch (error) {
         console.error(error.response ? error.response.data : error.message);
     }
 }

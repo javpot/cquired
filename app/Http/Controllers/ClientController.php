@@ -26,6 +26,42 @@ class ClientController extends Controller
             ->header('Access-Control-Allow-Origin', '*');
     }
 
+    public function getClientsByLimit()
+    {
+        $limit = 0;
+        $user = auth()->user();
+        $userId = $user->id;
+        switch($user->getSubscriptionPrice($userId)){
+        case "price_1Ooq5uH95x8ZWvcZMXBs6NPq":
+            $limit = 25;
+            //starter
+            break;
+
+            case "price_1On0tLH95x8ZWvcZshsoURrW":
+                $limit = 50;
+                //basic
+                break;
+
+                case "price_1On0yiH95x8ZWvcZ2dpAv8ka":
+                    $limit = 100;
+                    //business
+                    break;
+
+                    case "price_1On10FH95x8ZWvcZOcBBfjUk":
+                        $limit = Client::all()->count();
+                        //enterprise
+                        break;
+
+                        default:
+                        break;
+    
+        }
+        $clients = Client::all()->take($limit);
+        return response()->json(['clients' => $clients])
+            ->header('Content-Type', 'application/json')
+            ->header('Access-Control-Allow-Origin', '*');
+    }
+
     public function getClientsByDomain(Request $request){
         $domain = $request->input('domain');
         $clients = Client::where('domain', $domain)->get();

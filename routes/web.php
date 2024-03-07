@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/dashboard', function () {
+   
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -141,8 +142,9 @@ Route::apiResource('agencies', AgencyController::class);
 Route::apiResource('clients', ClientController::class);
 Route::apiResource('posts', PostController::class);
 
-Route::post('/clients-domain', [ClientController::class, 'getClientsByDomain']);
+
 Route::get('/validate-email', [UserController::class, 'verifyEmail']);
+Route::get('/get-clients-by-limit',[ClientController::class, 'getClientsByLimit']);
 
 Route::get('/add-category', [UserController::class, 'addCategory']);
 
@@ -163,6 +165,8 @@ Route::get('/get-user-data', function () {
 	}
     return $res;
 });
+
+
 
 
 // API STRIPE
