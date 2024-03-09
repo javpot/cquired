@@ -2,6 +2,11 @@
 import NavView from './NavView.vue'
 import {gsap} from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HomeSection3 from './HomeSection3.vue'
+import HomeSection4 from './HomeSection4.vue'
+import HomeSection5 from './HomeSection5.vue'
+
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,7 +15,10 @@ export default {
         return {};
     },
     components:{
-        NavView
+        NavView,
+        HomeSection3,
+        HomeSection4,
+        HomeSection5
     },
     methods:{
         
@@ -89,7 +97,8 @@ setTimeout(() => {
             tl.from('.slogan>h1',{
                 duration:1,
                 y:70,
-                x:100,
+                
+
                 opacity:0,
                 stagger:0.1
             })
@@ -122,7 +131,7 @@ setTimeout(() => {
             
             */
             tl.to(main,{
-                duration:0.5,
+                duration:0.2,
                 backgroundColor:"black"
             })
            tl.from('.section-2-title',{
@@ -154,7 +163,7 @@ setTimeout(() => {
             y:-150,
             opacity:0
            })
-
+/*
            tl3.to('.transition',{
                 duration:1.5,
                 scale:120,
@@ -162,6 +171,7 @@ setTimeout(() => {
                 
 
             })
+            */
             
 
             ScrollTrigger.create({
@@ -184,9 +194,10 @@ ScrollTrigger.create({
   pin:'.section-2',
     animation:tl2,
     
-   markers:true
+  // markers:true
 })
-ScrollTrigger.create({
+
+/*ScrollTrigger.create({
     trigger:'.project-container',
     start:"40% 90%",
     end: "top 6%",
@@ -196,9 +207,11 @@ ScrollTrigger.create({
     animation:tl3,
     
    markers:true
-})
+})*/
 
-        }
+
+        },
+        
     }
     ,
     mounted(){
@@ -250,8 +263,9 @@ ScrollTrigger.create({
      
         <a href="" class="href-early-access">
             <!-- <button class="early-access">Inscription</button> -->
-            <button class="cta">
-                <span class="span">NEXT</span>
+
+            <!--<button class="cta">
+                <span class="span">Get started</span>
                 <span class="second">
                   <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -261,21 +275,35 @@ ScrollTrigger.create({
                     </g>
                   </svg>
                 </span> 
-            </button>
+            </button>-->
+            <button class="animated-button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                  ></path>
+                </svg>
+                <span class="text">Get started</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                  ></path>
+                </svg>
+              </button>
         </a>
     </div>
 </div>
 
-<div class="home-img-container">
-    <img src="../../assets/HomeImg.png" alt="" srcset="">
-</div>
+<!-- <div class="home-img-container"> -->
+    <!-- <img src="../../assets/HomeImg.png" alt="" srcset=""> -->
+<!-- </div> -->
             
 </div>
 <div class="section-2">
     <div class="section-2-title-container">
-        <h1 class="section-2-title">Browse talent for popular projects<div></div></h1>
+        <h1 class="section-2-title">Browse talent for popular projects like <div></div></h1>
     </div>
-    <div class="transition"></div>
+    <!-- <div class="transition"></div> -->
     <div class="section-2-projects-container">
         <div class="project-container">
             <h3 class="h3-project">Brand Design</h3>
@@ -297,12 +325,114 @@ ScrollTrigger.create({
         
     </div>
 </div>
+<div class="section-s2-to-s3"></div>
+
+<HomeSection3></HomeSection3>
+<div class="section-s3-to-s4"></div>
+<HomeSection4></HomeSection4>
+<HomeSection5></HomeSection5>
+
           
     </main>
     
 
 </template>
 <style scoped>
+.animated-button {
+   
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 66px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: black;
+    box-shadow: 0 0 0 2px black;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button svg {
+    position: absolute;
+    width: 24px;
+    fill: black;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button .arr-1 {
+    right: 16px;
+  }
+  
+  .animated-button .arr-2 {
+    left: -25%;
+  }
+  
+  .animated-button .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #6EC3E7;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .animated-button .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: 1em;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    
+  }
+  
+  .animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
+  }
+  
+  .animated-button:hover .arr-1 {
+    right: -25%;
+  }
+  
+  .animated-button:hover .arr-2 {
+    left: 16px;
+  }
+  
+  .animated-button:hover .text {
+    transform: translateX(12px);
+  }
+  
+  .animated-button:hover svg {
+    fill: #212121;
+  }
+  
+  .animated-button:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px greenyellow;
+  }
+  
+  .animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+  }
+  
 /*
 loading
 */
@@ -365,10 +495,11 @@ main{
     
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .slogan-container{
     height: 70vh;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -391,7 +522,7 @@ h1{
   font-weight: 700;
   font-style: normal;
   opacity: 1;
-  font-size: 3em;
+  font-size: 4em;
 }
 #title{
     color: #6EC3E7;
@@ -403,8 +534,9 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     
-    margin-left: 100px;
+   /* margin-left: 100px;*/
 
    
 }
@@ -414,8 +546,9 @@ width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
+align-items: center;
 
-margin-left: 100px;
+/*margin-left: 100px;*/
 
     
 
@@ -434,6 +567,7 @@ opacity: 1;
     display: flex;
 flex-direction: column;
 justify-content: center;
+align-items: center;
 margin-left: 100px;
 
     opacity: 1;
@@ -464,7 +598,7 @@ margin-left: 100px;
 }
 .cta {
     display: flex;
-    padding: 5px 33px;
+    padding: 5px 50px;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     font-size: 25px;
@@ -559,7 +693,7 @@ margin-left: 100px;
     align-items: center;
 }
 .section-2-title{
-    color: #E15B1B;
+    color: #cfcfc8;
     width: 70%;
     text-align: center;
     display: inline-block;
@@ -568,7 +702,7 @@ margin-left: 100px;
 }
 .section-2-projects-container{
     width: 100%;
-    height: 60%;
+    height: 70%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -609,6 +743,17 @@ margin-left: 100px;
     position: relative;
     left: 49%;
     z-index: 130;
+}
+
+.section-s2-to-s3{
+    height: 30vh;
+    width: 100vw;
+    background-color: black;
+}
+.section-s3-to-s4{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
 }
 
 
