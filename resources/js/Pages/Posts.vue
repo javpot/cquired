@@ -26,9 +26,10 @@ async function getClientDataByPost(post) {
     try {
         const clientId = post.client_id;
 
-        const client = await getClientById(clientId);
+        const response = await getClientById(clientId);
+        // console.log(response.client);
 
-        return client;
+        return response.client;
     } catch (error) {
         console.error("Error retrieving client:", error);
     }
@@ -54,6 +55,7 @@ async function getClientById(id) {
             </div>
             <div class="w-full flex flex-col mx-4 my-4 items-center">
                 <PostCard
+                    class="w-1/2"
                     v-for="post in posts"
                     :key="post.id"
                     :postdata="post"

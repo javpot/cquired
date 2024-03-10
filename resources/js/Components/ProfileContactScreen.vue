@@ -12,7 +12,7 @@ defineProps({
         </div>
 
         <label for="email">Email</label>
-        <a class="text-cyan-500" :href="`mailto:${clientdata.email}`">{{
+        <a class="text-cyan-500 mb-12" :href="`mailto:${clientdata.email}`">{{
             clientdata.email
         }}</a>
     </div>

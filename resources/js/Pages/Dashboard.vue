@@ -2,21 +2,24 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, usePage } from "@inertiajs/vue3";
 import SearchBar from "@/Components/SearchBar.vue";
-import AgencyCard from "@/Components/AgencyCard.vue";
 import Footer from "@/Components/Footer.vue";
-import { Link } from "@inertiajs/vue3";
-import CarouselAgencyCard from "@/Components/CarouselAgencyCard.vue";
 import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
 import RowClient from "@/Components/RowClient.vue";
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
+import CarousselAgency from "@/Components/CarousselAgency.vue";
 
 const user = usePage().props.auth.user;
 const category = user.category;
 const domain = ref("");
 const location = ref("");
 let agencies = ref([]);
+const agenciesDomain = ref([]);
+const freelancersDomain = ref([]);
+const agenciesLocation = ref([]);
+const agenciesSaved = ref([]);
+
 let clients = ref([]);
 let textplaceholder = "Look for a city..";
 
@@ -31,6 +34,15 @@ onMounted(async () => {
         domain.value = agencyData.domain;
         await getClients();
     }
+    agenciesDomain.value = agencies.value.filter((agency) => {
+        return agency.domain === domain.value;
+    });
+    freelancersDomain.value = agenciesDomain.value.filter((agency) => {
+        return agency.category === "Freelancer";
+    });
+    agenciesLocation.value = agencies.value.filter((agency) => {
+        return agency.location === location.value;
+    });
 });
 
 async function getAgencies() {
@@ -69,126 +81,28 @@ async function getClients() {
                 >
                     {{ domain }}
                 </h2>
-
-                <SearchBar class="w-80" />
             </div>
         </template>
-        <CarouselAgencyCard title="Agencies" data="" />
-        <div class="flex flex-row justify-between">
-            <h2
-                class="w-full font-semibold text-2xl text-gray-800 leading-tight align-middle left-0 ml-7 mt-4"
-            >
-                Freelancers
-            </h2>
-            <Link
-                class="w-full flex flex-row-reverse font-semibold text-lg text-gray-800 mr-8 mt-4"
-            >
-                See More
-            </Link>
-        </div>
-        <div class="flex flex-row justify-around mt-4">
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
+        <div class="flex flex-col space-y-6 my-4">
+            <CarousselAgency
+                title="Agencies"
+                :agencies="agenciesDomain"
+                message="No agencies in your domain."
             />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
+            <CarousselAgency
+                title="Freelancers"
+                :agencies="freelancersDomain"
+                message="No freelancers in your domain."
             />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
+            <CarousselAgency
+                title="Near You"
+                :agencies="agenciesLocation"
+                message="No agencies in your location."
             />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-        </div>
-        <div class="flex flex-row justify-between">
-            <h2
-                class="w-full font-semibold text-2xl text-gray-800 leading-tight align-middle left-0 ml-7 mt-4"
-            >
-                Near You
-            </h2>
-            <Link
-                class="w-full flex flex-row-reverse font-semibold text-lg text-gray-800 mr-8 mt-4"
-            >
-                See More
-            </Link>
-        </div>
-        <div class="flex flex-row justify-around mt-4">
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-        </div>
-        <div class="flex flex-row justify-between">
-            <h2
-                class="w-full font-semibold text-2xl text-gray-800 leading-tight align-middle left-0 ml-7 mt-4"
-            >
-                Favourites
-            </h2>
-            <Link
-                class="w-full flex flex-row-reverse font-semibold text-lg text-gray-800 mr-8 mt-4"
-            >
-                See More
-            </Link>
-        </div>
-        <div class="flex flex-row justify-around mt-4">
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
-            />
-            <AgencyCard
-                image="../../assets/image9.png"
-                title="Jeff Agency"
-                description="I can build house for you for a cheap price we a are based..."
+            <CarousselAgency
+                title="Saved"
+                :agencies="null"
+                message="No agencies saved."
             />
         </div>
     </AuthenticatedLayout>

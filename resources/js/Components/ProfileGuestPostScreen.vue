@@ -17,24 +17,14 @@ defineProps({
         </div>
 
         <PostCard
-            v-if="clientposts !== null"
+            v-if="clientposts === null"
             v-for="post in clientposts"
             :key="post.id"
             :postdata="post"
             :clientdata="clientdata"
         />
         <p v-else class="text-gray-600 text-center my-12">
-            You have not made a post yet.
+            {{ clientdata.name }} has not made a post yet.
         </p>
     </div>
-    <Link :href="route('post')">
-        <div
-            class="fixed bottom-4 right-4 flex items-center bg-gray-200 rounded-full justify-center hover:bg-gray-300 hover:scale-110 transition cursor-pointer"
-        >
-            <p class="ml-4 mr-2 text-lg text-gray-700">Write a Post</p>
-            <ComposeMessage
-                class="w-16 h-16 bg-gray-300 rounded-full transform hover:scale-100 transition-transform"
-            ></ComposeMessage>
-        </div>
-    </Link>
 </template>

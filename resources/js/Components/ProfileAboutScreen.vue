@@ -11,7 +11,6 @@ defineProps({
             <hr calss="my-2" />
         </div>
 
-        <label for="bio">Bio</label>
-        <p id="bio">{{ clientdata.bio }}</p>
+        <p class="mb-12">{{ clientdata.bio }}</p>
     </div>
 </template>

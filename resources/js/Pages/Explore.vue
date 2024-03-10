@@ -2,9 +2,27 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import DomainListDropdown from "@/Components/DomainListDropdown.vue";
 import SearchBar from "@/Components/SearchBar.vue";
-import AgencyCard from "@/Components/AgencyCard.vue";
+import { onMounted, ref } from "vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
-import PageNumbers from "@/Components/PageNumbers.vue";
+import RowAgency from "@/Components/RowAgency.vue";
+
+let agencies = ref([]);
+
+async function getAgencies() {
+    try {
+        const response = await axios.get("/agencies");
+        // Gérer la réponse ici, par exemple, afficher le domain dans la console
+        // console.log(response.data.Agencies);
+        agencies.value = response.data.Agencies;
+    } catch (error) {
+        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
+        console.error(error.response ? error.response.data : error.message);
+    }
+}
+
+onMounted(async () => {
+    await getAgencies();
+});
 </script>
 <template>
     <AuthenticatedLayout class="mb-4">
@@ -17,185 +35,6 @@ import PageNumbers from "@/Components/PageNumbers.vue";
                 </span>
             </div>
         </template>
-        <section class="max-w-10xl my-4 mx-4">
-            <ul class="flex flex-row flex-wrap justify-around">
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-                <li class="py-4">
-                    <AgencyCard
-                        image="../../assets/image9.png"
-                        title="Jeff Agency"
-                        description="I can build house for you for a cheap price we a are based..."
-                    />
-                </li>
-            </ul>
-            <PageNumbers />
-        </section>
+        <RowAgency :agencies="agencies" />
     </AuthenticatedLayout>
 </template>

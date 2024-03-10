@@ -1,5 +1,6 @@
 <script setup>
 import ProfilePostScreen from "@/Components/ProfilePostScreen.vue";
+import ProfileGuestPostScreen from "./ProfileGuestPostScreen.vue";
 import ProfileAboutScreen from "@/Components/ProfileAboutScreen.vue";
 import ProfileContactScreen from "@/Components/ProfileContactScreen.vue";
 import { ref } from "vue";
@@ -59,8 +60,19 @@ defineProps({
                 Contact
             </label>
         </div>
+        <ProfileGuestPostScreen
+            v-if="
+                screen === 'posts' &&
+                $page.props.auth.user.category !== 'Client'
+            "
+            :clientposts="clientposts"
+            :clientdata="clientdata"
+        />
         <ProfilePostScreen
-            v-if="screen === 'posts'"
+            v-if="
+                screen === 'posts' &&
+                $page.props.auth.user.category === 'Client'
+            "
             :clientposts="clientposts"
             :clientdata="clientdata"
         />

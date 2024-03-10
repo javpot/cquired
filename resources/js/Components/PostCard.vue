@@ -6,7 +6,7 @@ defineProps({
 </script>
 <template>
     <div class="bg-gray-100 rounded-lg p-4 my-4">
-        <div class="flex flex-row">
+        <div class="flex flex-row items-center">
             <img
                 class="w-12 h-12 rounded-full"
                 :src="clientdata.picture"

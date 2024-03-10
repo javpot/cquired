@@ -17,7 +17,7 @@ defineProps({
         />
         <div class="w-full flex flex-row justify-between items-center ml-4">
             <span class="flex flex-row items-center mt-4">
-                <h2 class="text-3xl my-4">{{ agencydata.name }}</h2>
+                <h2 class="text-3xl mt-4">{{ agencydata.name }}</h2>
                 <!-- <img
                     class="w-6 h-6p mx-2 my-4"
                     src="../../assets/checkmarkblue.png"
@@ -37,5 +37,6 @@ defineProps({
                 </button>
             </span>
         </div>
+        <p class="text-lg ml-4 my-2">{{ agencydata.category }}</p>
     </div>
 </template>

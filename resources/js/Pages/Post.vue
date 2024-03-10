@@ -5,6 +5,7 @@ import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { inject, ref } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
 const client = usePage().props.auth.client;
 const domains = inject("domains");
@@ -19,8 +20,7 @@ const form = useForm({
 const createPost = async () => {
     try {
         await axios.post("posts", form);
-        // form.errors.domain = null;
-        // form.recentlySuccessful = true;
+        Inertia.visit(route("client-profile"));
     } catch (error) {
         console.error(error.response.data);
     }
