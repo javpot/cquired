@@ -9,6 +9,7 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
 import CarousselAgency from "@/Components/CarousselAgency.vue";
+import { Link } from "@inertiajs/vue3";
 
 const user = usePage().props.auth.user;
 const category = user.category;
@@ -35,9 +36,9 @@ onMounted(async () => {
         await getClients();
     }
     agenciesDomain.value = agencies.value.filter((agency) => {
-        return agency.domain === domain.value;
+        return agency.domain === domain.value && agency.category === "Agency";
     });
-    freelancersDomain.value = agenciesDomain.value.filter((agency) => {
+    freelancersDomain.value = agencies.value.filter((agency) => {
         return agency.category === "Freelancer";
     });
     agenciesLocation.value = agencies.value.filter((agency) => {
@@ -62,7 +63,7 @@ async function getClients() {
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         // console.log(response.data.clients);
         clients.value = response.data.clients;
-        console.log(response);
+        console.log(response.data);
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
@@ -81,6 +82,24 @@ async function getClients() {
                 >
                     {{ domain }}
                 </h2>
+                <Link
+                    :href="route('explore')"
+                    class="flex flex-row items-center text-lg hover:text-xl transition-transform duration-400 ease-in-out"
+                    >See All
+                    <svg
+                        fill="none"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="ml-2"
+                    >
+                        <path
+                            d="m13.2929 7.70711c-.3905-.39053-.3905-1.02369 0-1.41422.3905-.39052 1.0237-.39052 1.4142 0l5 5.00001c.3905.3905.3905 1.0237 0 1.4142l-5 5c-.3905.3905-1.0237.3905-1.4142 0s-.3905-1.0237 0-1.4142l3.2929-3.2929h-11.5858c-.55229 0-1-.4477-1-1s.44772-1 1-1h11.5858z"
+                            fill="#1e1e1e"
+                        />
+                    </svg>
+                </Link>
             </div>
         </template>
         <div class="flex flex-col space-y-6 my-4">
@@ -127,5 +146,5 @@ async function getClients() {
             <RowClient :clients="clients" class="w-3/4 h-screen" />
         </div>
     </AuthenticatedLayoutAgency>
-    <Footer></Footer>
+    <Footer />
 </template>

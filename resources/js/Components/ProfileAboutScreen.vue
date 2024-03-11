@@ -5,7 +5,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="flex flex-col w-1/2 mt-8">
+    <div class="h-1/2 flex flex-col w-1/2 mt-8">
         <h2 class="text-xl py-4">About</h2>
         <div class="text-center my-4">
             <hr calss="my-2" />

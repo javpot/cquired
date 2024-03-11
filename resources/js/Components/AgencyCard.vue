@@ -10,7 +10,7 @@ defineProps({
 
 <template>
     <div
-        class="h-48 w-60 flex flex-col my-4 mx-4 rounded-lg hover:scale-110 hover:border-2 hover:border-gray-200 transition-transform duration-300 ease-in-out"
+        class="h-48 w-60 flex flex-col my-4 mx-4 rounded-lg shadow-md hover:scale-110 hover:border-2 hover:border-gray-200 transition-transform duration-300 ease-in-out"
     >
         <img
             :src="agencydata.banner"
@@ -20,7 +20,7 @@ defineProps({
         />
         <Bookmark class="" />
         <p class="text-lg font-medium ml-1">{{ agencydata.name }}</p>
-        <p class="w-full text-sm ml-1">
+        <p class="text-sm truncate ml-1">
             {{ agencydata.bio }}
         </p>
     </div>

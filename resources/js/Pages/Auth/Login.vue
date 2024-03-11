@@ -20,16 +20,18 @@ const formData = ref({
 });
 
 const submitForm = async () => {
-    try {
-        formData.value._token = csrfToken;
+    if (formData.value.email !== "" && formData.value.password !== "") {
+        try {
+            formData.value._token = csrfToken;
 
-        const response = await axios.post("/login", formData.value);
+            const response = await axios.post("/login", formData.value);
 
-        if (response.status == 200) {
-            Inertia.visit(route("dashboard"));
+            if (response.status == 200) {
+                Inertia.visit(route("dashboard"));
+            }
+        } catch (error) {
+            console.error("Form submission error:", error);
         }
-    } catch (error) {
-        console.error("Form submission error:", error);
     }
 };
 </script>
@@ -50,6 +52,7 @@ const submitForm = async () => {
                 v-model="formData.email"
                 type="email"
                 name="email"
+                required
                 id="email"
             />
             <label for="mdp">Mot de passe*</label>
@@ -57,6 +60,7 @@ const submitForm = async () => {
                 v-model="formData.password"
                 type="password"
                 name="mdp"
+                required
                 id="mdp"
             />
             <PrimaryButton @click="submitForm">Login</PrimaryButton>

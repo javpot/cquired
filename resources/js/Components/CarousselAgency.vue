@@ -35,15 +35,15 @@
             <div
                 v-if="agencies"
                 class="flex h-56 transition-transform duration-300 ease-in z-40"
-                :style="{ transform: `translateX(${translate}px)` }"
             >
+                <!-- :style="{ transform: `translateX(${translate}px)` }" -->
                 <AgencyCard
                     v-for="(agency, index) in visibleAgencies"
                     :key="index"
                     :agencydata="agency"
                 />
             </div>
-            <p v-else>{{ message }}</p>
+            <p v-else class="flex flex-row h-48 items-center">{{ message }}</p>
             <button
                 @click="moveCarousel(-1)"
                 class="absolute right-0 transform z-50 -translate-y-1/2 mr-2"

@@ -10,7 +10,7 @@ const agency = usePage().props.agency;
 
 <template>
     <AuthenticatedLayout>
-        <section class="flex flex-col bg-gray-100 rounded-lg">
+        <section class="w-screen h-screen flex flex-col bg-gray-100 rounded-lg">
             <div class="flex flex-row ml-4 mx-4 my-4 bg-white rounded-lg">
                 <AgencyCard2 :agencydata="agency" />
                 <AgencyCard3 :agencydata="agency" />
