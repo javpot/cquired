@@ -46,6 +46,9 @@ function changePage(page) {
                     <th scope="col" class="px-6 py-3 border-2 border-gray-50">
                         Location
                     </th>
+                    <th scope="col" class="px-6 py-3 border-2 border-gray-50">
+                        Saved
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -69,6 +72,9 @@ function changePage(page) {
                     </td>
                     <td class="px-6 py-4 border-2 border-gray-50">
                         {{ client.location }}
+                    </td>
+                    <td class="px-6 py-4 border-2 border-gray-50">
+                        {{ client.saved }}
                     </td>
                 </tr>
             </tbody>

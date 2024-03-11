@@ -7,7 +7,6 @@ import Forfait from "@/Components/Signup/Forfait.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { Inertia } from "@inertiajs/inertia";
-import { InertiaProgress } from "@inertiajs/progress";
 
 let properties = ref({
     category: null,

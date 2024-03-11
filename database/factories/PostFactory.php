@@ -22,6 +22,7 @@ class PostFactory extends Factory
             'titre' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'status' => $this->faker->word,
+			'domain' => $this->faker->word,
             'client_id' => function () {
                 return Client::factory()->create()->id;
             },

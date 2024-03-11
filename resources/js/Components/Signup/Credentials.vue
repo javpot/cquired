@@ -11,7 +11,7 @@ import { ref } from "vue";
 const form = useForm({
     name: "",
     email: "",
-    password: "",
+    password: null,
     password_confirmation: "",
 });
 
@@ -131,7 +131,6 @@ const isPwdValid = () => {
                         class="mt-1 block w-full"
                         v-model="form.password"
                         required
-                        autocomplete="new-password"
                     />
                     <InputError class="mt-2" :message="form.errors.password" />
                 </div>
@@ -146,7 +145,6 @@ const isPwdValid = () => {
                         class="mt-1 block w-full"
                         v-model="form.password_confirmation"
                         required
-                        autocomplete="new-password"
                         @input="isPwdValid"
                     />
                     <InputError
