@@ -3,7 +3,7 @@ import ApplicationLogo from "./ApplicationLogo.vue";
 </script>
 
 <template>
-    <div class="w-screen py-16 px-8 bg-black">
+    <div class="w-full py-16 px-8 bg-black">
         <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
         <div
             class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4"
@@ -260,7 +260,7 @@ import ApplicationLogo from "./ApplicationLogo.vue";
                 />
                 <button
                     aria-label="send"
-                    class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 cursor-pointer relative z-40"
+                    class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 mr-4 cursor-pointer relative z-40"
                 >
                     <svg
                         class="fill-current text-gray-800 hover:text-gray-500 dark:text-white dark:hover:text-gray-200"

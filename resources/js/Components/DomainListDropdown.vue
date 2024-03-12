@@ -6,6 +6,8 @@ import { ref } from "vue";
 import { onMounted } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
+const { submit } = defineProps(["submit"]);
+
 // Utilisez inject pour récupérer des propriétés fournies par un ancêtre
 const domains = inject("domains");
 const user = usePage().props.auth.user;
@@ -24,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Dropdown width="48" align="left">
+    <!-- <Dropdown width="48" align="left">
         <template #trigger>
             <span class="inline-flex rounded-md">
                 <button
@@ -58,18 +60,23 @@ onMounted(() => {
                 {{ service }}
             </DropdownLink>
         </template>
-    </Dropdown>
+    </Dropdown> -->
 
-    <!-- <div class="">
+    <div class="">
         <select
             name="domain"
             id="domain"
             v-model="selectedDomain"
             class="w-80 p-2 rounded-md focus:outline-none ease-in-out"
         >
-            <option v-for="domain in domains" :key="domain" :value="domain">
+            <option
+                v-for="domain in domains"
+                :key="domain"
+                :value="domain"
+                :onclick="submit(selectedDomain)"
+            >
                 {{ domain }}
             </option>
         </select>
-    </div> -->
+    </div>
 </template>
