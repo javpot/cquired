@@ -13,25 +13,10 @@ onMounted(async () => {
 async function getPosts() {
     try {
         const response = await axios.get("/posts");
-        // Gérer la réponse ici, par exemple, afficher le domain dans la console
-        console.log(response.data.Posts);
+
         return response.data.Posts;
     } catch (error) {
-        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
-    }
-}
-
-async function getClientDataByPost(post) {
-    try {
-        const clientId = post.client_id;
-
-        const response = await getClientById(clientId);
-        // console.log(response.client);
-
-        return response.client;
-    } catch (error) {
-        console.error("Error retrieving client:", error);
     }
 }
 
@@ -39,11 +24,11 @@ async function getClientById(id) {
     try {
         const response = await axios.get(`/clients/${id}`);
 
-        return response.data;
+        return response.data.client;
     } catch (error) {
-        // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
     }
+    return null;
 }
 </script>
 <template>
@@ -54,13 +39,13 @@ async function getClientById(id) {
                 <FilterIcon />
             </div>
             <div class="w-full flex flex-col mx-4 my-4 items-center">
-                <PostCard
-                    class="w-1/2"
-                    v-for="post in posts"
-                    :key="post.id"
-                    :postdata="post"
-                    :clientdata="getClientDataByPost(post)"
-                />
+                <template v-for="post in posts" :key="post.id">
+                    <PostCard
+                        class="w-1/2"
+                        :postdata="post"
+                        :clientdata="getClientById(post.client_id)"
+                    />
+                </template>
             </div>
         </section>
     </AuthenticatedLayoutAgency>
