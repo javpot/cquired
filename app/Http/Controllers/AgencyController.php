@@ -182,6 +182,42 @@ public function updateBio(Request $request) {
             return response()->json(['message' => 'bio updated successfully']);
     }
 
+public function saveClient(Request $request, $clientId) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $agency = $this->getAgencyByEmail($userEmail);
+        if (!$agency) {
+            // Gérer le cas où le agency n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Agency not authenticated'], 401);
+        }
+
+    $saved = $agency->saved;
+    array_push($saved['saved'], $clientId);
+    $agency->saved = $saved;
+    $agency->save();
+
+    }
+
+public function deleteClient(Request $request, $clientId) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $agency = $this->getAgencyByEmail($userEmail);
+        if (!$agency) {
+            // Gérer le cas où le agency n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Agency not authenticated'], 401);
+        }
+    $saved = $agency->saved;
+    $key = array_search($clientId, $saved['saved']);
+    unset($saved['saved'][$key]);
+    $newSaved = $saved;
+    $agency->saved = $newSaved;
+    $agency->save();
+
+    }
+
+
     /**
      * Remove the specified resource from storage.
      */

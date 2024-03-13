@@ -277,6 +277,41 @@ public function updateDomain(Request $request) {
 
 }
 
+public function saveAgency(Request $request, $agencyId) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'Client not authenticated'], 401);
+        }
+    $saved = $client->saved;
+    array_push($saved['saved'], $agencyId);
+    $newSaved = $saved;
+    $client->saved = $newSaved;
+    $client->save();
+
+    }
+
+public function deleteAgency(Request $request, $agencyId) {
+    $user = auth()->user();
+    $userEmail = $user->email;
+
+    $client = $this->getClientByEmail($userEmail);
+        if (!$client) {
+            // Gérer le cas où le client n'est pas trouvé / n'est pas authentifié
+            return response()->json(['message' => 'client not authenticated'], 401);
+        }
+    $saved = $client->saved;
+    $key = array_search($agencyId, $saved['saved']);
+    unset($saved['saved'][$key]);
+    $newSaved = $saved;
+    $client->saved = $newSaved;
+    $client->save();
+
+    }
+
 
 /**
  * Remove the specified resource from storage.

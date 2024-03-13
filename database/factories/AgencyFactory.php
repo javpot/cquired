@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Client>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Agency>
  */
-class ClientFactory extends Factory
+class AgencyFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,14 +22,12 @@ class ClientFactory extends Factory
             'picture' => $this->faker->imageUrl,
             'banner' => $this->faker->imageUrl,
             'location' => $this->faker->city,
-            'status' => $this->faker->word,
             'email' => $this->faker->unique()->safeEmail,
-             // Par défaut, un mot de passe chiffré pour 'password'
             'domain' => $this->faker->word,
+            'category' => $this->faker->word,
             'saved' => [ 
                 'saved' => [random_int(1,150)],
             ],
-
         ];
     }
 }

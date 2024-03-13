@@ -33,7 +33,7 @@
             </button>
 
             <div
-                v-if="agencies"
+                v-if="agencies && agencies.length > 0"
                 class="flex h-56 transition-transform duration-300 ease-in z-40"
             >
                 <!-- :style="{ transform: `translateX(${translate}px)` }" -->

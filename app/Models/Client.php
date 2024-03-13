@@ -21,4 +21,8 @@ class Client extends Model
         'domain',
 		'saved',
     ];
+
+    protected $casts = [
+        'saved' => 'json',
+    ];
 }

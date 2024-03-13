@@ -15,10 +15,10 @@ defineProps({
         <img
             :src="agencydata.banner"
             alt="banner"
-            class="w-60 z-10"
+            class="max-w-60 max-h-32 z-10 rounded-tl-lg rounded-tr-lg"
             @click="Inertia.visit(`/agency-profile/${agencydata.id}`)"
         />
-        <Bookmark class="" />
+        <!-- <Bookmark class="" /> -->
         <p class="text-lg font-medium ml-1">{{ agencydata.name }}</p>
         <p class="text-sm truncate ml-1">
             {{ agencydata.bio }}

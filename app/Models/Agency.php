@@ -21,4 +21,9 @@ class Agency extends Model
         'domain',
 		'saved',
     ];
+
+        protected $casts = [
+        'saved' => 'json',
+    ];
+
 }

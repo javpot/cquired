@@ -1,16 +1,21 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 
 const props = defineProps({
+    submit: Function,
     placeholder: String,
 });
+
+const searchValue = ref("");
 </script>
 <template>
     <div class="input-container flex flex-row relative items-center">
         <input
             type="text"
+            v-model="searchValue"
             class="w-full h-9 pl-2 pr-8 border rounded-md relative"
-            :placeholder="placeholder || ''"
+            :placeholder="props.placeholder || ''"
+            :on-change="props.submit(searchValue)"
         />
         <img
             src="../../assets/loupe2.png"

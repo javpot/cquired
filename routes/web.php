@@ -112,6 +112,12 @@ Route::post('/client-profile/domain', [ClientController::class, 'updateDomain'])
 // update bio
 Route::post('/client-profile/bio', [ClientController::class, 'updateBio']);
 Route::post('/agency-profile/bio', [AgencyController::class, 'updateBio']);
+// add saved
+Route::post('/saveAgency/{agencyId}', [ClientController::class, 'saveAgency']);
+Route::post('/saveClient/{clientId}', [AgencyController::class, 'saveClient']);
+// delete saved
+Route::delete('/saveAgency/{agencyId}', [ClientController::class, 'deleteAgency']);
+Route::delete('/saveClient/{clientId}', [AgencyController::class, 'deleteClient']);
 // remove picture
 Route::delete('/client-profile/picture', [ClientController::class, 'deletePicture']);
 Route::delete('/agency-profile/picture', [AgencyController::class, 'deletePicture']);

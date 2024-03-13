@@ -8,6 +8,7 @@ import RowClient from "@/Components/RowClient.vue";
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
+import InputError from "@/Components/InputError.vue";
 import CarousselAgency from "@/Components/CarousselAgency.vue";
 import { Link } from "@inertiajs/vue3";
 
@@ -20,15 +21,18 @@ const agenciesDomain = ref([]);
 const freelancersDomain = ref([]);
 const agenciesLocation = ref([]);
 const agenciesSaved = ref([]);
+const savedArr = ref([]);
 
 let clients = ref([]);
-let textplaceholder = "Look for a city..";
+let shownClients = ref([]);
+let errorMessage = ref("");
 
 onMounted(async () => {
     if (category === "Client") {
         const clientData = usePage().props.auth.client;
         domain.value = clientData.domain;
         location.value = clientData.location;
+        savedArr.value = clientData.saved.saved;
         await getAgencies();
     } else {
         const agencyData = usePage().props.auth.agency;
@@ -39,10 +43,21 @@ onMounted(async () => {
         return agency.domain === domain.value && agency.category === "Agency";
     });
     freelancersDomain.value = agencies.value.filter((agency) => {
-        return agency.category === "Freelancer";
+        return (
+            agency.domain === domain.value && agency.category === "Freelancer"
+        );
     });
     agenciesLocation.value = agencies.value.filter((agency) => {
         return agency.location === location.value;
+    });
+
+    savedArr.value.forEach((savedId) => {
+        // console.log(savedId);
+        agenciesSaved.value.push(
+            agencies.value.find((agency) => {
+                return agency.id == savedId;
+            })
+        );
     });
 });
 
@@ -63,10 +78,31 @@ async function getClients() {
         // Gérer la réponse ici, par exemple, afficher le domain dans la console
         // console.log(response.data.clients);
         clients.value = response.data.clients;
+        shownClients.value = response.data.clients;
         console.log(response.data);
     } catch (error) {
         // Gérer l'erreur ici, par exemple, afficher l'erreur dans la console
         console.error(error.response ? error.response.data : error.message);
+    }
+}
+
+function submitSearch(searchValue) {
+    // console.log(searchValue);
+    if (searchValue !== "") {
+        if (/^[a-zA-Z\s]+$/.test(searchValue)) {
+            shownClients.value = clients.value;
+
+            shownClients.value = clients.value.filter((client) => {
+                const regex = new RegExp(searchValue, "i");
+                return regex.test(client.location);
+            });
+            errorMessage.value = "";
+        } else {
+            errorMessage.value =
+                "Search value must contain only letters and spaces.";
+        }
+    } else {
+        shownClients.value = clients.value;
     }
 }
 </script>
@@ -120,7 +156,7 @@ async function getClients() {
             />
             <CarousselAgency
                 title="Saved"
-                :agencies="null"
+                :agencies="agenciesSaved"
                 message="No agencies saved."
             />
         </div>
@@ -133,17 +169,20 @@ async function getClients() {
                 >
                     {{ domain }}
                 </h2>
-
-                <span class="flex flex-row items-center">
-                    <SearchBar :placeholder="textplaceholder" class="w-80" />
-                    <FilterIcon />
+                <span class="flex flex-col">
+                    <SearchBar
+                        class="w-80"
+                        :submit="submitSearch"
+                        placeholder="Search by location"
+                    />
+                    <InputError :message="errorMessage" />
                 </span>
             </div>
         </template>
 
         <div class="flex flex-col items-center">
             <h2 class="text-lg text-center my-2">List of Clients</h2>
-            <RowClient :clients="clients" class="w-3/4 h-screen" />
+            <RowClient :clients="shownClients" class="w-3/4 h-screen" />
         </div>
     </AuthenticatedLayoutAgency>
     <Footer />

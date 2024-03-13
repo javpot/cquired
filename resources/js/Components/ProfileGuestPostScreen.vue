@@ -17,7 +17,7 @@ defineProps({
         </div>
 
         <PostCard
-            v-if="clientposts === null"
+            v-if="clientposts && clientposts.length > 0"
             v-for="post in clientposts"
             :key="post.id"
             :postdata="post"

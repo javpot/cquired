@@ -16,6 +16,7 @@ let properties = ref({
     status: "available",
     picture: "public/profile_images/pfp-icon.png",
     banner: "public/banner_images/clientImgAccueil.jpg",
+    saved: { saved: [] },
 });
 let currentStep = ref("Credentials");
 let userData = ref(null);

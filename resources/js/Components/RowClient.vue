@@ -1,8 +1,9 @@
 <script setup>
 import axios from "axios";
 import { Inertia } from "@inertiajs/inertia";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { defineProps } from "vue";
+import { usePage } from "@inertiajs/vue3";
 
 // Définissez `clients` comme une prop. Pas besoin d'utiliser `export default` ici.
 const props = defineProps({
@@ -11,6 +12,7 @@ const props = defineProps({
 
 const currentPage = ref(1);
 const clientsPerPage = ref(10);
+const savedClients = ref([]);
 
 // Calcul de la pagination des clients
 const paginatedClients = computed(() => {
@@ -27,6 +29,10 @@ const totalPages = computed(() => {
 function changePage(page) {
     currentPage.value = page;
 }
+
+onMounted(() => {
+    savedClients.value = usePage().props.auth.agency.saved.saved;
+});
 </script>
 
 <template>
@@ -74,7 +80,12 @@ function changePage(page) {
                         {{ client.location }}
                     </td>
                     <td class="px-6 py-4 border-2 border-gray-50">
-                        {{ client.saved }}
+                        <input
+                            id="saved"
+                            type="checkbox"
+                            :checked="savedClients.includes(`${client.id}`)"
+                            disabled="true"
+                        />
                     </td>
                 </tr>
             </tbody>
@@ -86,7 +97,7 @@ function changePage(page) {
                 :key="page"
                 @click="changePage(page)"
                 :class="{
-                    ' text-cyan-400': page === currentPage,
+                    'text-cyan-400': page == currentPage,
                 }"
             >
                 {{ page }}
