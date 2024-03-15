@@ -9,11 +9,34 @@ export default {
         return {};
     },
     methods:{
-      
+      test(){
+        let tl = gsap.timeline()
+
+        tl.from('.section-5-title',{
+          duration:1,
+          y:150,
+          opacity: 0,
+        })
+
+        ScrollTrigger.create({
+    trigger:'.section-5',
+    start:"-25% 30%",
+    end:'top 80%',
+    toggleActions:" play reverse none none",
+   //markers:true,
+    animation:tl,
+    
+    
+   
+
+})
+
+      }
         
         
     },
     mounted(){
+      this.test()
        
     }
 }
@@ -164,6 +187,7 @@ export default {
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+    opacity: 1;
 }
 
 

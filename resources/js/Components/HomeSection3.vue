@@ -48,7 +48,7 @@ ScrollTrigger.create({
     start:"35% 30%",
     end:'150% 30%',
     toggleActions:" play none none none",
-   // markers:true,
+    //markers:true,
     pin:true,
     scrub:'.section-3-benef',
    
@@ -238,7 +238,7 @@ h1{
 }
 h3{
     opacity: 0;
-    border: 3px solid #989896;
+    border: 3px solid white;
    
     font-size: 1.5em;
     height: 120px;

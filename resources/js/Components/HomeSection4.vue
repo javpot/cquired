@@ -13,6 +13,7 @@ export default {
         let tl = gsap.timeline()
         let tl2 = gsap.timeline()
         
+        let tl3 = gsap.timeline()
         
       
         tl2.to('.section-4-title',{
@@ -28,6 +29,7 @@ export default {
 
 
 
+          
         
             ScrollTrigger.create({
     trigger:'.section-4-content',
@@ -35,7 +37,7 @@ export default {
     end:'90% 30%',
     scrub:true,
     toggleActions:" play reverse none none",
-   //markers:true,
+  //markers:true,
     animation:tl,
     
     

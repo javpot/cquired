@@ -330,6 +330,7 @@ ScrollTrigger.create({
 <HomeSection3></HomeSection3>
 <div class="section-s3-to-s4"></div>
 <HomeSection4></HomeSection4>
+<div class="section-s4-to-s5"></div>
 <HomeSection5></HomeSection5>
 
           
@@ -755,6 +756,12 @@ margin-left: 100px;
     width: 100vw;
     background-color: black;
 }
+.section-s4-to-s5{
+    height: 10vh;
+    width: 100vw;
+    background-color: white;
+}
+
 
 
 
