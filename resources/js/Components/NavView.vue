@@ -25,8 +25,7 @@ export default {
 
 
             <div class="nav-selection">
-                <li>Explorer</li>
-                <li>Devenir prestataire</li>
+               
                 <li>Se connecter</li>
                 <li>S'inscrire</li>
             </div>
@@ -88,7 +87,7 @@ nav {
 .nav-selection>li:nth-child(3) {
     display: none;
 }
-.nav-selection>li:nth-child(4) {
+.nav-selection>li:nth-child(2) {
    color: #6EC3E7;
    border: 1px solid #6EC3E7;
    border-radius: 30px;
@@ -96,7 +95,7 @@ nav {
    transition: 0.3s;
   
 }
-.nav-selection>li:nth-child(4):hover{
+.nav-selection>li:nth-child(2):hover{
     color: white;
     background-color: #6EC3E7;
     

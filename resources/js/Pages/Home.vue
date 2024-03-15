@@ -1,5 +1,5 @@
 <script>
-import NavView from './NavView.vue'
+import NavView from '../Components/NavView.vue'
 import {gsap} from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
