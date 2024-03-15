@@ -41,7 +41,7 @@ defineProps({
     <div class="container">
         <!-- <NavView></NavView> -->
         <!-- <Accueil></Accueil> -->
-        <!-- <Home></Home> -->
+        <Home></Home>
         <!-- <HomeSection3></HomeSection3> -->
                 <!-- <HomeSection4></HomeSection4> -->
                                 <!-- <HomeSection5></HomeSection5> -->
@@ -51,7 +51,7 @@ defineProps({
      <!--<SignIn></SignIn>-->
  <!--<LogIn></LogIn>-->
  <!-- <Inscription></Inscription> -->
- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard>
+ <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
  <!-- <ServiceCard titre="Jeff Agency" description="I can build house for you for a cheap price we a are based..."></ServiceCard> -->
 <!-- <ServiceSelection></ServiceSelection> -->
 <!-- <Caroussel></Caroussel> -->

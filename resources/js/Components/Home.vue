@@ -2,9 +2,7 @@
 import NavView from './NavView.vue'
 import {gsap} from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HomeSection3 from './HomeSection3.vue'
-import HomeSection4 from './HomeSection4.vue'
-import HomeSection5 from './HomeSection5.vue'
+
 
 
 
@@ -16,9 +14,7 @@ export default {
     },
     components:{
         NavView,
-        HomeSection3,
-        HomeSection4,
-        HomeSection5
+       
     },
     methods:{
         
@@ -211,6 +207,151 @@ ScrollTrigger.create({
 
 
         },
+        section3Animation(){
+            let tl = gsap.timeline()
+            let tl2 = gsap.timeline()
+            let tl3 = gsap.timeline()
+            tl3.add('start')
+            tl.from(".section-3-about>p",{
+                duration:0.5,
+                opacity:0.2
+            })
+            tl.to('.h1-title-span',{
+                duration:1,
+                stagger:0.2,
+                color:'white'
+            })
+            tl.to('.animated-button',{
+                duration:0.2,
+                opacity:1
+            })
+
+            tl2.to('.section-3-benef>h3',{
+                duration:0.5,
+                opacity:1,
+                stagger:0.5
+            })
+            tl3.to('.section-3',{
+              duration:1,
+              backgroundColor:'white'
+            },'start')
+            tl3.to('.section-s3-to-s4',{
+              duration:1,
+              backgroundColor:'white'
+            },'start')
+            ScrollTrigger.create({
+    trigger:'.section-3-about',
+    start:"top 30%",
+    end:'38% 30%',
+    scrub:true,
+    toggleActions:" play reverse none none",
+   
+    animation:tl,
+    
+   
+
+})
+ScrollTrigger.create({
+    trigger:'.section-3-about',
+    start:"35% 30%",
+    end:'150% 30%',
+    toggleActions:" play none none none",
+    //markers:true,
+    pin:true,
+    scrub:'.section-3-benef',
+   
+    animation:tl2,
+    
+   
+
+})
+ScrollTrigger.create({
+    trigger:'.section-3-about',
+    start:"35% 30%",
+    end:'160% 30%',
+    toggleActions:" play reverse none none",
+    //markers:true,
+    
+   
+    animation:tl3,
+    
+   
+
+})
+        },
+        section4Animation(){
+        let tl = gsap.timeline()
+        let tl2 = gsap.timeline()
+        
+        let tl3 = gsap.timeline()
+        
+      
+        tl2.to('.section-4-title',{
+                duration:1,
+                stagger:0.2,
+                color:'black'
+            })
+        tl.to('li>span',{
+                duration:1,
+                stagger:0.2,
+                color:'black'
+            })
+
+
+
+          
+        
+            ScrollTrigger.create({
+    trigger:'.section-4-content',
+    start:"top 30%",
+    end:'90% 30%',
+    scrub:true,
+    toggleActions:" play reverse none none",
+  //markers:true,
+    animation:tl,
+    
+    
+   
+
+})
+ScrollTrigger.create({
+    trigger:'.section-4-content',
+    start:"top 30%",
+    end:'top 80%',
+    
+    toggleActions:" play reverse none none",
+   
+    animation:tl2,
+    
+    
+   
+
+})
+
+      },
+      section5Animation(){
+        let tl = gsap.timeline()
+
+        tl.from('.section-5-title',{
+          duration:1,
+          y:150,
+          opacity: 0,
+        })
+
+        ScrollTrigger.create({
+    trigger:'.section-5',
+    start:"-25% 30%",
+    end:'top 80%',
+    toggleActions:" play reverse none none",
+   //markers:true,
+    animation:tl,
+    
+    
+   
+
+})
+
+      }
         
     }
     ,
@@ -219,6 +360,9 @@ ScrollTrigger.create({
     //this.HomeAnimation()
     this.loadingAnimation()
     this.ScrollS1ToS2()
+    this.section3Animation()
+    this.section4Animation()
+    this.section5Animation()
     }
         
     
@@ -276,7 +420,7 @@ ScrollTrigger.create({
                   </svg>
                 </span> 
             </button>-->
-            <button class="animated-button">
+            <button class="animated-button-2">
                 <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
@@ -312,27 +456,128 @@ ScrollTrigger.create({
         <div class="project-container-2">
             <h3 class="h3-project">Web Development</h3>
          
-            <img src="../../assets/HomeProjectImg.png" alt="" srcset="">
+            <img src="../../assets/HomeProjectImg2.webp" alt="" srcset="">
         </div>
         <div class="project-container-3">
             <h3 class="h3-project">Video Editing</h3>
-            <img src="../../assets/HomeProjectImg.png" alt="" srcset="">
+            <img src="../../assets/HomeProjectImg3.webp" alt="" srcset="">
         </div>
         <div class="project-container-4">
             <h3 class="h3-project">Blog Writing</h3>
-            <img src="../../assets/HomeProjectImg.png" alt="" srcset="">
+            <img src="../../assets/HomeProjectImg4.webp" alt="" srcset="">
         </div>
         
     </div>
 </div>
 <div class="section-s2-to-s3"></div>
 
-<HomeSection3></HomeSection3>
-<div class="section-s3-to-s4"></div>
-<HomeSection4></HomeSection4>
-<div class="section-s4-to-s5"></div>
-<HomeSection5></HomeSection5>
+<div class="section-3">
+  <div class="section-3-content">
+  <div class="section-3-about">
+      <p>Cquired is the communication bridge between individuals and businesses. We actively promote business growth by providing precisely tailored services that address the unique needs of people. </p>
 
+      <h1 class="h1-title"><span class="h1-title-span">Why</span> <span class="h1-title-span">choose</span> <span class="h1-title-span">Cquired</span> <span class="h1-title-span">for</span> <span class="h1-title-span">your</span> <span class="h1-title-span">freelance</span> <span class="h1-title-span">demandes</span></h1>
+
+      <!-- btn-->
+      <button class="animated-button">
+          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
+          </svg>
+          <span class="text">Get started</span>
+          <span class="circle"></span>
+          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
+          </svg>
+        </button>
+        
+
+  </div>
+  <div class="section-3-benef">
+      <h3>1 - Aucun frais d'inscription</h3>
+      <h3>2 - Poster une offre et engager</h3>
+
+      <h3>3 - Travailler avec les meilleurs, tout en respectant votre
+          bugdet</h3>
+
+
+  </div>
+
+</div>
+
+</div>
+<div class="section-s3-to-s4"></div>
+<div class="section-4">
+  <div class="section-4-content">
+    <div class="section-4-title-content">
+      <h1 class="section-4-title">What are the advantage that you get with Cquired</h1>
+    </div>
+    <div class="section-4-business-content">
+      <h2>Business</h2>
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+    </div>
+    <div class="section-4-freelancer-content">
+      <h2>Freelancer</h2>
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+    </div>
+    <div class="section-4-client-content">
+      <h2>Client</h2>
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
+
+    </div>
+    
+    
+  
+
+</div>
+
+</div>
+<div class="section-s4-to-s5"></div>
+<div class="section-5">
+  <div class="section-5-content">
+    <div class="section-5-title-content">
+      <h1 class="section-5-title">Interested ?</h1>
+      <p>So do not waste time and come live an unforgettable experience.</p>
+      <button class="animated-button-2">
+        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+        <span class="text">Get started</span>
+        <span class="circle"></span>
+        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+   
+
+</div>
+
+</div>
           
     </main>
     
@@ -345,7 +590,7 @@ ScrollTrigger.create({
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 16px 66px;
+    padding: 14px 60px;
     border: 4px solid;
     border-color: transparent;
     font-size: 16px;
@@ -736,6 +981,387 @@ margin-left: 100px;
     margin-left: 10px;
     font-weight: 700;
 }
+/*btn*/
+.animated-button {
+  opacity: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 0 0 2px white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: white;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #6EC3E7;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #212121;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px greenyellow;
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+.section-3{
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.section-3-content{
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+}
+.section-3-about{
+  height: 90%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+ 
+}
+.section-3-about>p{
+  opacity: 1;
+  color: #989896;
+
+}
+.h1-title{
+font-size: 3.5em;
+color: #CFCFC8;
+}
+
+.section-3-benef>h3{
+  opacity: 0;
+  border: 3px solid white;
+ 
+  font-size: 1.5em;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  
+  
+}
+.section-3-benef{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200vh;
+  width: 40%;
+  position: relative;
+  top:50%;
+  gap:200px;
+}
+
+.section-4{
+  background-color: white;
+   min-height: 100vh;
+   width: 100vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ .section-4-content{
+   height: 100%;
+   width: 90%;
+ }
+ .section-4-title-content{
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+  
+ 
+ }
+ 
+ .section-4-title-content>h1{
+   text-align: right;
+   width: 50%;
+   font-size: 3.5em;
+     font-family: "Onest", sans-serif;
+     font-optical-sizing: auto;
+     font-weight: 700;
+     font-style: normal;
+     color: rgb(244, 244, 244);
+ }
+ .section-4-business-content{
+   height: 100vh;
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   line-height: 1.6;
+ 
+   
+ 
+   
+ }
+ .section-4-business-content>h2{
+   font-size: 3.5em;
+   font-family: "Onest", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 700;
+   font-style: normal;
+ }.section-4-business-content>li{
+   color: white;
+ }
+ .section-4-freelancer-content{
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: flex-end;
+   line-height: 1.6;
+ 
+   
+ 
+   
+ }
+ .section-4-freelancer-content>h2{
+   text-align: center;
+   font-size: 3.5em;
+   font-family: "Onest", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 700;
+   font-style: normal;
+ 
+ }
+ 
+ .section-4-freelancer-content>li{
+   width: 50%;
+   color: white;
+ }
+ 
+ .section-4-client-content{
+   height: 100vh;
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   line-height: 1.6;
+ 
+   
+ 
+   
+ }
+ .section-4-client-content>h2{
+   font-size: 3.5em;
+   font-family: "Onest", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 700;
+   font-style: normal;
+ }
+ .section-4-client-content>li{
+ 
+   color: white;
+ }
+ 
+.animated-button-2 {
+  opacity: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 13px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: black;
+  box-shadow: 0 0 0 2px black;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button-2 svg {
+  position: absolute;
+  width: 24px;
+  fill: black;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button-2 .arr-1 {
+  right: 16px;
+}
+
+.animated-button-2 .arr-2 {
+  left: -25%;
+}
+
+.animated-button-2 .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #6EC3E7;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button-2 .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button-2:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+
+.animated-button-2:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button-2:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button-2:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button-2:hover svg {
+  fill: #212121;
+}
+
+.animated-button-2:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px greenyellow;
+}
+
+.animated-button-2:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+.section-5{
+ background-color: white;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-5-content{
+  height: 100%;
+  width: 90%;
+}
+.section-5-title-content{
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+
+}
+.section-5-title-content>h1{
+  text-align: center;
+  width:100%;
+  font-size: 3.5em;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    opacity: 1;
+}
+
+ 
+
+
 
 .transition{
     height: 1vh;

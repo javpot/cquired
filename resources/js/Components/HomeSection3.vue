@@ -224,19 +224,17 @@ ScrollTrigger.create({
     align-items: flex-start;
    
 }
-p{
+.section-3-about>p{
     opacity: 1;
     color: #989896;
 
 }
 .h1-title{
-    color: #1f1f1e;
+  font-size: 3.5em;
+  color: #CFCFC8;
 }
-h1{
-    font-size: 3.5em;
-    color: #CFCFC8;
-}
-h3{
+
+.section-3-benef>h3{
     opacity: 0;
     border: 3px solid white;
    
