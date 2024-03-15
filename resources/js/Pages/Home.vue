@@ -1,55 +1,48 @@
 <script>
-import NavView from '../Components/NavView.vue'
-import {gsap} from 'gsap'
+import NavView from "../Components/NavView.vue";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-
-
-
-
+import Typed from "typed.js";
+import { Link } from "@inertiajs/vue3";
 gsap.registerPlugin(ScrollTrigger);
 export default {
     data() {
         return {};
     },
-    components:{
+    components: {
         NavView,
-       
+        Link,
     },
-    methods:{
-        
-        loadingAnimation(){
-            
-            let tl =gsap.timeline()
-            let imgLoading = document.querySelector('.img-loading')
-        let h2Cquired = document.querySelectorAll('.h2-cquired')
-            
-        var video = document.getElementById('vid');
-video.muted = true;
+    methods: {
+        loadingAnimation() {
+            let tl = gsap.timeline();
+            let imgLoading = document.querySelector(".img-loading");
+            let h2Cquired = document.querySelectorAll(".h2-cquired");
 
-video.play()
-video.muted = false;
+            var video = document.getElementById("vid");
+            video.muted = true;
 
-setTimeout(() => {
-    tl.to('#vid',{
-        duration:0.5,
-        opacity: 0,
-    })
-    tl.to('.loading',{
-                duration:2.5,
-                transformOrigin:'right right',
-                ease: "power4.out",
-                scaleX:0,
-                func : ()=>{
-                    this.titleAnimation()
-                    this.HomeAnimation()
-                }
+            video.play();
+            video.muted = false;
 
-            })
-        }, 6000);
+            setTimeout(() => {
+                tl.to("#vid", {
+                    duration: 0.5,
+                    opacity: 0,
+                });
+                tl.to(".loading", {
+                    duration: 2.5,
+                    transformOrigin: "right right",
+                    ease: "power4.out",
+                    scaleX: 0,
+                    func: () => {
+                        this.titleAnimation();
+                        this.HomeAnimation();
+                    },
+                });
+            }, 6000);
 
-
-/*
+            /*
         tl.from(imgLoading,{
             duration:1,
             opacity:0,
@@ -79,44 +72,45 @@ setTimeout(() => {
             })
             */
         },
-        titleAnimation(){
-            var typed = new Typed('#title', {
-      strings: ['Website Developement', 'Video Editing', 'Brand Design', 'Artificial Intelligence','Photography','Blog Writing'],
-      typeSpeed: 50,
-      backSpeed:50,
-      loop:true,
-      showCursor:false
-    });
+        titleAnimation() {
+            var typed = new Typed("#title", {
+                strings: [
+                    "Website Developement",
+                    "Video Editing",
+                    "Brand Design",
+                    "Artificial Intelligence",
+                    "Photography",
+                    "Blog Writing",
+                ],
+                typeSpeed: 50,
+                backSpeed: 50,
+                loop: true,
+                showCursor: false,
+            });
         },
-        HomeAnimation(){
-            let tl = gsap.timeline()
-            tl.from('.slogan>h1',{
-                duration:1,
-                y:70,
-                
+        HomeAnimation() {
+            let tl = gsap.timeline();
+            tl.from(".slogan>h1", {
+                duration: 1,
+                y: 70,
 
-                opacity:0,
-                stagger:0.1
-            })
-            tl.from('.slogan-info',{
-                duration:1,
-                opacity:0
-            })
-            tl.from('.slogan-inscription',{
-                duration:1,
-                opacity:0
-            })
-
-           
+                opacity: 0,
+                stagger: 0.1,
+            });
+            tl.from(".slogan-info", {
+                duration: 1,
+                opacity: 0,
+            });
+            tl.from(".slogan-inscription", {
+                duration: 1,
+                opacity: 0,
+            });
         },
-        ScrollS1ToS2(){
-            let tl = gsap.timeline()
-            let tl2 = gsap.timeline()
-            let tl3 = gsap.timeline()
-            let main = document.querySelector('main')
-          
-          
-
+        ScrollS1ToS2() {
+            let tl = gsap.timeline();
+            let tl2 = gsap.timeline();
+            let tl3 = gsap.timeline();
+            let main = document.querySelector("main");
 
             /* ecran expend change couleur
             tl.to('.transition',{
@@ -126,40 +120,39 @@ setTimeout(() => {
             })
             
             */
-            tl.to(main,{
-                duration:0.2,
-                backgroundColor:"black"
-            })
-           tl.from('.section-2-title',{
-            duration:0.7,
-          
-            x:-100,
-            opacity:0,
-            ease:'po'
-           })
+            tl.to(main, {
+                duration: 0.2,
+                backgroundColor: "black",
+            });
+            tl.from(".section-2-title", {
+                duration: 0.7,
 
-           tl2.from('.project-container',{
-           
-            duration:2,
-            y:150,
-            opacity:0
-           })
-           tl2.from('.project-container-2',{
-            duration:2,
-            y:-150,
-            opacity:0
-           })
-           tl2.from('.project-container-3',{
-            duration:2,
-            y:150,
-            opacity:0
-           })
-           tl2.from('.project-container-4',{
-            duration:2,
-            y:-150,
-            opacity:0
-           })
-/*
+                x: -100,
+                opacity: 0,
+                ease: "po",
+            });
+
+            tl2.from(".project-container", {
+                duration: 2,
+                y: 150,
+                opacity: 0,
+            });
+            tl2.from(".project-container-2", {
+                duration: 2,
+                y: -150,
+                opacity: 0,
+            });
+            tl2.from(".project-container-3", {
+                duration: 2,
+                y: 150,
+                opacity: 0,
+            });
+            tl2.from(".project-container-4", {
+                duration: 2,
+                y: -150,
+                opacity: 0,
+            });
+            /*
            tl3.to('.transition',{
                 duration:1.5,
                 scale:120,
@@ -168,32 +161,31 @@ setTimeout(() => {
 
             })
             */
-            
 
             ScrollTrigger.create({
-    trigger:'.section-2',
-    start:"20% 95%",
-    end:'20% 80%',
-    
-    toggleActions:" play reverse none none",
+                trigger: ".section-2",
+                start: "20% 95%",
+                end: "20% 80%",
 
-    animation:tl,
-    
-   //markers:true
-})
-ScrollTrigger.create({
-    trigger:'.project-container',
-    start:"40% 90%",
-    end: "top 5%",
-    toggleActions:" play reverse none none",
-  scrub:true,
-  pin:'.section-2',
-    animation:tl2,
-    
-  // markers:true
-})
+                toggleActions: " play reverse none none",
 
-/*ScrollTrigger.create({
+                animation: tl,
+
+                //markers:true
+            });
+            ScrollTrigger.create({
+                trigger: ".project-container",
+                start: "40% 90%",
+                end: "top 5%",
+                toggleActions: " play reverse none none",
+                scrub: true,
+                pin: ".section-2",
+                animation: tl2,
+
+                // markers:true
+            });
+
+            /*ScrollTrigger.create({
     trigger:'.project-container',
     start:"40% 90%",
     end: "top 6%",
@@ -204,179 +196,151 @@ ScrollTrigger.create({
     
    markers:true
 })*/
-
-
         },
-        section3Animation(){
-            let tl = gsap.timeline()
-            let tl2 = gsap.timeline()
-            let tl3 = gsap.timeline()
-            tl3.add('start')
-            tl.from(".section-3-about>p",{
-                duration:0.5,
-                opacity:0.2
-            })
-            tl.to('.h1-title-span',{
-                duration:1,
-                stagger:0.2,
-                color:'white'
-            })
-            tl.to('.animated-button',{
-                duration:0.2,
-                opacity:1
-            })
+        section3Animation() {
+            let tl = gsap.timeline();
+            let tl2 = gsap.timeline();
+            let tl3 = gsap.timeline();
+            tl3.add("start");
+            tl.from(".section-3-about>p", {
+                duration: 0.5,
+                opacity: 0.2,
+            });
+            tl.to(".h1-title-span", {
+                duration: 1,
+                stagger: 0.2,
+                color: "white",
+            });
+            tl.to(".animated-button", {
+                duration: 0.2,
+                opacity: 1,
+            });
 
-            tl2.to('.section-3-benef>h3',{
-                duration:0.5,
-                opacity:1,
-                stagger:0.5
-            })
-            tl3.to('.section-3',{
-              duration:1,
-              backgroundColor:'white'
-            },'start')
-            tl3.to('.section-s3-to-s4',{
-              duration:1,
-              backgroundColor:'white'
-            },'start')
+            tl2.to(".section-3-benef>h3", {
+                duration: 0.5,
+                opacity: 1,
+                stagger: 0.5,
+            });
+            tl3.to(
+                ".section-3",
+                {
+                    duration: 1,
+                    backgroundColor: "white",
+                },
+                "start"
+            );
+            tl3.to(
+                ".section-s3-to-s4",
+                {
+                    duration: 1,
+                    backgroundColor: "white",
+                },
+                "start"
+            );
             ScrollTrigger.create({
-    trigger:'.section-3-about',
-    start:"top 30%",
-    end:'38% 30%',
-    scrub:true,
-    toggleActions:" play reverse none none",
-   
-    animation:tl,
-    
-   
+                trigger: ".section-3-about",
+                start: "top 30%",
+                end: "38% 30%",
+                scrub: true,
+                toggleActions: " play reverse none none",
 
-})
-ScrollTrigger.create({
-    trigger:'.section-3-about',
-    start:"35% 30%",
-    end:'150% 30%',
-    toggleActions:" play none none none",
-    //markers:true,
-    pin:true,
-    scrub:'.section-3-benef',
-   
-    animation:tl2,
-    
-   
+                animation: tl,
+            });
+            ScrollTrigger.create({
+                trigger: ".section-3-about",
+                start: "35% 30%",
+                end: "150% 30%",
+                toggleActions: " play none none none",
+                //markers:true,
+                pin: true,
+                scrub: ".section-3-benef",
 
-})
-ScrollTrigger.create({
-    trigger:'.section-3-about',
-    start:"35% 30%",
-    end:'160% 30%',
-    toggleActions:" play reverse none none",
-    //markers:true,
-    
-   
-    animation:tl3,
-    
-   
+                animation: tl2,
+            });
+            ScrollTrigger.create({
+                trigger: ".section-3-about",
+                start: "35% 30%",
+                end: "160% 30%",
+                toggleActions: " play reverse none none",
+                //markers:true,
 
-})
+                animation: tl3,
+            });
         },
-        section4Animation(){
-        let tl = gsap.timeline()
-        let tl2 = gsap.timeline()
-        
-        let tl3 = gsap.timeline()
-        
-      
-        tl2.to('.section-4-title',{
-                duration:1,
-                stagger:0.2,
-                color:'black'
-            })
-        tl.to('li>span',{
-                duration:1,
-                stagger:0.2,
-                color:'black'
-            })
+        section4Animation() {
+            let tl = gsap.timeline();
+            let tl2 = gsap.timeline();
 
+            let tl3 = gsap.timeline();
 
+            tl2.to(".section-4-title", {
+                duration: 1,
+                stagger: 0.2,
+                color: "black",
+            });
+            tl.to("li>span", {
+                duration: 1,
+                stagger: 0.2,
+                color: "black",
+            });
 
-          
-        
             ScrollTrigger.create({
-    trigger:'.section-4-content',
-    start:"top 30%",
-    end:'90% 30%',
-    scrub:true,
-    toggleActions:" play reverse none none",
-  //markers:true,
-    animation:tl,
-    
-    
-   
+                trigger: ".section-4-content",
+                start: "top 30%",
+                end: "90% 30%",
+                scrub: true,
+                toggleActions: " play reverse none none",
+                //markers:true,
+                animation: tl,
+            });
+            ScrollTrigger.create({
+                trigger: ".section-4-content",
+                start: "top 30%",
+                end: "top 80%",
 
-})
-ScrollTrigger.create({
-    trigger:'.section-4-content',
-    start:"top 30%",
-    end:'top 80%',
-    
-    toggleActions:" play reverse none none",
-   
-    animation:tl2,
-    
-    
-   
+                toggleActions: " play reverse none none",
 
-})
+                animation: tl2,
+            });
+        },
+        section5Animation() {
+            let tl = gsap.timeline();
 
-      },
-      section5Animation(){
-        let tl = gsap.timeline()
+            tl.from(".section-5-title", {
+                duration: 1,
+                y: 150,
+                opacity: 0,
+            });
 
-        tl.from('.section-5-title',{
-          duration:1,
-          y:150,
-          opacity: 0,
-        })
-
-        ScrollTrigger.create({
-    trigger:'.section-5',
-    start:"-25% 30%",
-    end:'top 80%',
-    toggleActions:" play reverse none none",
-   //markers:true,
-    animation:tl,
-    
-    
-   
-
-})
-
-      }
-        
-    }
-    ,
-    mounted(){
-    //this.titleAnimation()
-    //this.HomeAnimation()
-    this.loadingAnimation()
-    this.ScrollS1ToS2()
-    this.section3Animation()
-    this.section4Animation()
-    this.section5Animation()
-    }
-        
-    
+            ScrollTrigger.create({
+                trigger: ".section-5",
+                start: "-25% 30%",
+                end: "top 80%",
+                toggleActions: " play reverse none none",
+                //markers:true,
+                animation: tl,
+            });
+        },
+    },
+    mounted() {
+        this.titleAnimation();
+        this.HomeAnimation();
+        // this.loadingAnimation();
+        this.ScrollS1ToS2();
+        this.section3Animation();
+        this.section4Animation();
+        this.section5Animation();
+    },
 };
 </script>
 <template>
-    <div class="loading">
-        <div>
-            <video width="1000" height="1000" id="vid">
-                <source src="../../assets/introCquired.mp4" type="video/mp4">
-                
-              </video>
-        </div>
-       <!-- <div>
+    <!-- <div class="loading"> -->
+    <!-- <div> -->
+    <!-- <video width="1000" height="1000" id="vid"> -->
+    <!-- <source src="../../assets/introCquired.mp4" type="video/mp4" /> -->
+    <!-- </video> -->
+    <!-- </div> -->
+    <!-- <div>
             <img src="../../assets/logow-cquired-single.png" alt="" srcset="" class="img-loading">
               <h2 class="cquired-loading">
                 <div class="h2-cquired">C</div>
@@ -389,26 +353,27 @@ ScrollTrigger.create({
               </h2>
         </div>
         -->
-    </div>
+    <!-- </div> -->
     <NavView></NavView>
     <main>
         <div class="section-1">
-
             <div class="slogan-container">
-    <div class="slogan">
-        <h1>Need help with</h1>
-        <h1 id="title"></h1>
-        <h1>Don’t search anymore</h1>
-    </div>
-    <div class="slogan-info">
-    <p>We help people find the perfect person or entreprise to solve their problems</p>
-    </div>
-    <div class="slogan-inscription">
-     
-        <a href="" class="href-early-access">
-            <!-- <button class="early-access">Inscription</button> -->
+                <div class="slogan">
+                    <h1>Need help with</h1>
+                    <h1 id="title"></h1>
+                    <h1>Don’t search anymore</h1>
+                </div>
+                <div class="slogan-info">
+                    <p>
+                        We help people find the perfect person or entreprise to
+                        solve their problems
+                    </p>
+                </div>
+                <div class="slogan-inscription">
+                    <a href="" class="href-early-access">
+                        <!-- <button class="early-access">Inscription</button> -->
 
-            <!--<button class="cta">
+                        <!--<button class="cta">
                 <span class="span">Get started</span>
                 <span class="second">
                   <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -420,172 +385,326 @@ ScrollTrigger.create({
                   </svg>
                 </span> 
             </button>-->
-            <button class="animated-button-2">
-                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                  ></path>
-                </svg>
-                <span class="text">Get started</span>
-                <span class="circle"></span>
-                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                  ></path>
-                </svg>
-              </button>
-        </a>
-    </div>
-</div>
+                        <Link :href="route('register')">
+                            <button class="animated-button-2">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="arr-2"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                    ></path>
+                                </svg>
+                                <span class="text">Get started</span>
+                                <span class="circle"></span>
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="arr-1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </Link>
+                    </a>
+                </div>
+            </div>
 
-<!-- <div class="home-img-container"> -->
-    <!-- <img src="../../assets/HomeImg.png" alt="" srcset=""> -->
-<!-- </div> -->
-            
-</div>
-<div class="section-2">
-    <div class="section-2-title-container">
-        <h1 class="section-2-title">Browse talent for popular projects like <div></div></h1>
-    </div>
-    <!-- <div class="transition"></div> -->
-    <div class="section-2-projects-container">
-        <div class="project-container">
-            <h3 class="h3-project">Brand Design</h3>
-            <img src="../../assets/HomeProjectImg.png" alt="" srcset="">
+            <!-- <div class="home-img-container"> -->
+            <!-- <img src="../../assets/HomeImg.png" alt="" srcset=""> -->
+            <!-- </div> -->
         </div>
-        <div class="project-container-2">
-            <h3 class="h3-project">Web Development</h3>
-         
-            <img src="../../assets/HomeProjectImg2.webp" alt="" srcset="">
+        <div class="section-2">
+            <div class="section-2-title-container">
+                <h1 class="section-2-title">
+                    Browse talent for popular projects like
+                    <div></div>
+                </h1>
+            </div>
+            <!-- <div class="transition"></div> -->
+            <div class="section-2-projects-container">
+                <div class="project-container">
+                    <h3 class="h3-project">Brand Design</h3>
+                    <img
+                        src="../../assets/HomeProjectImg.png"
+                        alt=""
+                        srcset=""
+                    />
+                </div>
+                <div class="project-container-2">
+                    <h3 class="h3-project">Web Development</h3>
+
+                    <img
+                        src="../../assets/HomeProjectImg2.webp"
+                        alt=""
+                        srcset=""
+                    />
+                </div>
+                <div class="project-container-3">
+                    <h3 class="h3-project">Video Editing</h3>
+                    <img
+                        src="../../assets/HomeProjectImg3.webp"
+                        alt=""
+                        srcset=""
+                    />
+                </div>
+                <div class="project-container-4">
+                    <h3 class="h3-project">Blog Writing</h3>
+                    <img
+                        src="../../assets/HomeProjectImg4.webp"
+                        alt=""
+                        srcset=""
+                    />
+                </div>
+            </div>
         </div>
-        <div class="project-container-3">
-            <h3 class="h3-project">Video Editing</h3>
-            <img src="../../assets/HomeProjectImg3.webp" alt="" srcset="">
+        <div class="section-s2-to-s3"></div>
+
+        <div class="section-3">
+            <div class="section-3-content">
+                <div class="section-3-about">
+                    <p>
+                        Cquired is the communication bridge between individuals
+                        and businesses. We actively promote business growth by
+                        providing precisely tailored services that address the
+                        unique needs of people.
+                    </p>
+
+                    <h1 class="h1-title">
+                        <span class="h1-title-span">Why </span>
+                        <span class="h1-title-span">choose <br /></span>
+                        <span class="h1-title-span">Cquired </span>
+                        <span class="h1-title-span">for </span>
+                        <span class="h1-title-span">your <br /></span>
+                        <span class="h1-title-span">freelance<br /></span>
+                        <span class="h1-title-span">demandes<br /></span>
+                    </h1>
+
+                    <!-- btn-->
+                    <Link :href="route('register')">
+                        <button class="animated-button">
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="arr-2"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                ></path>
+                            </svg>
+                            <span class="text">Get started</span>
+                            <span class="circle"></span>
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="arr-1"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </Link>
+                </div>
+                <div class="section-3-benef">
+                    <h3>1 - Aucun frais d'inscription</h3>
+                    <h3>2 - Poster une offre et engager</h3>
+
+                    <h3>
+                        3 - Travailler avec les meilleurs, tout en respectant
+                        votre bugdet
+                    </h3>
+                </div>
+            </div>
         </div>
-        <div class="project-container-4">
-            <h3 class="h3-project">Blog Writing</h3>
-            <img src="../../assets/HomeProjectImg4.webp" alt="" srcset="">
+        <div class="section-s3-to-s4"></div>
+        <div class="section-4">
+            <div class="section-4-content">
+                <div class="section-4-title-content">
+                    <h1 class="section-4-title">
+                        What are the advantage that you get with Cquired
+                    </h1>
+                </div>
+                <div class="section-4-business-content">
+                    <h2>Business</h2>
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+                </div>
+                <div class="section-4-freelancer-content">
+                    <h2>Freelancer</h2>
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+                </div>
+                <div class="section-4-client-content">
+                    <h2>Client</h2>
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+
+                    <li>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span>
+                        <span>Lorem</span> <span>Lorem</span> <span>Lorem</span>
+                    </li>
+                </div>
+            </div>
         </div>
-        
-    </div>
-</div>
-<div class="section-s2-to-s3"></div>
-
-<div class="section-3">
-  <div class="section-3-content">
-  <div class="section-3-about">
-      <p>Cquired is the communication bridge between individuals and businesses. We actively promote business growth by providing precisely tailored services that address the unique needs of people. </p>
-
-      <h1 class="h1-title"><span class="h1-title-span">Why</span> <span class="h1-title-span">choose</span> <span class="h1-title-span">Cquired</span> <span class="h1-title-span">for</span> <span class="h1-title-span">your</span> <span class="h1-title-span">freelance</span> <span class="h1-title-span">demandes</span></h1>
-
-      <!-- btn-->
-      <button class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
-          <span class="text">Get started</span>
-          <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
-        </button>
-        
-
-  </div>
-  <div class="section-3-benef">
-      <h3>1 - Aucun frais d'inscription</h3>
-      <h3>2 - Poster une offre et engager</h3>
-
-      <h3>3 - Travailler avec les meilleurs, tout en respectant votre
-          bugdet</h3>
-
-
-  </div>
-
-</div>
-
-</div>
-<div class="section-s3-to-s4"></div>
-<div class="section-4">
-  <div class="section-4-content">
-    <div class="section-4-title-content">
-      <h1 class="section-4-title">What are the advantage that you get with Cquired</h1>
-    </div>
-    <div class="section-4-business-content">
-      <h2>Business</h2>
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-    </div>
-    <div class="section-4-freelancer-content">
-      <h2>Freelancer</h2>
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-    </div>
-    <div class="section-4-client-content">
-      <h2>Client</h2>
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-      <li> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span> <span>Lorem</span></li>
-
-    </div>
-    
-    
-  
-
-</div>
-
-</div>
-<div class="section-s4-to-s5"></div>
-<div class="section-5">
-  <div class="section-5-content">
-    <div class="section-5-title-content">
-      <h1 class="section-5-title">Interested ?</h1>
-      <p>So do not waste time and come live an unforgettable experience.</p>
-      <button class="animated-button-2">
-        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-          ></path>
-        </svg>
-        <span class="text">Get started</span>
-        <span class="circle"></span>
-        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-          ></path>
-        </svg>
-      </button>
-    </div>
-   
-
-</div>
-
-</div>
-          
+        <div class="section-s4-to-s5"></div>
+        <div class="section-5">
+            <div class="section-5-content">
+                <div class="section-5-title-content">
+                    <h1 class="section-5-title">Interested ?</h1>
+                    <p>
+                        So do not waste time and come live an unforgettable
+                        experience.
+                    </p>
+                    <Link :href="route('register')">
+                        <button class="animated-button-2">
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="arr-2"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                ></path>
+                            </svg>
+                            <span class="text">Get started</span>
+                            <span class="circle"></span>
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="arr-1"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        </div>
     </main>
-    
-
 </template>
 <style scoped>
 .animated-button {
-   
     position: relative;
     display: flex;
     align-items: center;
@@ -602,38 +721,38 @@ ScrollTrigger.create({
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  
-  .animated-button svg {
+}
+
+.animated-button svg {
     position: absolute;
     width: 24px;
     fill: black;
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  
-  .animated-button .arr-1 {
+}
+
+.animated-button .arr-1 {
     right: 16px;
-  }
-  
-  .animated-button .arr-2 {
+}
+
+.animated-button .arr-2 {
     left: -25%;
-  }
-  
-  .animated-button .circle {
+}
+
+.animated-button .circle {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: #6EC3E7;
+    background-color: #6ec3e7;
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  
-  .animated-button .text {
+}
+
+.animated-button .text {
     position: relative;
     z-index: 1;
     transform: translateX(-12px);
@@ -643,50 +762,49 @@ ScrollTrigger.create({
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
-    
-  }
-  
-  .animated-button:hover {
+}
+
+.animated-button:hover {
     box-shadow: 0 0 0 12px transparent;
     color: #212121;
     border-radius: 12px;
-  }
-  
-  .animated-button:hover .arr-1 {
+}
+
+.animated-button:hover .arr-1 {
     right: -25%;
-  }
-  
-  .animated-button:hover .arr-2 {
+}
+
+.animated-button:hover .arr-2 {
     left: 16px;
-  }
-  
-  .animated-button:hover .text {
+}
+
+.animated-button:hover .text {
     transform: translateX(12px);
-  }
-  
-  .animated-button:hover svg {
+}
+
+.animated-button:hover svg {
     fill: #212121;
-  }
-  
-  .animated-button:active {
+}
+
+.animated-button:active {
     scale: 0.95;
     box-shadow: 0 0 0 4px greenyellow;
-  }
-  
-  .animated-button:hover .circle {
+}
+
+.animated-button:hover .circle {
     width: 220px;
     height: 220px;
     opacity: 1;
-  }
-  
+}
+
 /*
 loading
 */
-#vid{
+#vid {
     opacity: 1;
 }
-.loading{
-   position: absolute;
+.loading {
+    position: absolute;
     background-color: black;
     height: 100vh;
     width: 100vw;
@@ -694,56 +812,53 @@ loading
     justify-content: center;
     align-items: center;
     z-index: 100;
-   
 }
-.img-loading{
+.img-loading {
     height: 100px;
     width: 100px;
     opacity: 1;
 }
-.loading>div{
+.loading > div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
     z-index: 120;
-   
 }
 
-.cquired-loading{
+.cquired-loading {
     height: 200px;
     margin: 10px;
     overflow: hidden;
-    
 }
 
-.h2-cquired{
+.h2-cquired {
     font-family: "Onest", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+
     color: white;
     display: inline-block;
     font-size: 5em;
     opacity: 1;
 }
 /*home*/
-main{
+main {
     min-height: 90vh;
     width: 100vw;
 }
-.section-1{
+.section-1 {
     height: 80vh;
     width: 100%;
     display: flex;
-    
+
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-.slogan-container{
+.slogan-container {
     height: 70vh;
     width: 100%;
     display: flex;
@@ -751,85 +866,78 @@ main{
     justify-content: center;
     align-items: center;
 }
-.home-img-container{
+.home-img-container {
     width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.home-img-container>img{
+.home-img-container > img {
     height: 350px;
-    width:450px;
+    width: 450px;
     margin-bottom: 10px;
- }
-h1{
-    font-family: "Onest", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  opacity: 1;
-  font-size: 4em;
 }
-#title{
-    color: #6EC3E7;
+h1 {
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    opacity: 1;
+    font-size: 4em;
+}
+#title {
+    color: #6ec3e7;
     height: 70px;
 }
-.slogan{
+.slogan {
     height: 70%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-   /* margin-left: 100px;*/
 
-   
+    /* margin-left: 100px;*/
 }
-.slogan-info{
+.slogan-info {
     height: 20%;
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-/*margin-left: 100px;*/
+    /*margin-left: 100px;*/
 
-    
-
-opacity: 1;
+    opacity: 1;
 }
-.slogan-info>p{
+.slogan-info > p {
     width: 50%;
     font-family: "Onest", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
 }
-.slogan-inscription{
+.slogan-inscription {
     height: 20%;
     width: 100%;
     display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-left: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
 
     opacity: 1;
-
 }
-.href-early-access{
-    
+.href-early-access {
     text-decoration: none;
     height: 10%;
     width: auto;
     margin-right: 100px;
-    
 }
-.early-access{
+.early-access {
     width: 18.5em;
-    background-color: #6EC3E7;
+    background-color: #6ec3e7;
     border: none;
     padding: 6px;
     border-radius: 5px;
@@ -839,106 +947,103 @@ margin-left: 100px;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-   
-
 }
 .cta {
     display: flex;
     padding: 5px 50px;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 25px;
     color: white;
-    background: #6EC3E7;
+    background: #6ec3e7;
     transition: 1s;
     box-shadow: 6px 6px 0 black;
     transform: skewX(-15deg);
     border: none;
-  }
-  
-  .cta:focus {
+}
+
+.cta:focus {
     outline: none;
-  }
-  
-  .cta:hover {
+}
+
+.cta:hover {
     transition: 0.5s;
-    box-shadow: 10px 10px 0 #6225E6;
-  }
-  
-  .cta .second {
+    box-shadow: 10px 10px 0 #6225e6;
+}
+
+.cta .second {
     transition: 0.5s;
     margin-right: 0px;
-  }
-  
-  .cta:hover  .second {
+}
+
+.cta:hover .second {
     transition: 0.5s;
     margin-right: 45px;
-  }
-  
-  .span {
-    transform: skewX(15deg)
-  }
-  
-  .second {
+}
+
+.span {
+    transform: skewX(15deg);
+}
+
+.second {
     width: 20px;
     margin-left: 30px;
     position: relative;
     top: 9px;
-  }
-  
-  .one {
+}
+
+.one {
     transition: 0.4s;
     transform: translateX(-60%);
-  }
-  
-  .two {
+}
+
+.two {
     transition: 0.5s;
     transform: translateX(-30%);
-  }
-  
-  .cta:hover .three {
+}
+
+.cta:hover .three {
     animation: color_anim 1s infinite 0.2s;
-  }
-  
-  .cta:hover .one {
+}
+
+.cta:hover .one {
     transform: translateX(0%);
     animation: color_anim 1s infinite 0.6s;
-  }
-  
-  .cta:hover .two {
+}
+
+.cta:hover .two {
     transform: translateX(0%);
     animation: color_anim 1s infinite 0.4s;
-  }
-  
-  @keyframes color_anim {
+}
+
+@keyframes color_anim {
     0% {
-      fill: white;
+        fill: white;
     }
-  
+
     50% {
-      fill: #6225E6;
+        fill: #6225e6;
     }
-  
+
     100% {
-      fill: white;
+        fill: white;
     }
-  }
+}
 
 /*section2*/
-.section-2{
+.section-2 {
     margin-top: 200px;
     height: 90vh;
     width: 100vw;
-   
 }
-.section-2-title-container{
+.section-2-title-container {
     width: 100%;
     height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.section-2-title{
+.section-2-title {
     color: #cfcfc8;
     width: 70%;
     text-align: center;
@@ -946,7 +1051,7 @@ margin-left: 100px;
     opacity: 1;
     font-size: 4em;
 }
-.section-2-projects-container{
+.section-2-projects-container {
     width: 100%;
     height: 70%;
     display: flex;
@@ -954,10 +1059,13 @@ margin-left: 100px;
     align-items: center;
     overflow-y: hidden;
 }
-.project-container,.project-container-2,.project-container-3,.project-container-4{
+.project-container,
+.project-container-2,
+.project-container-3,
+.project-container-4 {
     height: 300px;
     width: 200px;
-    background-color: #3A44A3;
+    background-color: #3a44a3;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -965,393 +1073,371 @@ margin-left: 100px;
     overflow: hidden;
     opacity: 1;
 }
-.project-container-2{
-    background-color: #953D3D;
+.project-container-2 {
+    background-color: #953d3d;
 }
-.project-container-3{
-    background-color: #BD6D0F;
+.project-container-3 {
+    background-color: #bd6d0f;
 }
-.project-container-4{
+.project-container-4 {
     background-color: #bda00f;
-
 }
 
-.h3-project{
+.h3-project {
     margin-top: 10px;
     margin-left: 10px;
     font-weight: 700;
 }
 /*btn*/
 .animated-button {
-  opacity: 0;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 16px 36px;
-  border: 4px solid;
-  border-color: transparent;
-  font-size: 16px;
-  background-color: inherit;
-  border-radius: 100px;
-  font-weight: 600;
-  color: white;
-  box-shadow: 0 0 0 2px white;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 36px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 0 0 2px white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button svg {
-  position: absolute;
-  width: 24px;
-  fill: white;
-  z-index: 9;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: absolute;
+    width: 24px;
+    fill: white;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button .arr-1 {
-  right: 16px;
+    right: 16px;
 }
 
 .animated-button .arr-2 {
-  left: -25%;
+    left: -25%;
 }
 
 .animated-button .circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: #6EC3E7;
-  border-radius: 50%;
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #6ec3e7;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button .text {
-  position: relative;
-  z-index: 1;
-  transform: translateX(-12px);
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button:hover {
-  box-shadow: 0 0 0 12px transparent;
-  color: #212121;
-  border-radius: 12px;
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
 }
 
 .animated-button:hover .arr-1 {
-  right: -25%;
+    right: -25%;
 }
 
 .animated-button:hover .arr-2 {
-  left: 16px;
+    left: 16px;
 }
 
 .animated-button:hover .text {
-  transform: translateX(12px);
+    transform: translateX(12px);
 }
 
 .animated-button:hover svg {
-  fill: #212121;
+    fill: #212121;
 }
 
 .animated-button:active {
-  scale: 0.95;
-  box-shadow: 0 0 0 4px greenyellow;
+    scale: 0.95;
+    box-shadow: 0 0 0 4px greenyellow;
 }
 
 .animated-button:hover .circle {
-  width: 220px;
-  height: 220px;
-  opacity: 1;
+    width: 220px;
+    height: 220px;
+    opacity: 1;
 }
 
-.section-3{
-  height: 100vh;
-  width: 100vw;
-  background-color: black;
-  color: aliceblue;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+.section-3 {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.section-3-content{
-  height: 90%;
-  width: 100%;
-  display: flex;
-  justify-content:space-evenly;
-  align-items: center;
+.section-3-content {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
-.section-3-about{
-  height: 90%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
- 
+.section-3-about {
+    height: 90%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
 }
-.section-3-about>p{
-  opacity: 1;
-  color: #989896;
-
+.section-3-about > p {
+    opacity: 1;
+    color: #989896;
 }
-.h1-title{
-font-size: 3.5em;
-color: #CFCFC8;
+.h1-title {
+    font-size: 3.5em;
+    color: #cfcfc8;
+    height: 50%;
 }
 
-.section-3-benef>h3{
-  opacity: 0;
-  border: 3px solid white;
- 
-  font-size: 1.5em;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  
-  
+.section-3-benef > h3 {
+    opacity: 0;
+    border: 3px solid white;
+
+    font-size: 1.5em;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
 }
-.section-3-benef{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 200vh;
-  width: 40%;
-  position: relative;
-  top:50%;
-  gap:200px;
+.section-3-benef {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200vh;
+    width: 40%;
+    position: relative;
+    top: 50%;
+    gap: 200px;
 }
 
-.section-4{
-  background-color: white;
-   min-height: 100vh;
-   width: 100vw;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
- .section-4-content{
-   height: 100%;
-   width: 90%;
- }
- .section-4-title-content{
-   height: 100vh;
-   width: 100%;
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-  
- 
- }
- 
- .section-4-title-content>h1{
-   text-align: right;
-   width: 50%;
-   font-size: 3.5em;
-     font-family: "Onest", sans-serif;
-     font-optical-sizing: auto;
-     font-weight: 700;
-     font-style: normal;
-     color: rgb(244, 244, 244);
- }
- .section-4-business-content{
-   height: 100vh;
-   width: 50%;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   line-height: 1.6;
- 
-   
- 
-   
- }
- .section-4-business-content>h2{
-   font-size: 3.5em;
-   font-family: "Onest", sans-serif;
-   font-optical-sizing: auto;
-   font-weight: 700;
-   font-style: normal;
- }.section-4-business-content>li{
-   color: white;
- }
- .section-4-freelancer-content{
-   height: 100vh;
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: flex-end;
-   line-height: 1.6;
- 
-   
- 
-   
- }
- .section-4-freelancer-content>h2{
-   text-align: center;
-   font-size: 3.5em;
-   font-family: "Onest", sans-serif;
-   font-optical-sizing: auto;
-   font-weight: 700;
-   font-style: normal;
- 
- }
- 
- .section-4-freelancer-content>li{
-   width: 50%;
-   color: white;
- }
- 
- .section-4-client-content{
-   height: 100vh;
-   width: 50%;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   line-height: 1.6;
- 
-   
- 
-   
- }
- .section-4-client-content>h2{
-   font-size: 3.5em;
-   font-family: "Onest", sans-serif;
-   font-optical-sizing: auto;
-   font-weight: 700;
-   font-style: normal;
- }
- .section-4-client-content>li{
- 
-   color: white;
- }
- 
+.section-4 {
+    background-color: white;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-4-content {
+    height: 100%;
+    width: 90%;
+}
+.section-4-title-content {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.section-4-title-content > h1 {
+    text-align: right;
+    width: 50%;
+    font-size: 3.5em;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(244, 244, 244);
+}
+.section-4-business-content {
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 1.6;
+}
+.section-4-business-content > h2 {
+    font-size: 3.5em;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+.section-4-business-content > li {
+    color: white;
+}
+.section-4-freelancer-content {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    line-height: 1.6;
+}
+.section-4-freelancer-content > h2 {
+    text-align: center;
+    font-size: 3.5em;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.section-4-freelancer-content > li {
+    width: 50%;
+    color: white;
+}
+
+.section-4-client-content {
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 1.6;
+}
+.section-4-client-content > h2 {
+    font-size: 3.5em;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+.section-4-client-content > li {
+    color: white;
+}
+
 .animated-button-2 {
-  opacity: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 13px 36px;
-  border: 4px solid;
-  border-color: transparent;
-  font-size: 16px;
-  background-color: inherit;
-  border-radius: 100px;
-  font-weight: 600;
-  color: black;
-  box-shadow: 0 0 0 2px black;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 13px 36px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: black;
+    box-shadow: 0 0 0 2px black;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button-2 svg {
-  position: absolute;
-  width: 24px;
-  fill: black;
-  z-index: 9;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: absolute;
+    width: 24px;
+    fill: black;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button-2 .arr-1 {
-  right: 16px;
+    right: 16px;
 }
 
 .animated-button-2 .arr-2 {
-  left: -25%;
+    left: -25%;
 }
 
 .animated-button-2 .circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: #6EC3E7;
-  border-radius: 50%;
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #6ec3e7;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button-2 .text {
-  position: relative;
-  z-index: 1;
-  transform: translateX(-12px);
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-button-2:hover {
-  box-shadow: 0 0 0 12px transparent;
-  color: #212121;
-  border-radius: 12px;
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
 }
 
 .animated-button-2:hover .arr-1 {
-  right: -25%;
+    right: -25%;
 }
 
 .animated-button-2:hover .arr-2 {
-  left: 16px;
+    left: 16px;
 }
 
 .animated-button-2:hover .text {
-  transform: translateX(12px);
+    transform: translateX(12px);
 }
 
 .animated-button-2:hover svg {
-  fill: #212121;
+    fill: #212121;
 }
 
 .animated-button-2:active {
-  scale: 0.95;
-  box-shadow: 0 0 0 4px greenyellow;
+    scale: 0.95;
+    box-shadow: 0 0 0 4px greenyellow;
 }
 
 .animated-button-2:hover .circle {
-  width: 220px;
-  height: 220px;
-  opacity: 1;
+    width: 220px;
+    height: 220px;
+    opacity: 1;
 }
-.section-5{
- background-color: white;
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.section-5 {
+    background-color: white;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.section-5-content{
-  height: 100%;
-  width: 90%;
+.section-5-content {
+    height: 100%;
+    width: 90%;
 }
-.section-5-title-content{
-  height: 40vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  
-
+.section-5-title-content {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
-.section-5-title-content>h1{
-  text-align: center;
-  width:100%;
-  font-size: 3.5em;
+.section-5-title-content > h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 3.5em;
     font-family: "Onest", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -1359,37 +1445,28 @@ color: #CFCFC8;
     opacity: 1;
 }
 
- 
-
-
-
-.transition{
+.transition {
     height: 1vh;
     width: 1vw;
-    background-color: #E15B1B;
+    background-color: #e15b1b;
     position: relative;
     left: 49%;
     z-index: 130;
 }
 
-.section-s2-to-s3{
+.section-s2-to-s3 {
     height: 30vh;
     width: 100vw;
     background-color: black;
 }
-.section-s3-to-s4{
+.section-s3-to-s4 {
     height: 100vh;
     width: 100vw;
     background-color: black;
 }
-.section-s4-to-s5{
+.section-s4-to-s5 {
     height: 10vh;
     width: 100vw;
     background-color: white;
 }
-
-
-
-
-
 </style>

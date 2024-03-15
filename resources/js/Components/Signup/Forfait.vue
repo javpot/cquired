@@ -45,10 +45,10 @@ onMounted(() => {
                     our Starter plan"
                         :onclick="() => handleSubmit('starter')"
                         :features="[
-                            'limite of 25 people',
-                            'limite of 25 messages',
+                            'visible limit of 25 clients',
                             'search feature',
-                            'messaging feature',
+                            '',
+                            '',
                         ]"
                     />
                     <ForfaitCardVue
@@ -58,10 +58,10 @@ onMounted(() => {
                     our Basic plan"
                         :onclick="() => handleSubmit('basic')"
                         :features="[
-                            'limite of 25 people',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
+                            'visible limit of 50 clients',
+                            'search feature',
+                            '',
+                            '',
                         ]"
                     />
                     <ForfaitCardVue
@@ -71,10 +71,10 @@ onMounted(() => {
                     our Business plan"
                         :onclick="() => handleSubmit('business')"
                         :features="[
-                            'limite of 25 people',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
+                            'visible limit of 75 people',
+                            'search feature',
+                            '',
+                            '',
                         ]"
                     />
 
@@ -85,10 +85,10 @@ onMounted(() => {
                     our Enterprise plan"
                         :onclick="() => handleSubmit('enterprise')"
                         :features="[
-                            'special icon',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
-                            'limite of 25 messages',
+                            'unlimited number of clients',
+                            'search feature',
+                            '',
+                            '',
                         ]"
                     />
                 </div>

@@ -11,7 +11,8 @@ const handleLocationSelection = () => {
 
         if (
             csvData.value.find(
-                (row) => `${row.country}, ${row.subcountry}` === text
+                (row) =>
+                    `${row.country}, ${row.subcountry}, ${row.name}` === text
             )
         ) {
             submit(text, "Location");
@@ -54,11 +55,11 @@ onMounted(async () => {
             }
         });
 
-        if (uniqueSubcountries.has(rowData.subcountry)) {
-            return null;
-        }
+        // if (uniqueSubcountries.has(rowData.subcountry)) {
+        //     return null;
+        // }
 
-        uniqueSubcountries.add(rowData.subcountry);
+        // uniqueSubcountries.add(rowData.subcountry);
         rowData.id = rowIndex + 1;
         return rowData;
     });
@@ -71,7 +72,7 @@ onMounted(async () => {
     scalingDiv.addEventListener("animationend", () => {
         scalingDiv.classList.remove("animate-scale-0");
     });
-	*/
+    */
 });
 </script>
 
@@ -103,7 +104,7 @@ onMounted(async () => {
                 />
                 <datalist id="subcountriesList">
                     <option v-for="row in csvData" :key="row.id">
-                        {{ row.country }}, {{ row.subcountry }}
+                        {{ row.country }}, {{ row.subcountry }}, {{ row.name }}
                     </option>
                 </datalist>
                 <InputError :message="errorMessage" />

@@ -52,6 +52,7 @@ function submitSearch(searchValue) {
                 "Search value must contain only letters and spaces.";
         }
     } else {
+        errorMessage.value = "";
         shownAgencies.value = agencies.value;
     }
 }

@@ -32,7 +32,7 @@ use App\Http\Controllers\StripeWebhookController;
 
 // temporaire, nous n'avons pas une page d'accueil sans login
 Route::get('/', function () {
-    return Inertia::render('Auth/Register');
+    return Inertia::render('Home');
 });
 
 Route::get('/login', function () {
