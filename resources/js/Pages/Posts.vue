@@ -3,6 +3,7 @@ import PostCard from "@/Components/PostCard.vue";
 import FilterIcon from "@/Components/FilterIcon.vue";
 import AuthenticatedLayoutAgency from "@/Layouts/AuthenticatedLayoutAgency.vue";
 import { onMounted, ref, computed } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
 const posts = ref([]);
 const currentPage = ref(1);
@@ -31,7 +32,7 @@ onMounted(async () => {
 async function getPosts() {
     try {
         const response = await axios.get("/posts");
-        
+
         return response.data.Posts;
     } catch (error) {
         console.error(error.response ? error.response.data : error.message);
@@ -62,6 +63,9 @@ async function getClientById(id) {
                         class="w-1/2"
                         :postdata="post"
                         :clientdata="getClientById(post.client_id)"
+                        @click="
+                            Inertia.visit(`/client-profile/${post.client_id}`)
+                        "
                     />
                 </template>
             </div>

@@ -162,14 +162,14 @@ const isPwdValid = () => {
                 </PrimaryButton>
             </form>
             <span class="flex justify-center items-center mt-7 mb-7">
-                Vous avez déja un compte?
+                Already have an account?
                 <Link :href="route('login')" class="text-blue-300 ml-2">
-                    Se connecter
+                    Login
                 </Link>
             </span>
             <div class="flex w-full justify-center items-center">
                 <div class="h-px w-full bg-black"></div>
-                <h2 class="px-4">Ou</h2>
+                <h2 class="px-4">OR</h2>
                 <div class="h-px w-full bg-black"></div>
             </div>
             <GoogleButtonVue />

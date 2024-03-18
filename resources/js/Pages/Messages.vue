@@ -19,7 +19,7 @@ import MessageBar from "@/Components/MessageBar.vue";
                     <h1 class="text-4xl">Chats</h1>
                     <ComposeMessage class="w-9 h-9 mr-2" />
                 </div>
-                <SearchBar class="mb-6 mr-2" />
+                <SearchBar class="mb-6 mr-2" :submit="() => {}" />
                 <ul class="mr-2">
                     <li><ConversationCard /></li>
                     <li><ConversationCard /></li>

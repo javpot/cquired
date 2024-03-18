@@ -3,13 +3,17 @@ import DangerButton from "@/Components/DangerButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import axios from "axios";
 import { ref } from "vue";
-import { usePage } from "@inertiajs/vue3";
+import { useForm, usePage } from "@inertiajs/vue3";
 import { onMounted } from "vue";
+import InputError from "@/Components/InputError.vue";
 
 const user = usePage().props.auth.user;
 const imageFile = ref(null);
 const imageName = ref("");
 const picturePath = ref("");
+
+const wasSent = ref(false);
+const wasRemoved = ref(false);
 
 onMounted(() => {
     let loadedPicture;
@@ -34,8 +38,10 @@ const removeImage = async () => {
     try {
         if (user.category === "Client") {
             await axios.delete("/client-profile/picture");
+            wasRemoved.value = true;
         } else {
             await axios.delete("/agency-profile/picture");
+            wasRemoved.value = true;
         }
     } catch (error) {
         console.error("Error deleting picture:", error);
@@ -56,10 +62,8 @@ const handleFileChange = (event) => {
         // alert("Please choose an image first.");
     }
 };
-
 const saveImage = async () => {
     if (imageFile.value && imageName.value) {
-        // Create a FormData object and append the image file
         const formData = new FormData();
         formData.append("picture", imageFile.value);
 
@@ -70,12 +74,14 @@ const saveImage = async () => {
                         "Content-Type": "multipart/form-data",
                     },
                 });
+                wasSent.value = true;
             } else {
                 await axios.post("/agency-profile/picture", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 });
+                wasSent.value = true;
             }
         } catch (error) {
             console.error("Error uploading image:", error);
@@ -107,27 +113,55 @@ const saveImage = async () => {
                     PNG and JPEG under 4mb.
                 </p>
             </span>
-            <div class="flex flex-row">
-                <form
-                    @submit.prevent="saveImage"
-                    method="post"
-                    class="flex flex-row-reverse gap-4 items-center"
-                    enctype="multipart/form-data"
+            <span class="flex flex-col">
+                <div class="flex flex-row">
+                    <form
+                        @submit.prevent="saveImage"
+                        method="post"
+                        class="flex flex-row-reverse gap-4 items-center"
+                        enctype="multipart/form-data"
+                    >
+                        <PrimaryButton type="submit">Save</PrimaryButton>
+                        <input
+                            class="w-60"
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            @change="handleFileChange"
+                            ref="fileInput"
+                            name="picture"
+                        />
+                    </form>
+                    <DangerButton class="ml-4" @click="removeImage"
+                        >Remove</DangerButton
+                    >
+                </div>
+                <Transition
+                    enter-active-class="transition ease-in-out"
+                    enter-from-class="opacity-0"
+                    leave-active-class="transition ease-in-out"
+                    leave-to-class="opacity-0"
                 >
-                    <PrimaryButton type="submit">Save</PrimaryButton>
-                    <input
-                        class="w-60"
-                        type="file"
-                        accept="image/png, image/jpeg"
-                        @change="handleFileChange"
-                        ref="fileInput"
-                        name="picture"
-                    />
-                </form>
-                <DangerButton class="ml-4" @click="removeImage"
-                    >Remove</DangerButton
+                    <p
+                        v-if="wasSent"
+                        class="text-sm text-right text-gray-600 mt-2"
+                    >
+                        Saved.
+                    </p>
+                </Transition>
+                <Transition
+                    enter-active-class="transition ease-in-out"
+                    enter-from-class="opacity-0"
+                    leave-active-class="transition ease-in-out"
+                    leave-to-class="opacity-0"
                 >
-            </div>
+                    <p
+                        v-if="wasRemoved"
+                        class="text-sm text-right text-gray-600 mt-2"
+                    >
+                        Removed.
+                    </p>
+                </Transition>
+            </span>
         </div>
     </section>
 </template>

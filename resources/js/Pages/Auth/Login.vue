@@ -47,7 +47,7 @@ const submitForm = async () => {
             class="w-full flex flex-col space-y-6"
         >
             <input type="hidden" name="_token" :value="csrfToken" />
-            <label for="email">Adresse courriel*</label>
+            <label for="email">Email</label>
             <input
                 v-model="formData.email"
                 type="email"
@@ -55,7 +55,7 @@ const submitForm = async () => {
                 required
                 id="email"
             />
-            <label for="mdp">Mot de passe*</label>
+            <label for="mdp">Password</label>
             <input
                 v-model="formData.password"
                 type="password"
@@ -66,17 +66,17 @@ const submitForm = async () => {
             <PrimaryButton @click="submitForm">Login</PrimaryButton>
         </form>
         <div class="flex flex-col items-center space-y-6 my-6">
-            <Link href="" class="text-blue-300">Mot de passe oublié?</Link>
+            <Link href="" class="text-blue-300">Forgot your password?</Link>
             <span class="flex flex-row">
-                Vous n'avez pas de compte ?
+                Don't have an account yet ?
                 <Link :href="route('register')" class="ml-2 text-blue-300"
-                    >S'inscrire
+                    >Sign up now
                 </Link>
             </span>
         </div>
         <div class="flex w-full justify-center items-center">
             <div class="h-px w-full bg-black"></div>
-            <h2 class="px-4">Ou</h2>
+            <h2 class="px-4">OR</h2>
             <div class="h-px w-full bg-black"></div>
         </div>
         <GoogleButton />
