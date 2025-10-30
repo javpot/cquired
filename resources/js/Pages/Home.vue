@@ -466,7 +466,7 @@ export default {
         <div class="section-3">
             <div class="section-3-content">
                 <div class="section-3-about">
-                    <p>
+                    <p style="font-size: large">
                         Cquired is the communication bridge between individuals
                         and businesses. We actively promote business growth by
                         providing precisely tailored services that address the
@@ -510,12 +510,10 @@ export default {
                     </Link>
                 </div>
                 <div class="section-3-benef">
-                    <h3>1 - Aucun frais d'inscription</h3>
-                    <h3>2 - Poster une offre et engager</h3>
-
+                    <h3>1 - No registration fees</h3>
+                    <h3>2 - Post an offer and hire</h3>
                     <h3>
-                        3 - Travailler avec les meilleurs, tout en respectant
-                        votre bugdet
+                        3 - Work with the best, while staying within your budget
                     </h3>
                 </div>
             </div>

@@ -20,8 +20,8 @@ import { Link } from "@inertiajs/vue3";
             <img src="../../assets/logo.png" alt="" srcset="" class="logo" />
 
             <div class="nav-selection">
-                <li><Link :href="route('login')">Se connecter</Link></li>
-                <li><Link :href="route('register')">S'inscrire</Link></li>
+                <li><Link :href="route('login')">Login</Link></li>
+                <li><Link :href="route('register')">Sign up</Link></li>
             </div>
         </nav>
     </header>

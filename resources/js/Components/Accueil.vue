@@ -13,8 +13,8 @@ export default {
             <!--background blur a faire-->
 
             <div class="section-1-info">
-                <h2>Libérez votre talent</h2>
-                <h1>connectez-vous avec les meilleures agences ici !</h1>
+                <h2>Unleash your talent</h2>
+                <h1>connect with the best agencies here!</h1>
                 <div class="container-search">
                     <input type="search" placeholder="chercher votre service" />
                     <img

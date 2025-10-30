@@ -30,7 +30,7 @@ use App\Http\Controllers\StripeWebhookController;
 |
 */
 
-// temporaire, nous n'avons pas une page d'accueil sans login
+// Page d'accueil
 Route::get('/', function () {
     return Inertia::render('Home');
 });
