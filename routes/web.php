@@ -178,39 +178,24 @@ Route::get('/get-user-data', function () {
 // API STRIPE
 Route::post('/stripe/ourwebhook', [StripeWebhookController::class, 'handleWebhook']);
 
-Route::get('/subscription-starter', function (Request $request) {
-    $request->user()
-        ->newSubscription('starter', 'price_1Ooq5uH95x8ZWvcZMXBs6NPq')->create(null);
-    return Inertia::render('Dashboard');
-    })->name('subscription-starter');
+Route::get('/subscription/{plan}', function (Request $request, $plan) {
+    $plans = [
+        'starter' => 'price_1Ooq5uH95x8ZWvcZMXBs6NPq',
+        'basic' => 'price_1On0tLH95x8ZWvcZshsoURrW',
+        'business' => 'price_1On0yiH95x8ZWvcZ2dpAv8ka',
+        'enterprise' => 'price_1On10FH95x8ZWvcZOcBBfjUk',
+    ];
 
-Route::get('/subscription-basic', function (Request $request) {
+    abort_unless(array_key_exists($plan, $plans), 404);
+
     return $request->user()
-        ->newSubscription('basic', 'price_1On0tLH95x8ZWvcZshsoURrW')
+        ->newSubscription($plan, $plans[$plan])
         ->checkout([
             'success_url' => route('dashboard'),
             'cancel_url' => route('register'),
         ]);
-        
-})->name('subscription-basic');
+})->name('subscription');
 
-Route::get('/subscription-business', function (Request $request) {
-    return $request->user()
-    ->newSubscription('business','price_1On0yiH95x8ZWvcZ2dpAv8ka')
-    ->checkout([
-        'success_url' => route('dashboard'),
-        'cancel_url' => route('register'),
-    ]);
-})->name('subscription-business');
-
-Route::get('/subscription-enterprise', function (Request $request) {
-    return $request->user()
-    ->newSubscription('enterprise','price_1On10FH95x8ZWvcZOcBBfjUk')
-    ->checkout([
-        'success_url' => route('dashboard'),
-        'cancel_url' => route('register'),
-    ]);
-})->name('subscription-enterprise');
  
 // Route pour qu'un agency ou freelance puisse modifer son abonnement
 Route::get('/billing', function (Request $request) {

@@ -6,7 +6,7 @@ import Domain from "@/Components/Signup/Domain.vue";
 import Forfait from "@/Components/Signup/Forfait.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import { Inertia } from "@inertiajs/inertia";
+import { router } from "@inertiajs/vue3"; // ✅ import correct pour Vue 3
 
 let properties = ref({
     category: null,
@@ -18,6 +18,7 @@ let properties = ref({
     banner: "public/banner_images/clientImgAccueil.jpg",
     saved: { saved: [] },
 });
+
 let currentStep = ref("Credentials");
 let userData = ref(null);
 let googleDataUsed = false;
@@ -31,7 +32,7 @@ onMounted(async () => {
     }
 });
 
-let getGoogleData = async () => {
+const getGoogleData = async () => {
     try {
         if (!googleDataUsed) {
             const response = await axios.get("/get-user-data");
@@ -45,57 +46,56 @@ let getGoogleData = async () => {
     }
 };
 
-let login = async (redirect) => {
+const login = async (redirect) => {
     try {
-        let response = await axios.post("/register", {
+        const response = await axios.post("/register", {
             name: properties.value.name,
             email: properties.value.email,
-            password: properties.value.password
-                ? properties.value.password
-                : null,
-            password_confirmation: properties.value.password_confirmation
-                ? properties.value.password_confirmation
-                : null,
-            google_id: properties.value.google_id
-                ? properties.value.google_id
-                : null,
-            category: properties.value.category
-                ? properties.value.category
-                : null,
+            password: properties.value.password ?? null,
+            password_confirmation:
+                properties.value.password_confirmation ?? null,
+            google_id: properties.value.google_id ?? null,
+            category: properties.value.category ?? null,
         });
 
-        if (response.status == 200 && redirect) {
-            console.log("SUCCEEEDED");
-            Inertia.visit(route("dashboard"));
+        if ((response.status === 200 || response.status === 201) && redirect) {
+            console.log("SUCCEEDED");
+            router.visit(route("dashboard"));
         }
     } catch (error) {
-        console.error(error.response.data);
+        if (error.response) {
+            console.error("Erreur backend:", error.response.data);
+        } else if (error.request) {
+            console.error("Aucune réponse du serveur:", error.request);
+        } else {
+            console.error("Erreur axios:", error.message);
+        }
     }
 };
 
-let createEntity = async (category) => {
+const createEntity = async (category) => {
     try {
         let path = category == "Client" ? "clients" : "agencies";
-
         await axios.post(path, properties.value);
     } catch (error) {
-        console.error(error.response.data);
+        console.error(error.response?.data || error);
     }
 };
 
-let checkout = () => {
+const checkout = () => {
     try {
-        Inertia.visit(route(`subscription-${properties.value.forfait}`));
+        window.location.href = route("subscription", {
+            plan: properties.value.forfait,
+        });
     } catch (error) {
         console.error(error);
     }
 };
 
-let handleSubmit = async (data, source) => {
+const handleSubmit = async (data, source) => {
     switch (source) {
         case "Credentials":
-            const newData = { name: data.name, email: data.email };
-            properties.value = { ...properties.value, ...newData };
+            properties.value = { ...properties.value, ...data };
             currentStep.value = "Type";
             break;
         case "Type":
@@ -108,7 +108,7 @@ let handleSubmit = async (data, source) => {
             break;
         case "Location":
             properties.value.location = data;
-            if (properties.value.category != "Client") {
+            if (properties.value.category !== "Client") {
                 currentStep.value = "Forfait";
             } else {
                 await createEntity("Client");

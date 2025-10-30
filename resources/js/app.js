@@ -4,7 +4,8 @@ import "../css/app.css";
 import { createApp, h, provide } from "vue"; // Importez `provide` de Vue
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
-import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
+import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.es.js";
+
 import "nprogress/nprogress.css";
 
 const appName = "Cquired";

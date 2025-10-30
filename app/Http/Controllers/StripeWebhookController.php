@@ -12,44 +12,38 @@ use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
 
 class StripeWebhookController extends CashierController
 {
-    public function handleWebhook(Request $request)
-    {
-        $payload = $request->all();
-        $event = $payload['type'];
-        
-        
+   public function handleWebhook(Request $request)
+{
+    $payload = $request->getContent();
+    $sigHeader = $request->header('Stripe-Signature');
+    $secret = config('cashier.webhook.secret'); // ou env('STRIPE_WEBHOOK_SECRET')
 
-        switch ($event) {
-            case 'invoice.payment_succeeded':
-                // Gérer l'événement de paiement réussi
-               
-                $this->handleSuccessfulPayment($payload);
-                break;
-
-                case 'customer.subscription.updated':
-                    Stripe::setApiKey(env('STRIPE_SECRET'));
-                    
-                    $planId = $payload['object']['items']['data'][0]['plan']['id'];
-                    $customerId = $payload['object']['customer']; // Récupérer l'ID client depuis l'objet d'événement
-                    $user = User::where('stripe_id', $customerId)->first();
-                    
-                    if ($user) {
-                        $subscription = Subscription::where('user_id', $user->id)->first(); // Trouvez l'abonnement de l'utilisateur
-                
-                        if ($subscription) {
-                            $subscription->stripe_price = $planId;
-                            $subscription->save(); 
-                        }
-                    }
-                    // Malheureusement cashier n'offre pas l'option de modifier la colonne type on peut juste modifier le stripe_price
-                    break;
-                
-            
-        }
-
-
-        return response()->json(['status' => 'success']);
+    try {
+        $event = \Stripe\Webhook::constructEvent(
+            $payload,
+            $sigHeader,
+            $secret
+        );
+    } catch (\UnexpectedValueException $e) {
+        // Payload invalide
+        return response()->json(['error' => 'Invalid payload'], 400);
+    } catch (\Stripe\Exception\SignatureVerificationException $e) {
+        // Signature invalide
+        return response()->json(['error' => 'Invalid signature'], 400);
     }
+
+    // Ensuite, ton switch habituel :
+    switch ($event->type) {
+        case 'invoice.payment_succeeded':
+            $this->handleSuccessfulPayment($event->data->object);
+            break;
+        case 'customer.subscription.updated':
+            // A rajouter pour l'instant il y a aucune relation entre subscription et agence/Freelance
+            break;
+    }
+
+    return response()->json(['status' => 'success']);
+}
 
     protected function handleSuccessfulPayment($payload)
     {
