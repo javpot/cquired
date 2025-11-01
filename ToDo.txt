@@ -1,0 +1,41 @@
+Changer le logo
+
+Afficher un message pour les champs requis du mot de passe
+
+Modifier la barre de progression pour l’inscription
+
+Dans le formulaire d’inscription, remplacer l’étape « choisir le domaine » par une barre de recherche
+
+Corriger le bug dans la sauvegarde de l’abonnement de l’utilisateur
+
+Justifier les deux tables subscriptions et subscription_items
+
+Séparer la table agencies en agency et freelance
+
+Ajouter une option permettant à l’utilisateur de s’abonner à la newsletter
+
+Gérer le chargement des images (photo de profil)
+
+Mettre à jour les tables freelances et agencies avec un nouveau champ specialisation
+
+Corriger le bug du composant resolve lorsqu’on clique sur une carte de la page Explore
+
+Modifier la pagination dans la page Explore
+
+Corriger le bug empêchant la récupération de l’abonnement de l’utilisateur (aucun client affiché sur la page d’accueil)
+
+Changer la méthode de sauvegarde des images (proposition : utiliser AWS S3 Bucket)
+
+Réparer le bouton subscription dans les paramètres
+
+Rendre l’interface du profil utilisateur modifiable
+
+Corriger les bugs dans le filtrage de la page Explore
+
+Dans les cartes des compagnies sur la page Explore, remplacer la description par le champ specialisation
+
+Harmoniser les onglets entre la page des messages et la page d’accueil
+
+Vérifier l’utilité des notifications
+
+Déterminer le fonctionnement du chat
