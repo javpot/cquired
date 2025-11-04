@@ -4,6 +4,7 @@ import Category from "@/Components/Signup/Category.vue";
 import Location from "@/Components/Signup/Location.vue";
 import Domain from "@/Components/Signup/Domain.vue";
 import Forfait from "@/Components/Signup/Forfait.vue";
+import Speciality from "@/Components/Signup/Speciality.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { router } from "@inertiajs/vue3"; // ✅ import correct pour Vue 3
@@ -109,11 +110,15 @@ const handleSubmit = async (data, source) => {
         case "Location":
             properties.value.location = data;
             if (properties.value.category !== "Client") {
-                currentStep.value = "Forfait";
+                currentStep.value = "Speciality";
             } else {
                 await createEntity("Client");
                 await login(true);
             }
+            break;
+        case "Speciality":
+            properties.value.specialty = data;
+            currentStep.value = "Forfait";
             break;
         case "Forfait":
             properties.value.forfait = data;
@@ -135,6 +140,10 @@ const handleSubmit = async (data, source) => {
         <Category v-if="currentStep === 'Type'" :submit="handleSubmit" />
         <Domain v-if="currentStep === 'Domain'" :submit="handleSubmit" />
         <Location v-if="currentStep === 'Location'" :submit="handleSubmit" />
+        <Speciality
+            v-if="currentStep === 'Speciality'"
+            :submit="handleSubmit"
+        />
         <Forfait v-if="currentStep === 'Forfait'" :submit="handleSubmit" />
     </div>
 </template>

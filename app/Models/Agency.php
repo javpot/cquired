@@ -15,6 +15,7 @@ class Agency extends Model
         'email',
         'pwd',
         'category',
+        'specialty',
         'location',
         'picture',
         'banner',

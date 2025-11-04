@@ -20,8 +20,6 @@ Mettre à jour les tables freelances et agencies avec un nouveau champ specialis
 
 Corriger le bug du composant resolve lorsqu’on clique sur une carte de la page Explore
 
-Modifier la pagination dans la page Explore
-
 Corriger le bug empêchant la récupération de l’abonnement de l’utilisateur (aucun client affiché sur la page d’accueil)
 
 Changer la méthode de sauvegarde des images (proposition : utiliser AWS S3 Bucket)

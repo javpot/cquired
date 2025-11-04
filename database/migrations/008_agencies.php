@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('name')->nullable();
             $table->string('bio')->nullable();
             $table->string('category')->nullable();
+            $table->string('specialty')->nullable();
             $table->string('location')->nullable();
             $table->string('picture')->nullable();
             $table->string('banner')->nullable();

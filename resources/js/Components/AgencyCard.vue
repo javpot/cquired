@@ -21,7 +21,7 @@ defineProps({
         <!-- <Bookmark class="" /> -->
         <p class="text-lg font-medium ml-1">{{ agencydata.name }}</p>
         <p class="text-sm truncate ml-1">
-            {{ agencydata.bio }}
+            {{ agencydata.specialty }}
         </p>
     </div>
 </template>
