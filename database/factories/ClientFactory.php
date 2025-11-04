@@ -19,8 +19,8 @@ class ClientFactory extends Factory
         return [
             'name' => $this->faker->firstName,
             'bio' => $this->faker->text,
-            'picture' => $this->faker->imageUrl,
-            'banner' => $this->faker->imageUrl,
+            'picture' => 'profile_images/pfp-icon.png',
+            'banner' => 'banner_images/clientImgAccueil.jpg',
             'location' => $this->faker->city,
             'status' => $this->faker->word,
             'email' => $this->faker->unique()->safeEmail,

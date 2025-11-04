@@ -19,12 +19,11 @@ class AgencyFactory extends Factory
         return [
             'name' => $this->faker->firstName,
             'bio' => $this->faker->text,
-            'picture' => $this->faker->imageUrl,
-            'banner' => $this->faker->imageUrl,
-            'location' => $this->faker->city,
+            'picture' => 'profile_images/pfp-icon.png',
+            'banner' => 'banner_images/clientImgAccueil.jpg',
             'email' => $this->faker->unique()->safeEmail,
             'domain' => $this->faker->word,
-            'category' => $this->faker->word,
+            'category' => $this->faker->randomElement(['Freelancer','Agency']),
             'saved' => [ 
                 'saved' => [random_int(1,150)],
             ],
